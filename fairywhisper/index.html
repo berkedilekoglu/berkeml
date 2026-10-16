@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FairyWhisper — Uyku Masalları · Bedtime Stories</title>
+  <link rel="canonical" href="https://berkeml.com/fairywhisper/">
+  <meta name="description" content="FairyWhisper: çocuklarınıza kendi sesinizle uyku masalları. Bedtime stories for your children, in your own voice.">
+  <style>
+    :root {
+      --night: #0F1530;
+      --night-2: #1A2246;
+      --cream: #FBF7F0;
+      --gold: #F2B65A;
+      --ink: #1E2440;
+      --muted: #5B6180;
+      --line: #E8E0D2;
+    }
+    * { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0;
+      background: var(--cream);
+      color: var(--ink);
+      font: 16px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+    header.site {
+      background: var(--night);
+      color: var(--cream);
+      padding: 20px 16px;
+    }
+    header.site .inner, main, footer .inner { max-width: 780px; margin: 0 auto; }
+    header.site .inner { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+    .brand { color: var(--cream); text-decoration: none; font-weight: 700; font-size: 1.15rem; letter-spacing: .2px; }
+    .brand span { color: var(--gold); }
+    nav a { color: var(--cream); opacity: .85; text-decoration: none; margin-left: 16px; font-size: .95rem; }
+    nav a:first-child { margin-left: 0; }
+    nav a:hover { opacity: 1; color: var(--gold); }
+    main { padding: 32px 16px 48px; }
+    h1 { font-size: 1.9rem; line-height: 1.25; margin: 0 0 4px; color: var(--night); }
+    h2 { font-size: 1.25rem; margin: 32px 0 8px; color: var(--night); }
+    h3 { font-size: 1.05rem; margin: 20px 0 6px; color: var(--night); }
+    p, li { color: var(--ink); }
+    ul { padding-left: 1.25rem; }
+    a { color: #8A5A12; }
+    .meta { color: var(--muted); font-size: .92rem; margin: 0 0 24px; }
+    .lang-switch { display: flex; gap: 8px; margin: 0 0 24px; flex-wrap: wrap; }
+    .lang-switch a {
+      display: inline-block; padding: 6px 14px; border-radius: 999px;
+      background: var(--night); color: var(--cream); text-decoration: none; font-size: .9rem;
+    }
+    .lang-switch a:hover { background: var(--night-2); color: var(--gold); }
+    section.lang { background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: 8px 24px 24px; margin-bottom: 32px; }
+    .badge { display: inline-block; background: var(--gold); color: var(--night); font-weight: 700; font-size: .75rem; padding: 2px 10px; border-radius: 999px; letter-spacing: .5px; margin-top: 20px; }
+    .note { border-left: 4px solid var(--gold); background: #FFF8EA; padding: 10px 14px; border-radius: 8px; }
+    footer { background: var(--night); color: var(--cream); padding: 24px 16px; font-size: .9rem; }
+    footer a { color: var(--gold); }
+    @media (max-width: 560px) {
+      h1 { font-size: 1.5rem; }
+      section.lang { padding: 4px 16px 16px; }
+      nav a { margin-left: 12px; }
+    }
+  </style>
+  <style>
+    .hero { background: var(--night); color: var(--cream); padding: 56px 16px 64px; text-align: center; }
+    .hero h1 { color: var(--cream); font-size: 2.3rem; margin: 0 0 12px; }
+    .hero h1 span { color: var(--gold); }
+    .hero p { color: var(--cream); opacity: .9; max-width: 560px; margin: 0 auto 8px; font-size: 1.05rem; }
+    .moon { width: 64px; height: 64px; border-radius: 50%; margin: 0 auto 20px; box-shadow: -14px 10px 0 0 var(--gold); transform: rotate(-20deg); }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
+    .card { background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: 18px 20px; }
+    .card h3 { margin-top: 0; }
+    @media (max-width: 560px) { .hero h1 { font-size: 1.8rem; } }
+  </style>
+</head>
+<body>
+  <header class="site">
+    <div class="inner">
+      <a class="brand" href="/fairywhisper/">Fairy<span>Whisper</span></a>
+      <nav><a href="/fairywhisper/privacy">Gizlilik · Privacy</a><a href="/fairywhisper/terms">Koşullar · Terms</a></nav>
+    </div>
+  </header>
+
+  <div class="hero">
+    <div class="moon" aria-hidden="true"></div>
+    <h1>Fairy<span>Whisper</span></h1>
+    <p>Çocuklarınıza her gece, kendi sesinizle uyku masalları.</p>
+    <p lang="en">Bedtime stories for your children — every night, in your own voice.</p>
+  </div>
+
+  <main>
+    <section lang="tr">
+      <h2>Nasıl çalışır?</h2>
+      <div class="grid">
+        <div class="card"><h3>📚 Masal seçin</h3><p>Klasik masallardan oluşan kütüphaneden bir hikâye seçin.</p></div>
+        <div class="card"><h3>🎙️ Sesinizi kaydedin</h3><p>İsteğe bağlı: kısa bir kayıtla kendi sesinizden bir ses modeli oluşturun. Yalnızca kendi sesinizi kaydedin.</p></div>
+        <div class="card"><h3>🌙 Birlikte dinleyin</h3><p>Masal sizin sesinizle seslendirilir; siz yanında olmasanız bile.</p></div>
+      </div>
+      <p class="note" style="margin-top:24px">Reklam yok, takip yok, analitik yok. Uygulama ebeveynler içindir; çocuklar hesap oluşturmaz.</p>
+    </section>
+
+    <section lang="en">
+      <h2>How it works</h2>
+      <div class="grid">
+        <div class="card"><h3>📚 Pick a story</h3><p>Choose from a library of classic fairy tales.</p></div>
+        <div class="card"><h3>🎙️ Record your voice</h3><p>Optional: create a voice model from a short recording. Record only your own voice.</p></div>
+        <div class="card"><h3>🌙 Listen together</h3><p>Stories are narrated in your voice — even when you can't be there.</p></div>
+      </div>
+      <p class="note" style="margin-top:24px">No ads, no tracking, no analytics. The app is for parents; children do not create accounts.</p>
+    </section>
+
+    <h2>İletişim · Contact</h2>
+    <p><a href="mailto:supportfairywhisper@gmail.com">supportfairywhisper@gmail.com</a></p>
+  </main>
+
+  <footer>
+    <div class="inner">© FairyWhisper · a <a href="/">BerkeML</a> product · <a href="/fairywhisper/privacy">Gizlilik / Privacy</a> · <a href="/fairywhisper/terms">Koşullar / Terms</a></div>
+  </footer>
+</body>
+</html>
