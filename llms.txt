@@ -18,7 +18,7 @@
 
 ## Products
 
-- FairyWhisper (coming soon, iOS): https://berkeml.com/fairywhisper/. Bedtime stories read in a parent's own voice. A parent records their voice once; a library of public-domain fairy tales and original Turkish and English stories written for FairyWhisper is narrated in that voice with ElevenLabs voice cloning and text-to-speech. Includes story lengths from 5 to 30 minutes, a sleep bridge, read-along text, lullabies and sleep sounds. Privacy: https://berkeml.com/fairywhisper/privacy · Terms: https://berkeml.com/fairywhisper/terms
+- FairyWhisper (coming soon, iOS): https://berkeml.com/fairywhisper/. Bedtime stories read in a parent's own voice. A parent records their voice once; a library of public-domain fairy tales and original Turkish and English stories written for FairyWhisper is narrated in that voice with AI voice cloning and text-to-speech. Includes story lengths from 5 to 30 minutes, a sleep bridge, read-along text, lullabies and sleep sounds. Privacy: https://berkeml.com/fairywhisper/privacy · Terms: https://berkeml.com/fairywhisper/terms
 - Promil Tracker (live): https://promiltracker.com. Free web app that tracks drinks and estimates blood alcohol content with the Widmark formula; optional Google sign-in for history and statistics.
 - InfluencersBid (live): https://influencersbid.lol. Competitive leaderboard where influencers bid their way to the #1 spot.
 
@@ -26,7 +26,6 @@
 
 - Claude Code is used for day-to-day development, refactoring, testing and code review.
 - Claude API powers document reasoning and agentic steps in production; FairyWhisper's original stories were written with Claude.
-- ElevenLabs powers voice cloning and narration.
 
 ## Founder background
 
