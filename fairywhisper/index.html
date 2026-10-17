@@ -458,10 +458,10 @@
       <div class="read-sheet" data-ui>
         <p class="title" id="read-title">Rapunzel</p>
         <div class="voices" id="voice-switch" role="group" aria-label="Voice" hidden>
-          <button class="voice" type="button" data-voice="0" aria-pressed="true">Voice 1</button>
-          <button class="voice" type="button" data-voice="1" aria-pressed="false">Voice 2</button>
+          <button class="voice" type="button" data-voice="0" aria-pressed="true"><span lang="tr">Ses 1</span><span lang="en">Voice 1</span></button>
+          <button class="voice" type="button" data-voice="1" aria-pressed="false"><span lang="tr">Ses 2</span><span lang="en">Voice 2</span></button>
         </div>
-        <p class="read-text" id="read-text">Evvel zaman içinde, kalbur saman içinde, sık bir ormanın ortasında, gökyüzüne doğru uzanan taştan bir kule varmış. Kulenin ne kapısı, ne merdiveni varmış. Yalnızca en tepesinde, küçük bir penceresi varmış.</p>
+        <p class="read-text" id="read-text">Evvel zaman içinde, kalbur saman içinde, sık bir ormanın ortasında, gökyüzüne doğru uzanan taştan bir kule varmış. Kulenin ne kapısı, ne merdiveni varmış. Yalnızca en tepesinde, küçük bir penceresi varmış. O pencereden her sabah güneş, her akşam da ay içeri bakarmış. Ve o kulede Rapunzel adında bir kız yaşarmış.</p>
         <div class="controls">
           <button class="play" type="button" id="play">
             <svg viewBox="0 0 14 14" aria-hidden="true"><path d="M2 1.2v11.6L12.4 7z"/></svg>
@@ -724,7 +724,12 @@
   // Real openings from the app's library.
   var TALES = {
     tr: [
-      { t: 'Rapunzel', s: ['Evvel zaman içinde, kalbur saman içinde, sık bir ormanın ortasında, gökyüzüne doğru uzanan taştan bir kule varmış.', 'Kulenin ne kapısı, ne merdiveni varmış.', 'Yalnızca en tepesinde, küçük bir penceresi varmış.'] },
+      { t: 'Rapunzel',
+        s: ['Evvel zaman içinde, kalbur saman içinde, sık bir ormanın ortasında, gökyüzüne doğru uzanan taştan bir kule varmış.', 'Kulenin ne kapısı, ne merdiveni varmış.', 'Yalnızca en tepesinde, küçük bir penceresi varmış.', 'O pencereden her sabah güneş, her akşam da ay içeri bakarmış.', 'Ve o kulede Rapunzel adında bir kız yaşarmış.'],
+        voices: [
+          { audio: '/fairywhisper/assets/audio/rapunzel-tr-1.mp3', at: [0, 10.12, 13.62, 18.42, 24.29] }
+        ],
+        note: 'FairyWhisper ile örnek bir sesle seslendirildi. Uygulamada aynı masalı senin sesin okur.' },
       { t: 'Bulut Yastık', s: ['Uzak bir dağın tepesinde, gökyüzüne en yakın yerde, Pamuk adında küçük bir bulut yaşarmış.', 'Pamuk, diğer bulutlar gibi yağmur yağdırmayı ya da gök gürültüsüyle gürlemeyi sevmezmiş.', 'Onun en sevdiği şey, akşamları aşağıdaki köye bakıp pencerelerdeki ışıkların teker teker sönmesini izlemekmiş.'] },
       { t: 'Keloğlan ile Yün Bulutları', s: ['Evvel zaman içinde, kalbur saman içinde, yüksek dağların eteğinde küçük bir köy varmış.', 'Köyün evleri taştan, damları topraktanmış.', 'Her evin önünde bir dut ağacı, her bahçede bir sıra fasulye varmış.', 'Köyün tam ortasında da koca bir çınar dururmuş.'] }
     ],
