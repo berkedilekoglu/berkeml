@@ -25,7 +25,8 @@
 ## How we build
 
 - Claude Code is used for day-to-day development, refactoring, testing and code review.
-- Claude API powers document reasoning and agentic steps in production; FairyWhisper's original stories were written with Claude.
+- Claude API powers document reasoning and agentic steps in production.
+- FairyWhisper's original stories are AI-written.
 - ElevenLabs powers voice cloning and narration.
 
 ## Founder background
