@@ -216,7 +216,6 @@
     .play:hover { background: #6F430C; }
     .play:active { transform: scale(.96); }
     .play svg { width: 14px; height: 14px; fill: currentColor; }
-    .no-speech .play { display: none; }
 
     /* ---------- how ---------- */
     .steps { list-style: none; margin: 48px 0 0; padding: 0; display: grid; gap: 40px; max-width: 46ch; }
@@ -458,7 +457,7 @@
             <svg viewBox="0 0 14 14" aria-hidden="true"><path d="M2 1.2v11.6L12.4 7z"/></svg>
             <span data-play-label><span lang="tr">Oynat</span><span lang="en">Play</span></span>
           </button>
-          <p class="note"><span lang="tr">Tarayıcının kendi sesiyle okunur. Uygulamada aynı masalı senin sesin okur.</span><span lang="en">Read by your browser's own voice. In the app, the same story is read in yours.</span></p>
+          <p class="note" id="read-note"><span lang="tr">Tarayıcının kendi sesiyle okunur. Uygulamada aynı masalı senin sesin okur.</span><span lang="en">Read by your browser's own voice. In the app, the same story is read in yours.</span></p>
         </div>
       </div>
       <figure class="inline-shot" aria-hidden="true">
@@ -720,7 +719,11 @@
       { t: 'Keloğlan ile Yün Bulutları', s: ['Evvel zaman içinde, kalbur saman içinde, yüksek dağların eteğinde küçük bir köy varmış.', 'Köyün evleri taştan, damları topraktanmış.', 'Her evin önünde bir dut ağacı, her bahçede bir sıra fasulye varmış.', 'Köyün tam ortasında da koca bir çınar dururmuş.'] }
     ],
     en: [
-      { t: 'The Tale of Peter Rabbit', s: ['Once upon a time there were four little Rabbits, and their names were Flopsy, Mopsy, Cotton-tail, and Peter.', 'They lived with their Mother in a sand-bank, underneath the root of a very big fir-tree.'] },
+      { t: 'The Tale of Peter Rabbit',
+        s: ['Once upon a time there were four little Rabbits, and their names were Flopsy, Mopsy, Cotton-tail, and Peter.', 'They lived with their Mother in a sand-bank, underneath the root of a very big fir-tree.', "'Now run along, and don't get into mischief.", "I am going out.'", "Then old Mrs. Rabbit took a basket and her umbrella, and went through the wood to the baker's.", 'She bought a loaf of brown bread and five currant buns.'],
+        audio: '/fairywhisper/assets/audio/peter-rabbit-en.mp3',
+        at: [0, 8.38, 14.74, 19.4, 20.37, 26.04],
+        note: 'A FairyWhisper narration in a sample voice. In the app, the same story is read in your voice.' },
       { t: 'How the Camel Got His Hump', s: ['Now this is the next tale, and it tells how the Camel got his big hump.', 'In the beginning of years, when the world was so new and all, and the Animals were just beginning to work for Man, there was a Camel, and he lived in the middle of a Howling Desert because he did not want to work.'] },
       { t: 'Little Red-Cap', s: ['Once upon a time there was a dear little girl who was loved by every one who looked at her, but most of all by her grandmother.', 'Once she gave her a little cap of red velvet, which suited her so well that she would never wear anything else; so she was always called Little Red-Cap.'] }
     ]
@@ -733,9 +736,14 @@
   var canSpeak = !!synth && typeof SpeechSynthesisUtterance !== 'undefined';
   if (!canSpeak) root.classList.add('no-speech');
 
+  var noteEl = document.getElementById('read-note');
+  var defaultNote = noteEl.innerHTML;
+  var audio = null, rafId = 0;
   function renderTale() {
     var tale = TALES[lang()][current];
     titleEl.textContent = tale.t;
+    if (tale.note) noteEl.textContent = tale.note; else noteEl.innerHTML = defaultNote;
+    playBtn.style.display = (tale.audio || canSpeak) ? '' : 'none';
     textEl.textContent = '';
     tale.s.forEach(function (sentence, i) {
       var span = document.createElement('span');
@@ -754,6 +762,8 @@
   function stop() {
     queueId++;
     if (canSpeak) synth.cancel();
+    if (audio) { audio.pause(); audio.currentTime = 0; }
+    cancelAnimationFrame(rafId);
     setPlaying(false);
     textEl.querySelectorAll('span').forEach(function (s) { s.classList.remove('is-now', 'is-read'); });
   }
@@ -762,10 +772,33 @@
     return voices.find(function (v) { return v.lang && v.lang.toLowerCase().indexOf(code) === 0 && /yelda|samantha|karen|serena|moira|female/i.test(v.name); })
       || voices.find(function (v) { return v.lang && v.lang.toLowerCase().indexOf(code) === 0; });
   }
+  function playAudio(tale, spans) {
+    if (!audio) { audio = new Audio(); audio.preload = 'auto'; }
+    if (audio.getAttribute('src') !== tale.audio) audio.src = tale.audio;
+    var id = queueId;
+    setPlaying(true);
+    function mark() {
+      if (id !== queueId) return;
+      var t = audio.currentTime, i = 0;
+      for (var k = 0; k < tale.at.length; k++) if (t >= tale.at[k]) i = k;
+      spans.forEach(function (s, j) { s.classList.toggle('is-now', j === i); s.classList.toggle('is-read', j < i); });
+      if (!audio.paused) rafId = requestAnimationFrame(mark);
+    }
+    audio.onplay = function () { rafId = requestAnimationFrame(mark); };
+    audio.onended = function () {
+      if (id !== queueId) return;
+      spans.forEach(function (s) { s.classList.remove('is-now'); s.classList.add('is-read'); });
+      setPlaying(false);
+    };
+    audio.play().catch(function () { setPlaying(false); });
+  }
   function play() {
     stop();
     var id = queueId;
     var spans = Array.prototype.slice.call(textEl.querySelectorAll('span'));
+    var tale = TALES[lang()][current];
+    if (tale.audio) { playAudio(tale, spans); return; }
+    if (!canSpeak) return;
     var code = lang() === 'tr' ? 'tr' : 'en';
     var voice = pickVoice(code);
     setPlaying(true);
