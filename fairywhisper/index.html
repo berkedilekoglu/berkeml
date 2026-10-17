@@ -202,6 +202,12 @@
       padding: 28px 28px 24px; max-width: 46ch;
     }
     .read-sheet .title { font-size: var(--s-small); color: var(--soft); margin-bottom: 12px; }
+    .voices { display: inline-flex; gap: 4px; padding: 4px; margin: 0 0 16px; background: var(--surface); border-radius: 999px; }
+    .voices[hidden] { display: none; }
+    .voice { font: inherit; font-size: var(--s-small); color: var(--ink); background: transparent; border: 0; border-radius: 999px; padding: 6px 14px; cursor: pointer; transition: background var(--t-hover) ease, color var(--t-hover) ease, transform var(--t-press) var(--ease-out); }
+    .voice:hover { background: var(--surface-2); }
+    .voice:active { transform: scale(.96); }
+    .voice[aria-pressed="true"] { background: var(--night); color: var(--on-night); }
     .read-text { font-size: 24px; line-height: 1.5; }
     .read-text span { border-radius: 4px; transition: background-color 260ms ease, color 260ms ease; padding: 2px 4px; margin: 0 -4px; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
     .read-text span.is-read { color: var(--soft); }
@@ -451,6 +457,10 @@
       </div>
       <div class="read-sheet" data-ui>
         <p class="title" id="read-title">Rapunzel</p>
+        <div class="voices" id="voice-switch" role="group" aria-label="Voice" hidden>
+          <button class="voice" type="button" data-voice="0" aria-pressed="true">Voice 1</button>
+          <button class="voice" type="button" data-voice="1" aria-pressed="false">Voice 2</button>
+        </div>
         <p class="read-text" id="read-text">Evvel zaman içinde, kalbur saman içinde, sık bir ormanın ortasında, gökyüzüne doğru uzanan taştan bir kule varmış. Kulenin ne kapısı, ne merdiveni varmış. Yalnızca en tepesinde, küçük bir penceresi varmış.</p>
         <div class="controls">
           <button class="play" type="button" id="play">
@@ -721,9 +731,11 @@
     en: [
       { t: 'The Tale of Peter Rabbit',
         s: ['Once upon a time there were four little Rabbits, and their names were Flopsy, Mopsy, Cotton-tail, and Peter.', 'They lived with their Mother in a sand-bank, underneath the root of a very big fir-tree.', "'Now run along, and don't get into mischief.", "I am going out.'", "Then old Mrs. Rabbit took a basket and her umbrella, and went through the wood to the baker's.", 'She bought a loaf of brown bread and five currant buns.'],
-        audio: '/fairywhisper/assets/audio/peter-rabbit-en.mp3',
-        at: [0, 8.38, 14.74, 19.4, 20.37, 26.04],
-        note: 'A FairyWhisper narration in a sample voice. In the app, the same story is read in your voice.' },
+        voices: [
+          { audio: '/fairywhisper/assets/audio/peter-rabbit-en-1.mp3', at: [0, 8.38, 14.74, 19.4, 20.37, 26.04] },
+          { audio: '/fairywhisper/assets/audio/peter-rabbit-en-2.mp3', at: [0, 11.75, 20.94, 27.39, 29.48, 35.78] }
+        ],
+        note: 'FairyWhisper narrations in two sample voices. In the app, the same story is read in your voice.' },
       { t: 'How the Camel Got His Hump', s: ['Now this is the next tale, and it tells how the Camel got his big hump.', 'In the beginning of years, when the world was so new and all, and the Animals were just beginning to work for Man, there was a Camel, and he lived in the middle of a Howling Desert because he did not want to work.'] },
       { t: 'Little Red-Cap', s: ['Once upon a time there was a dear little girl who was loved by every one who looked at her, but most of all by her grandmother.', 'Once she gave her a little cap of red velvet, which suited her so well that she would never wear anything else; so she was always called Little Red-Cap.'] }
     ]
@@ -738,12 +750,23 @@
 
   var noteEl = document.getElementById('read-note');
   var defaultNote = noteEl.innerHTML;
-  var audio = null, rafId = 0;
+  var audio = null, rafId = 0, voiceIndex = 0;
+  var voiceSwitch = document.getElementById('voice-switch');
+  voiceSwitch.querySelectorAll('.voice').forEach(function (b) {
+    b.addEventListener('click', function () {
+      voiceIndex = Number(b.dataset.voice);
+      stop(); renderTale();
+    });
+  });
   function renderTale() {
     var tale = TALES[lang()][current];
     titleEl.textContent = tale.t;
     if (tale.note) noteEl.textContent = tale.note; else noteEl.innerHTML = defaultNote;
-    playBtn.style.display = (tale.audio || canSpeak) ? '' : 'none';
+    var hasVoices = !!(tale.voices && tale.voices.length);
+    playBtn.style.display = (hasVoices || canSpeak) ? '' : 'none';
+    voiceSwitch.hidden = !(hasVoices && tale.voices.length > 1);
+    if (!hasVoices || voiceIndex >= tale.voices.length) voiceIndex = 0;
+    voiceSwitch.querySelectorAll('.voice').forEach(function (b) { b.setAttribute('aria-pressed', String(Number(b.dataset.voice) === voiceIndex)); });
     textEl.textContent = '';
     tale.s.forEach(function (sentence, i) {
       var span = document.createElement('span');
@@ -772,15 +795,15 @@
     return voices.find(function (v) { return v.lang && v.lang.toLowerCase().indexOf(code) === 0 && /yelda|samantha|karen|serena|moira|female/i.test(v.name); })
       || voices.find(function (v) { return v.lang && v.lang.toLowerCase().indexOf(code) === 0; });
   }
-  function playAudio(tale, spans) {
+  function playAudio(narration, spans) {
     if (!audio) { audio = new Audio(); audio.preload = 'auto'; }
-    if (audio.getAttribute('src') !== tale.audio) audio.src = tale.audio;
+    if (audio.getAttribute('src') !== narration.audio) audio.src = narration.audio;
     var id = queueId;
     setPlaying(true);
     function mark() {
       if (id !== queueId) return;
       var t = audio.currentTime, i = 0;
-      for (var k = 0; k < tale.at.length; k++) if (t >= tale.at[k]) i = k;
+      for (var k = 0; k < narration.at.length; k++) if (t >= narration.at[k]) i = k;
       spans.forEach(function (s, j) { s.classList.toggle('is-now', j === i); s.classList.toggle('is-read', j < i); });
       if (!audio.paused) rafId = requestAnimationFrame(mark);
     }
@@ -797,7 +820,7 @@
     var id = queueId;
     var spans = Array.prototype.slice.call(textEl.querySelectorAll('span'));
     var tale = TALES[lang()][current];
-    if (tale.audio) { playAudio(tale, spans); return; }
+    if (tale.voices && tale.voices.length) { playAudio(tale.voices[voiceIndex], spans); return; }
     if (!canSpeak) return;
     var code = lang() === 'tr' ? 'tr' : 'en';
     var voice = pickVoice(code);
@@ -823,6 +846,7 @@
   document.querySelectorAll('.tale').forEach(function (btn) {
     btn.addEventListener('click', function () {
       current = Number(btn.dataset.tale);
+      voiceIndex = 0;
       document.querySelectorAll('.tale').forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.tale === btn.dataset.tale)); });
       stop(); renderTale();
     });
