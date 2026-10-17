@@ -297,28 +297,28 @@
     .faq-text b { font-weight: 600; }
     .faq-text a { color: var(--accent-ink); }
 
-    /* ---------- footer ---------- */
+    /* ---------- footer: one horizontal panel ---------- */
     .foot { padding: 0 var(--m) var(--m); }
-    .foot-inner { display: grid; grid-template-columns: 1fr 1fr; gap: var(--m); min-height: calc(100svh - 2 * var(--m)); }
-    .foot-photo { position: relative; border-radius: var(--radius); overflow: hidden; background: #0F1531; min-height: 420px; }
-    .foot-photo .stars { position: absolute; inset: 0; width: 100%; height: 100%; }
-    .tw { animation: twinkle 4.2s ease-in-out infinite alternate; transform-box: fill-box; }
-    .tw1 { animation-duration: 5.4s; animation-delay: -1.2s; } .tw2 { animation-duration: 3.6s; animation-delay: -2.1s; } .tw3 { animation-duration: 6.2s; animation-delay: -.6s; } .tw4 { animation-duration: 4.8s; animation-delay: -3s; }
-    @keyframes twinkle { from { opacity: .35; } to { opacity: 1; } }
-        .foot-photo .big-icon { position: absolute; left: -8%; bottom: -10%; width: 78%; aspect-ratio: 1; border-radius: 22.5%; overflow: hidden; animation: rise-slow 1.6s var(--ease-soft) both; }
-    @keyframes rise-slow { from { transform: translate3d(0, 6%, 0); } to { transform: none; } }
-    .foot-photo .big-icon img { width: 100%; height: 100%; }
-        .foot-menu { background: var(--surface); border-radius: var(--radius); padding: 48px clamp(28px, 5vw, 76px) 28px; display: grid; grid-template-rows: auto 1fr auto; }
-    
-    .foot-menu .wordmark img { width: 32px; height: 32px; }
-    .foot-links { list-style: none; margin: 64px 0 0; padding: 0; display: grid; gap: 14px; align-content: start; }
-    .foot-links a { font-size: var(--s-heading); font-weight: 560; letter-spacing: -0.025em; text-decoration: none; display: inline-block; transition: transform var(--t-hover) var(--ease-out), color var(--t-hover) ease; }
+    .foot-panel {
+      background: var(--surface); border-radius: var(--radius);
+      padding: 88px clamp(28px, 5vw, 76px) 40px;
+      display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 0 24px;
+    }
+    .foot-brand { grid-column: 1 / span 4; }
+    .foot-brand .app-icon { width: 120px; margin-bottom: 28px; }
+    .foot-name { font-size: var(--s-heading); font-weight: 560; letter-spacing: -0.025em; line-height: 1.05; }
+    .foot-line { margin-top: 8px; color: var(--soft); }
+    .foot-brand .badge { margin-top: 28px; }
+    .foot-brand .badge img { height: 50px; }
+    .foot-info { grid-column: 6 / span 7; display: grid; align-content: space-between; gap: 48px; }
+    .foot-links { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px 24px; }
+    .foot-links a { font-size: var(--s-statement); font-weight: 520; letter-spacing: -0.015em; text-decoration: none; display: inline-block; transition: transform var(--t-hover) var(--ease-out), color var(--t-hover) ease; }
     .foot-links:hover a { color: var(--soft); }
-    .foot-links a:hover, .foot-links a:focus-visible { color: var(--ink); transform: translateX(12px); }
-    .foot-meta { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; font-size: var(--s-small); margin-top: 56px; }
+    .foot-links a:hover, .foot-links a:focus-visible { color: var(--ink); transform: translateX(8px); }
+    .foot-meta { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; font-size: var(--s-small); }
     .foot-meta p + p { margin-top: 4px; }
     .foot-meta a { color: var(--accent-ink); }
-    .legal { margin-top: 36px; font-size: var(--s-small); color: var(--soft); display: flex; flex-wrap: wrap; gap: 6px 18px; }
+    .legal { font-size: var(--s-small); color: var(--soft); display: flex; flex-wrap: wrap; gap: 6px 18px; }
 
     /* ---------- motion ---------- */
     html.js [data-reveal] > * { opacity: 0; transform: translate3d(0, 24px, 0); transition: opacity var(--t-reveal) var(--ease-out), transform var(--t-reveal) var(--ease-out); }
@@ -372,11 +372,9 @@
       .faq h2, .faq-text { grid-column: 1; }
       .faq-text { columns: 1; margin-top: 28px; }
       .foot { padding: 0 8px 8px; }
-      .foot-inner { grid-template-columns: 1fr; min-height: 0; gap: 8px; }
-      .foot-photo { height: 52svh; min-height: 0; }
-      .foot-menu { padding: 36px 20px 24px; }
-      .foot-links { margin-top: 36px; }
-
+      .foot-panel { grid-template-columns: 1fr; padding: 56px 20px 28px; }
+      .foot-brand, .foot-info { grid-column: 1; }
+      .foot-info { margin-top: 48px; }
       .foot-meta { grid-template-columns: 1fr; }
     }
     @media (max-width: 420px) {
@@ -676,34 +674,35 @@
 
 <!-- Footer: photograph half, menu half -->
 <footer class="foot">
-  <div class="foot-inner">
-    <div class="foot-photo">
-      <svg class="stars" viewBox="0 0 600 800" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs><path id="spark" d="M0-14C1.6-3 3-1.6 14 0 3 1.6 1.6 3 0 14-1.6 3-3 1.6-14 0-3-1.6-1.6-3 0-14Z"/></defs><circle cx="341" cy="495" r="1" fill="#FBF7F0" opacity="0.5"/><circle cx="59" cy="47" r="1" fill="#FBF7F0" opacity="0.5"/><circle cx="69" cy="475" r="1" fill="#FBF7F0" opacity="0.35"/><circle cx="98" cy="232" r="1.8" fill="#FBF7F0" opacity="0.35"/><circle cx="256" cy="56" r="1.8" fill="#FBF7F0" opacity="0.35"/><circle cx="589" cy="73" r="1" fill="#FBF7F0" opacity="0.7"/><circle cx="73" cy="305" r="1.8" fill="#FBF7F0" opacity="0.35"/><circle cx="236" cy="33" r="1" fill="#FBF7F0" opacity="0.5"/><circle cx="439" cy="83" r="1" fill="#FBF7F0" opacity="0.7"/><circle cx="325" cy="296" r="1" fill="#FBF7F0" opacity="0.35"/><circle cx="202" cy="200" r="1" fill="#FBF7F0" opacity="0.7"/><circle cx="74" cy="298" r="1" fill="#FBF7F0" opacity="0.7"/><circle cx="220" cy="264" r="1.8" fill="#FBF7F0" opacity="0.5"/><circle cx="486" cy="309" r="1.8" fill="#FBF7F0" opacity="0.5"/><circle cx="316" cy="137" r="1" fill="#FBF7F0" opacity="0.7"/><circle cx="259" cy="51" r="1.4" fill="#FBF7F0" opacity="0.7"/><circle cx="516" cy="458" r="1.4" fill="#FBF7F0" opacity="0.7"/><circle cx="469" cy="157" r="1" fill="#FBF7F0" opacity="0.35"/><circle cx="534" cy="224" r="1" fill="#FBF7F0" opacity="0.5"/><circle cx="165" cy="487" r="1.8" fill="#FBF7F0" opacity="0.5"/><circle cx="50" cy="502" r="1" fill="#FBF7F0" opacity="0.7"/><circle cx="331" cy="184" r="1.4" fill="#FBF7F0" opacity="0.7"/><circle cx="518" cy="306" r="1.8" fill="#FBF7F0" opacity="0.35"/><circle cx="105" cy="493" r="1.4" fill="#FBF7F0" opacity="0.5"/><circle cx="76" cy="41" r="1.4" fill="#FBF7F0" opacity="0.7"/><circle cx="466" cy="155" r="1.8" fill="#FBF7F0" opacity="0.7"/><circle cx="365" cy="21" r="1.8" fill="#FBF7F0" opacity="0.5"/><circle cx="182" cy="322" r="1" fill="#FBF7F0" opacity="0.5"/><circle cx="70" cy="121" r="1.4" fill="#FBF7F0" opacity="0.35"/><circle cx="263" cy="213" r="1.8" fill="#FBF7F0" opacity="0.5"/><circle cx="92" cy="95" r="1.8" fill="#FBF7F0" opacity="0.5"/><circle cx="572" cy="152" r="1" fill="#FBF7F0" opacity="0.5"/><circle cx="573" cy="152" r="1.8" fill="#FBF7F0" opacity="0.5"/><circle cx="399" cy="500" r="1" fill="#FBF7F0" opacity="0.35"/><circle cx="94" cy="100" r="1" fill="#FBF7F0" opacity="0.35"/><circle cx="248" cy="16" r="1.8" fill="#FBF7F0" opacity="0.7"/><circle cx="196" cy="144" r="1.4" fill="#FBF7F0" opacity="0.35"/><circle cx="159" cy="224" r="1.4" fill="#FBF7F0" opacity="0.7"/><circle cx="589" cy="173" r="1" fill="#FBF7F0" opacity="0.7"/><circle cx="537" cy="496" r="1" fill="#FBF7F0" opacity="0.5"/><circle cx="582" cy="210" r="1.8" fill="#FBF7F0" opacity="0.5"/><circle cx="413" cy="63" r="1.8" fill="#FBF7F0" opacity="0.7"/><circle cx="420" cy="41" r="1" fill="#FBF7F0" opacity="0.35"/><circle cx="223" cy="235" r="1" fill="#FBF7F0" opacity="0.35"/><circle cx="358" cy="317" r="1" fill="#FBF7F0" opacity="0.35"/><circle cx="10" cy="300" r="1" fill="#FBF7F0" opacity="0.7"/><use href="#spark" class="tw tw0" transform="translate(470 70) scale(1.6)" fill="#FBF7F0"/><use href="#spark" class="tw tw1" transform="translate(520 190) scale(0.9)" fill="#F2C987"/><use href="#spark" class="tw tw2" transform="translate(380 130) scale(0.7)" fill="#FBF7F0"/><use href="#spark" class="tw tw3" transform="translate(560 330) scale(1.2)" fill="#FBF7F0"/><use href="#spark" class="tw tw4" transform="translate(300 60) scale(0.6)" fill="#FBF7F0"/><use href="#spark" class="tw tw0" transform="translate(430 260) scale(0.55)" fill="#F2C987"/><use href="#spark" class="tw tw1" transform="translate(250 170) scale(0.8)" fill="#FBF7F0"/><use href="#spark" class="tw tw2" transform="translate(140 90) scale(1.1)" fill="#FBF7F0"/><use href="#spark" class="tw tw3" transform="translate(80 220) scale(0.6)" fill="#FBF7F0"/><use href="#spark" class="tw tw4" transform="translate(560 520) scale(0.7)" fill="#F2C987"/><use href="#spark" class="tw tw0" transform="translate(500 430) scale(0.5)" fill="#FBF7F0"/><use href="#spark" class="tw tw1" transform="translate(350 360) scale(1.0)" fill="#FBF7F0"/><use href="#spark" class="tw tw2" transform="translate(200 300) scale(0.5)" fill="#FBF7F0"/><use href="#spark" class="tw tw3" transform="translate(590 640) scale(0.9)" fill="#F2C987"/><use href="#spark" class="tw tw4" transform="translate(530 720) scale(0.6)" fill="#FBF7F0"/><use href="#spark" class="tw tw0" transform="translate(40 40) scale(0.5)" fill="#FBF7F0"/></svg>
-      <div class="big-icon"><img src="/fairywhisper/assets/icon-1024.webp" width="1024" height="1024" alt="FairyWhisper uygulama ikonu" data-alt-en="The FairyWhisper app icon" loading="lazy"></div>
+  <div class="foot-panel">
+    <div class="foot-brand">
+      <div class="app-icon"><img src="/fairywhisper/assets/icon-512.webp" width="512" height="512" alt="FairyWhisper uygulama ikonu" data-alt-en="The FairyWhisper app icon" loading="lazy"></div>
+      <p class="foot-name">FairyWhisper</p>
+      <p class="foot-line"><span lang="tr">Masallar senin sesinle.</span><span lang="en">Bedtime, in your voice.</span></p>
+      <a class="badge" href="https://apps.apple.com/app/id6823644391" aria-label="App Store'dan indir" data-aria-en="Download on the App Store">
+        <img src="/fairywhisper/assets/appstore-en.svg" width="150" height="50" alt="">
+      </a>
     </div>
-    <div class="foot-menu">
-      <a class="wordmark" href="/fairywhisper/"><img src="/fairywhisper/assets/icon-256.webp" width="32" height="32" alt="" loading="lazy">FairyWhisper</a>
+    <div class="foot-info">
       <ul class="foot-links">
         <li><a href="#listen"><span lang="tr">Dinle</span><span lang="en">Listen</span></a></li>
         <li><a href="#how"><span lang="tr">Nasıl çalışır</span><span lang="en">How it works</span></a></li>
         <li><a href="#library"><span lang="tr">Masallar</span><span lang="en">Stories</span></a></li>
         <li><a href="#voice"><span lang="tr">Sesin sana ait</span><span lang="en">Your voice</span></a></li>
         <li><a href="#prices"><span lang="tr">Krediler</span><span lang="en">Credits</span></a></li>
-        <li><a href="https://apps.apple.com/app/id6823644391">App Store</a></li>
+        <li><a href="#faq"><span lang="tr">Sık sorulanlar</span><span lang="en">Questions</span></a></li>
       </ul>
-      <div>
-        <div class="foot-meta">
-          <div><p><span lang="tr">Destek</span><span lang="en">Support</span></p><p><a href="mailto:supportfairywhisper@gmail.com">supportfairywhisper@gmail.com</a></p></div>
-          <div><p><span lang="tr">Yapan</span><span lang="en">Made by</span></p><p><a href="https://berkeml.com/">BerkeML</a></p></div>
-        </div>
-        <p class="legal">
+      <div class="foot-meta">
+        <div><p><span lang="tr">Destek</span><span lang="en">Support</span></p><p><a href="mailto:supportfairywhisper@gmail.com">supportfairywhisper@gmail.com</a></p></div>
+        <div><p><span lang="tr">Yapan</span><span lang="en">Made by</span></p><p><a href="https://berkeml.com/">BerkeML</a></p></div>
+      </div>
+      <p class="legal">
           <span>© 2026 Berke Dilekoğlu</span>
           <a href="/fairywhisper/privacy"><span lang="tr">Gizlilik Politikası</span><span lang="en">Privacy Policy</span></a>
           <a href="/fairywhisper/terms"><span lang="tr">Kullanım Koşulları</span><span lang="en">Terms of Use</span></a>
           <span><span lang="tr">Gece fotoğrafı:</span><span lang="en">Night photo:</span> <a href="https://unsplash.com/photos/6hxvm0NzYP8">Caleb Ralston, Unsplash</a></span>
           <span lang="tr">Apple, App Store ve iPhone, Apple Inc.'in ticari markalarıdır.</span><span lang="en">Apple, App Store and iPhone are trademarks of Apple Inc.</span>
         </p>
-      </div>
     </div>
   </div>
 </footer>
