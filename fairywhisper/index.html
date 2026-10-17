@@ -1,120 +1,854 @@
 <!doctype html>
-<html lang="tr">
+<html lang="tr" data-lang="tr">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>FairyWhisper — Uyku Masalları · Bedtime Stories</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>FairyWhisper: Masallar senin sesinle</title>
+  <meta name="description" content="FairyWhisper, uyku masallarını çocuğuna senin sesinle okur. Sesini bir kez kaydet; Türkçe ve İngilizce 100'den fazla masal, ninniler ve uyku sesleri. iPhone için.">
   <link rel="canonical" href="https://berkeml.com/fairywhisper/">
-  <meta name="description" content="FairyWhisper: çocuklarınıza kendi sesinizle uyku masalları. Bedtime stories for your children, in your own voice.">
+  <meta name="theme-color" content="#1E2240">
+  <meta name="apple-itunes-app" content="app-id=6823644391">
+  <link rel="icon" type="image/png" href="/fairywhisper/assets/icon-512.png">
+  <link rel="apple-touch-icon" href="/fairywhisper/assets/apple-touch-icon.png">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="FairyWhisper: Masallar senin sesinle">
+  <meta property="og:description" content="Sesini bir kez kaydet; FairyWhisper uyku masallarını çocuğuna senin sesinle okusun.">
+  <meta property="og:url" content="https://berkeml.com/fairywhisper/">
+  <meta property="og:image" content="https://berkeml.com/fairywhisper/assets/icon-1024.webp">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "MobileApplication",
+    "name": "FairyWhisper",
+    "operatingSystem": "iOS 17+",
+    "applicationCategory": "BookApplication",
+    "url": "https://berkeml.com/fairywhisper/",
+    "installUrl": "https://apps.apple.com/app/id6823644391",
+    "image": "https://berkeml.com/fairywhisper/assets/icon-1024.webp",
+    "inLanguage": ["tr", "en"],
+    "description": "Bedtime stories read in a parent's own voice. Record your voice once; Turkish and English fairy tales, lullabies and sleep sounds.",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "author": { "@type": "Person", "name": "Berke Dilekoğlu", "url": "https://berkeml.com/" }
+  }
+  </script>
+  <script>
+    document.documentElement.classList.add('js');
+    (function () {
+      var q = new URLSearchParams(location.search).get('lang');
+      var saved = null;
+      try { saved = localStorage.getItem('fw-lang'); } catch (e) {}
+      var nav = (navigator.language || 'tr').toLowerCase().indexOf('tr') === 0 ? 'tr' : 'en';
+      var lang = (q === 'tr' || q === 'en') ? q : (saved === 'tr' || saved === 'en') ? saved : nav;
+      document.documentElement.lang = lang;
+      document.documentElement.dataset.lang = lang;
+    })();
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,400..650;1,7..72,400&display=swap" rel="stylesheet">
   <style>
     :root {
-      --night: #0F1530;
-      --night-2: #1A2246;
-      --cream: #FBF7F0;
-      --gold: #F2B65A;
-      --ink: #1E2440;
-      --muted: #5B6180;
-      --line: #E8E0D2;
+      --bg: #FBF7F0;          /* the app's paper */
+      --surface: #F3EBDD;     /* one step from the paper */
+      --surface-2: #EADFCB;
+      --ink: #1E2240;         /* the app icon's night */
+      --night: #1E2240;
+      --on-night: #FBF7F0;
+      --soft: #565B78;
+      --soft-night: #B9BCD0;
+      --accent: #B8741F;      /* moon gold: the action and the sentence being read */
+      --accent-ink: #8A5512;
+      --mark: #F6E3C4;        /* read-along highlight, as in the app */
+      --radius: 20px;
+      --m: 12px;
+      --font: "Literata", "Iowan Old Style", Georgia, serif;
+      --s-small: 15px;
+      --s-body: 18px;
+      --s-statement: 24px;
+      --s-heading: 40px;
+      --s-display: clamp(46px, 5vw, 80px);
+      --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+      --ease-soft: cubic-bezier(0.33, 1, 0.68, 1);
+      --t-press: 140ms;
+      --t-hover: 180ms;
+      --t-reveal: 800ms;
     }
-    * { box-sizing: border-box; }
-    html { -webkit-text-size-adjust: 100%; }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
     body {
       margin: 0;
-      background: var(--cream);
+      background: var(--bg);
       color: var(--ink);
-      font: 16px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      font-family: var(--font);
+      font-size: var(--s-body);
+      line-height: 1.55;
+      font-optical-sizing: auto;
+      -webkit-font-smoothing: antialiased;
     }
-    header.site {
+    img { display: block; max-width: 100%; height: auto; }
+    a { color: inherit; }
+    :focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+    ::selection { background: var(--mark); color: var(--ink); }
+    html[data-lang="tr"] [lang="en"], html[data-lang="en"] [lang="tr"] { display: none !important; }
+    .skip { position: absolute; left: -9999px; }
+    .skip:focus { left: 16px; top: 16px; background: var(--bg); padding: 8px 12px; z-index: 10; }
+
+    h1, h2, h3 { font-weight: 560; letter-spacing: -0.02em; line-height: 1.04; margin: 0; text-wrap: balance; }
+    h2 { font-size: var(--s-heading); }
+    p { margin: 0; }
+    .statement { font-size: var(--s-statement); line-height: 1.38; letter-spacing: -0.01em; max-width: 30ch; }
+    .note { font-size: var(--s-small); color: var(--soft); }
+
+    /* ---------- split stage ---------- */
+    .split {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: var(--m);
+      padding: var(--m);
+    }
+    .reading { min-width: 0; }
+    .stage {
+      position: sticky; top: var(--m);
+      height: calc(100svh - 2 * var(--m));
+      border-radius: var(--radius);
       background: var(--night);
-      color: var(--cream);
-      padding: 20px 16px;
+      color: var(--on-night);
+      overflow: hidden;
+      display: grid;
+      grid-template-rows: 1fr 56px;
     }
-    header.site .inner, main, footer .inner { max-width: 780px; margin: 0 auto; }
-    header.site .inner { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
-    .brand { color: var(--cream); text-decoration: none; font-weight: 700; font-size: 1.15rem; letter-spacing: .2px; }
-    .brand span { color: var(--gold); }
-    nav a { color: var(--cream); opacity: .85; text-decoration: none; margin-left: 16px; font-size: .95rem; }
-    nav a:first-child { margin-left: 0; }
-    nav a:hover { opacity: 1; color: var(--gold); }
-    main { padding: 32px 16px 48px; }
-    h1 { font-size: 1.9rem; line-height: 1.25; margin: 0 0 4px; color: var(--night); }
-    h2 { font-size: 1.25rem; margin: 32px 0 8px; color: var(--night); }
-    h3 { font-size: 1.05rem; margin: 20px 0 6px; color: var(--night); }
-    p, li { color: var(--ink); }
-    ul { padding-left: 1.25rem; }
-    a { color: #8A5A12; }
-    .meta { color: var(--muted); font-size: .92rem; margin: 0 0 24px; }
-    .lang-switch { display: flex; gap: 8px; margin: 0 0 24px; flex-wrap: wrap; }
-    .lang-switch a {
-      display: inline-block; padding: 6px 14px; border-radius: 999px;
-      background: var(--night); color: var(--cream); text-decoration: none; font-size: .9rem;
+    .stage-field { position: relative; display: grid; place-items: center; min-height: 0; padding: 40px 24px 24px; overflow: hidden; }
+    .stage-sky { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: .42; transform: scale(1.08); animation: drift 38s var(--ease-soft) infinite alternate; }
+    @keyframes drift { from { transform: scale(1.08) translate3d(0, 0, 0); } to { transform: scale(1.16) translate3d(-1.5%, -2%, 0); } }
+    .stage-bar {
+      background: var(--surface); color: var(--ink);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 22px; font-size: var(--s-small);
     }
-    .lang-switch a:hover { background: var(--night-2); color: var(--gold); }
-    section.lang { background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: 8px 24px 24px; margin-bottom: 32px; }
-    .badge { display: inline-block; background: var(--gold); color: var(--night); font-weight: 700; font-size: .75rem; padding: 2px 10px; border-radius: 999px; letter-spacing: .5px; margin-top: 20px; }
-    .note { border-left: 4px solid var(--gold); background: #FFF8EA; padding: 10px 14px; border-radius: 8px; }
-    footer { background: var(--night); color: var(--cream); padding: 24px 16px; font-size: .9rem; }
-    footer a { color: var(--gold); }
-    @media (max-width: 560px) {
-      h1 { font-size: 1.5rem; }
-      section.lang { padding: 4px 16px 16px; }
-      nav a { margin-left: 12px; }
+    .phone {
+      position: relative;
+      height: min(78svh, 760px);
+      aspect-ratio: 1320 / 2868;
+      border-radius: 14% / 6.5%;
+      background: #08090F;
+      padding: 2.4%;
     }
-  </style>
-  <style>
-    .hero { background: var(--night); color: var(--cream); padding: 56px 16px 64px; text-align: center; }
-    .hero h1 { color: var(--cream); font-size: 2.3rem; margin: 0 0 12px; }
-    .hero h1 span { color: var(--gold); }
-    .hero p { color: var(--cream); opacity: .9; max-width: 560px; margin: 0 auto 8px; font-size: 1.05rem; }
-    .moon { width: 64px; height: 64px; border-radius: 50%; margin: 0 auto 20px; box-shadow: -14px 10px 0 0 var(--gold); transform: rotate(-20deg); }
-    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
-    .card { background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: 18px 20px; }
-    .card h3 { margin-top: 0; }
-    @media (max-width: 560px) { .hero h1 { font-size: 1.8rem; } }
+    .phone::after {
+      content: ""; position: absolute; top: 3.1%; left: 50%; transform: translateX(-50%);
+      width: 31%; height: 3.4%; border-radius: 999px; background: #08090F;
+    }
+    .phone-screen { position: relative; width: 100%; height: 100%; border-radius: 12% / 5.6%; overflow: hidden; background: var(--bg); }
+    .phone-screen img {
+      position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+      opacity: 0; transition: opacity 1.6s var(--ease-soft);
+    }
+    .phone-screen img.is-on { opacity: 1; }
+
+    .chapter { padding: 120px clamp(28px, 5vw, 76px); }
+    .chapter + .chapter { padding-top: 80px; }
+
+    /* ---------- hero sheet ---------- */
+    .sheet {
+      background: var(--bg);
+      min-height: calc(100svh - 2 * var(--m));
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      padding: 18px clamp(28px, 5vw, 76px) 48px;
+    }
+    .topbar { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+    .wordmark { display: inline-flex; align-items: center; gap: 12px; text-decoration: none; font-weight: 600; font-size: 18px; letter-spacing: -0.01em; }
+    .wordmark img { width: 40px; height: 40px; border-radius: 22.5%; }
+    .topbar nav { display: flex; align-items: center; gap: 22px; font-size: var(--s-small); }
+    .topbar nav a { text-decoration: none; transition: color var(--t-hover) ease; }
+    .topbar nav a:hover { color: var(--accent-ink); }
+    .links { display: contents; }
+    .lang {
+      font: inherit; font-size: var(--s-small); color: var(--ink);
+      background: var(--surface); border: 0; border-radius: 999px; padding: 9px 16px; cursor: pointer;
+      transition: background var(--t-hover) ease, transform var(--t-press) var(--ease-out);
+    }
+    .lang:hover { background: var(--surface-2); }
+    .lang:active { transform: scale(.96); }
+
+    .hero { align-self: center; padding: 64px 0 24px; }
+    .app-icon {
+      width: clamp(96px, 9vw, 136px); aspect-ratio: 1; border-radius: 22.5%;
+      overflow: hidden; background: var(--night); margin-bottom: 40px;
+    }
+    .app-icon img { width: 100%; height: 100%; object-fit: cover; }
+    .hero h1 { font-size: var(--s-display); max-width: 12ch; font-weight: 540; letter-spacing: -0.035em; line-height: .98; }
+    .hero .lede { margin-top: 28px; font-size: var(--s-statement); line-height: 1.4; max-width: 30ch; }
+    .get { margin-top: 40px; display: flex; flex-wrap: wrap; align-items: center; gap: 18px 22px; }
+    .badge { display: inline-block; transition: transform var(--t-press) var(--ease-out), opacity var(--t-hover) ease; }
+    .badge img { height: 56px; width: auto; }
+    .badge:hover { opacity: .86; }
+    .badge:active { transform: scale(.97); }
+    .get .note { max-width: 24ch; }
+    .hero-facts { display: flex; flex-wrap: wrap; gap: 10px 28px; font-size: var(--s-small); color: var(--soft); }
+
+    /* ---------- live read-along ---------- */
+    .listen h2 { max-width: 15ch; }
+    .listen .statement { margin-top: 20px; }
+    .tales { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 36px; }
+    .tale {
+      font: inherit; font-size: var(--s-small); color: var(--ink); cursor: pointer;
+      background: var(--surface); border: 0; border-radius: 999px; padding: 10px 16px;
+      transition: background var(--t-hover) ease, color var(--t-hover) ease, transform var(--t-press) var(--ease-out);
+    }
+    .tale:hover { background: var(--surface-2); }
+    .tale:active { transform: scale(.96); }
+    .tale[aria-pressed="true"] { background: var(--night); color: var(--on-night); }
+    .read-sheet {
+      margin-top: 20px; background: #FFFDF8; border-radius: var(--radius);
+      padding: 28px 28px 24px; max-width: 46ch;
+    }
+    .read-sheet .title { font-size: var(--s-small); color: var(--soft); margin-bottom: 12px; }
+    .read-text { font-size: 24px; line-height: 1.5; }
+    .read-text span { border-radius: 4px; transition: background-color 260ms ease, color 260ms ease; padding: 2px 4px; margin: 0 -4px; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+    .read-text span.is-read { color: var(--soft); }
+    .read-text span.is-now { background: var(--mark); color: var(--ink); }
+    .controls { display: flex; align-items: center; gap: 14px; margin-top: 22px; }
+    .play {
+      font: inherit; font-size: 18px; font-weight: 560; cursor: pointer; flex: none;
+      background: var(--accent-ink); color: #fff; border: 0; border-radius: 999px; padding: 12px 22px;
+      display: inline-flex; align-items: center; gap: 10px;
+      transition: background var(--t-hover) ease, transform var(--t-press) var(--ease-out);
+    }
+    .play:hover { background: #6F430C; }
+    .play:active { transform: scale(.96); }
+    .play svg { width: 14px; height: 14px; fill: currentColor; }
+    .no-speech .play { display: none; }
+
+    /* ---------- how ---------- */
+    .steps { list-style: none; margin: 48px 0 0; padding: 0; display: grid; gap: 40px; max-width: 46ch; }
+    .steps li { display: grid; gap: 8px; }
+    .steps strong { font-size: var(--s-statement); font-weight: 560; letter-spacing: -0.01em; line-height: 1.3; }
+
+    /* ---------- library ---------- */
+    .library { container-type: inline-size; }
+    .giant { font-size: 21cqw; line-height: .82; letter-spacing: -0.055em; font-weight: 600; margin-left: -0.04em; }
+    .library .statement { margin-top: 28px; }
+    .library-note { margin-top: 28px; max-width: 46ch; }
+    .shelves { margin-top: 40px; display: grid; gap: 6px; max-width: 640px; }
+    .shelves details { background: var(--surface); border-radius: 10px; }
+    .shelves summary {
+      list-style: none; cursor: pointer; min-height: 58px; padding: 0 20px;
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+      font-size: 18px; font-weight: 520; transition: background var(--t-hover) ease; border-radius: 10px;
+    }
+    .shelves summary::-webkit-details-marker { display: none; }
+    .shelves summary:hover { background: var(--surface-2); }
+    .shelves summary .count { color: var(--soft); font-weight: 400; font-size: var(--s-small); margin-left: auto; white-space: nowrap; }
+    .shelves summary .plus { width: 14px; height: 14px; position: relative; flex: none; }
+    .shelves summary .plus::before, .shelves summary .plus::after { content: ""; position: absolute; left: 0; top: 6px; width: 14px; height: 2px; background: var(--ink); transition: transform var(--t-hover) var(--ease-out); }
+    .shelves summary .plus::after { transform: rotate(90deg); }
+    .shelves details[open] summary .plus::after { transform: rotate(0deg); }
+    .shelves ul { list-style: none; margin: 0; padding: 4px 20px 20px; display: grid; gap: 12px; }
+    .shelves li { display: flex; justify-content: space-between; gap: 16px; font-size: 18px; }
+    .shelves li span:last-child { color: var(--soft); font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+    /* ---------- sleep ---------- */
+    .sleep-list { list-style: none; margin: 40px 0 0; padding: 0; display: grid; gap: 28px; }
+    .sleep-list li { display: grid; gap: 6px; max-width: 44ch; }
+    .sleep-list strong { font-size: var(--s-statement); font-weight: 560; letter-spacing: -0.01em; line-height: 1.3; }
+    .lullabies { margin-top: 64px; }
+    .lullabies h3 { font-size: var(--s-small); font-weight: 520; color: var(--soft); letter-spacing: 0; }
+    .lullaby-names { list-style: none; margin: 0; padding: 0; font-size: var(--s-heading); line-height: 1.12; letter-spacing: -0.03em; font-weight: 520; }
+    .lullaby-names li:nth-child(even) { color: var(--accent-ink); }
+    .sounds { margin-top: 26px; max-width: 44ch; }
+
+    /* ---------- letter ---------- */
+    .letter { max-width: 34em; margin-top: 32px; }
+    .letter p + p { margin-top: 18px; }
+    .letter .lead { font-size: var(--s-statement); line-height: 1.4; letter-spacing: -0.01em; }
+    .letter mark { background: var(--mark); color: var(--ink); padding: 0 2px; border-radius: 3px; }
+    .sign { margin-top: 32px; }
+    .sign em { font-size: var(--s-statement); display: block; }
+    .sign span { font-size: var(--s-small); color: var(--soft); }
+
+    /* ---------- phone-width inline screens ---------- */
+    .inline-shot { display: none; }
+
+    /* ---------- full width: credits like a menu ---------- */
+    .wide { padding: 0 var(--m) var(--m); }
+    .prices {
+      background: var(--night); color: var(--on-night); border-radius: var(--radius);
+      padding: 120px clamp(28px, 5vw, 76px);
+      display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 0 24px;
+    }
+    .prices-head { grid-column: 1 / span 4; }
+    .prices-head p { margin-top: 20px; color: var(--soft-night); max-width: 30ch; }
+    .prices-head .app-icon { width: 88px; margin: 40px 0 0; }
+    .menu { grid-column: 6 / span 7; display: grid; grid-template-columns: 1fr 1fr; gap: 0 64px; }
+    .menu-group h3 { font-size: 24px; font-weight: 540; letter-spacing: -0.01em; margin: 0 0 22px; }
+    .menu-item { display: grid; gap: 3px; margin-bottom: 22px; }
+    .menu-item .row { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; font-size: 18px; }
+    .menu-item .row > span:nth-child(n+2) { font-variant-numeric: tabular-nums; white-space: nowrap; color: #F2C987; }
+    .menu-item p { font-size: var(--s-small); color: var(--soft-night); max-width: 36ch; }
+    .menu-foot { grid-column: 6 / span 7; margin-top: 18px; font-size: var(--s-small); color: var(--soft-night); max-width: 60ch; }
+
+    /* ---------- faq ---------- */
+    .faq {
+      padding: 160px clamp(28px, 5vw, 76px) 140px;
+      display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 0 24px;
+    }
+    .faq h2 { grid-column: 1 / span 3; }
+    .faq-text { grid-column: 5 / span 8; columns: 2; column-gap: 56px; font-size: 18px; }
+    .faq-text p { break-inside: avoid; margin-bottom: 20px; }
+    .faq-text b { font-weight: 600; }
+    .faq-text a { color: var(--accent-ink); }
+
+    /* ---------- footer ---------- */
+    .foot { padding: 0 var(--m) var(--m); }
+    .foot-inner { display: grid; grid-template-columns: 1fr 1fr; gap: var(--m); min-height: calc(100svh - 2 * var(--m)); }
+    .foot-photo { position: relative; border-radius: var(--radius); overflow: hidden; background: var(--night); min-height: 420px; }
+    .foot-photo > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; animation: drift 44s var(--ease-soft) infinite alternate; }
+    .foot-photo .big-icon { position: absolute; left: -8%; bottom: -10%; width: 78%; aspect-ratio: 1; border-radius: 22.5%; overflow: hidden; }
+    .foot-photo .big-icon img { width: 100%; height: 100%; }
+    .credit { position: absolute; right: 16px; bottom: 12px; font-size: var(--s-small); color: rgba(251,247,240,.86); }
+    .foot-menu { background: var(--surface); border-radius: var(--radius); padding: 48px clamp(28px, 5vw, 76px) 28px; display: grid; grid-template-rows: auto 1fr auto; }
+    
+    .foot-menu .wordmark img { width: 32px; height: 32px; }
+    .foot-links { list-style: none; margin: 64px 0 0; padding: 0; display: grid; gap: 14px; align-content: start; }
+    .foot-links a { font-size: var(--s-heading); font-weight: 560; letter-spacing: -0.025em; text-decoration: none; display: inline-block; transition: transform var(--t-hover) var(--ease-out), color var(--t-hover) ease; }
+    .foot-links:hover a { color: var(--soft); }
+    .foot-links a:hover, .foot-links a:focus-visible { color: var(--ink); transform: translateX(12px); }
+    .foot-meta { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; font-size: var(--s-small); margin-top: 56px; }
+    .foot-meta p + p { margin-top: 4px; }
+    .foot-meta a { color: var(--accent-ink); }
+    .legal { margin-top: 36px; font-size: var(--s-small); color: var(--soft); display: flex; flex-wrap: wrap; gap: 6px 18px; }
+
+    /* ---------- motion ---------- */
+    html.js [data-reveal] > * { opacity: 0; transform: translate3d(0, 24px, 0); transition: opacity var(--t-reveal) var(--ease-out), transform var(--t-reveal) var(--ease-out); }
+    html.js [data-reveal].is-in > * { opacity: 1; transform: none; }
+    html.js [data-reveal].is-in > *:nth-child(2) { transition-delay: 70ms; }
+    html.js [data-reveal].is-in > *:nth-child(3) { transition-delay: 140ms; }
+    html.js [data-reveal].is-in > *:nth-child(4) { transition-delay: 210ms; }
+    html.js [data-reveal].is-in > *:nth-child(5) { transition-delay: 280ms; }
+    html.js [data-reveal].is-in > *:nth-child(n+6) { transition-delay: 350ms; }
+    html.js [data-rows] > li { opacity: 0; transform: translate3d(0, 14px, 0); transition: opacity 600ms var(--ease-out), transform 600ms var(--ease-out); }
+    html.js [data-rows].is-in > li { opacity: 1; transform: none; }
+    html.js [data-rows].is-in > li:nth-child(2) { transition-delay: 80ms; }
+    html.js [data-rows].is-in > li:nth-child(3) { transition-delay: 160ms; }
+    html.js [data-rows].is-in > li:nth-child(4) { transition-delay: 240ms; }
+    html.js [data-rows].is-in > li:nth-child(n+5) { transition-delay: 320ms; }
+    .hero > * { animation: rise 900ms var(--ease-out) both; }
+    .hero > *:nth-child(2) { animation-delay: 90ms; }
+    .hero > *:nth-child(3) { animation-delay: 180ms; }
+    .hero > *:nth-child(4) { animation-delay: 270ms; }
+    .hero > *:nth-child(5) { animation-delay: 360ms; }
+    @keyframes rise { from { opacity: 0; transform: translate3d(0, 28px, 0); } to { opacity: 1; transform: none; } }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition-duration: 1ms !important; transition-delay: 0ms !important; scroll-behavior: auto !important; }
+      html.js [data-reveal] > *, html.js [data-rows] > li { opacity: 1; transform: none; }
+    }
+
+    /* ---------- tablet and phone: each section carries its own screen ---------- */
+    @media (max-width: 980px) {
+      :root { --s-body: 18px; --s-statement: 22px; --s-heading: 34px; }
+      .split { grid-template-columns: 1fr; padding: 0; }
+      .stage { display: none; }
+      .sheet { min-height: auto; padding: 14px 20px 72px; }
+      .links { display: none; }
+      .hero { padding: 48px 0 0; }
+      .hero h1 { font-size: clamp(44px, 12vw, 64px); }
+      .chapter { padding: 72px 20px; }
+      .chapter + .chapter { padding-top: 24px; }
+      .inline-shot {
+        display: grid; justify-items: center; align-items: start; margin: 36px 0 0; padding: 32px 0 0;
+        background: var(--night); border-radius: var(--radius); overflow: hidden; height: 66svh;
+      }
+      .inline-shot .phone { height: auto; width: 72%; max-width: 330px; }
+      .hero-shot { margin-top: 44px; }
+      .hero-facts { margin-top: 28px; }
+      .prices { grid-template-columns: 1fr; padding: 72px 20px; }
+      .prices-head, .menu, .menu-foot { grid-column: 1; }
+      .menu { grid-template-columns: 1fr; margin-top: 48px; }
+      .menu-group + .menu-group { margin-top: 18px; }
+      .faq { grid-template-columns: 1fr; padding: 96px 20px 80px; }
+      .faq h2, .faq-text { grid-column: 1; }
+      .faq-text { columns: 1; margin-top: 28px; }
+      .foot { padding: 0 8px 8px; }
+      .foot-inner { grid-template-columns: 1fr; min-height: 0; gap: 8px; }
+      .foot-photo { height: 52svh; min-height: 0; }
+      .foot-menu { padding: 36px 20px 24px; }
+      .foot-links { margin-top: 36px; }
+
+      .foot-meta { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 420px) {
+      .read-sheet { padding: 22px 18px 18px; }
+      .read-text { font-size: 22px; }
+      .badge img { height: 52px; }
+      .controls { flex-direction: column; align-items: flex-start; }
+    }
   </style>
 </head>
 <body>
-  <header class="site">
-    <div class="inner">
-      <a class="brand" href="/fairywhisper/">Fairy<span>Whisper</span></a>
-      <nav><a href="/fairywhisper/privacy">Gizlilik · Privacy</a><a href="/fairywhisper/terms">Koşullar · Terms</a></nav>
-    </div>
-  </header>
+<a class="skip" href="#listen"><span lang="tr">İçeriğe geç</span><span lang="en">Skip to content</span></a>
 
-  <div class="hero">
-    <div class="moon" aria-hidden="true"></div>
-    <h1>Fairy<span>Whisper</span></h1>
-    <p>Çocuklarınıza her gece, kendi sesinizle uyku masalları.</p>
-    <p lang="en">Bedtime stories for your children — every night, in your own voice.</p>
-  </div>
+<div class="split">
+  <main class="reading">
 
-  <main>
-    <section lang="tr">
-      <h2>Nasıl çalışır?</h2>
-      <div class="grid">
-        <div class="card"><h3>📚 Masal seçin</h3><p>Klasik masallardan oluşan kütüphaneden bir hikâye seçin.</p></div>
-        <div class="card"><h3>🎙️ Sesinizi kaydedin</h3><p>İsteğe bağlı: kısa bir kayıtla kendi sesinizden bir ses modeli oluşturun. Yalnızca kendi sesinizi kaydedin.</p></div>
-        <div class="card"><h3>🌙 Birlikte dinleyin</h3><p>Masal sizin sesinizle seslendirilir; siz yanında olmasanız bile.</p></div>
+    <!-- Hero: the sheet -->
+    <section class="sheet" data-shot="story" aria-labelledby="hero-title">
+      <div class="topbar">
+        <a class="wordmark" href="/fairywhisper/">
+          <img src="/fairywhisper/assets/icon-256.webp" width="40" height="40" alt="">
+          FairyWhisper
+        </a>
+        <nav aria-label="FairyWhisper">
+          <span class="links">
+            <a href="#how"><span lang="tr">Nasıl çalışır</span><span lang="en">How it works</span></a>
+            <a href="#library"><span lang="tr">Masallar</span><span lang="en">Stories</span></a>
+            <a href="#prices"><span lang="tr">Krediler</span><span lang="en">Credits</span></a>
+          </span>
+          <button class="lang" type="button" data-switch-lang>
+            <span lang="tr">English</span><span lang="en">Türkçe</span>
+          </button>
+        </nav>
       </div>
-      <p class="note" style="margin-top:24px">Reklam yok, takip yok, analitik yok. Uygulama ebeveynler içindir; çocuklar hesap oluşturmaz.</p>
+
+      <div class="hero">
+        <div class="app-icon"><img src="/fairywhisper/assets/icon-512.webp" width="512" height="512" alt="FairyWhisper uygulama ikonu" data-alt-en="The FairyWhisper app icon"></div>
+        <h1 id="hero-title"><span lang="tr">Masallar senin sesinle</span><span lang="en">Bedtime, in your voice</span></h1>
+        <p class="lede">
+          <span lang="tr">Sesini bir kez kaydet; FairyWhisper uyku masallarını çocuğuna tıpkı senin gibi okusun.</span>
+          <span lang="en">Record your voice once. FairyWhisper reads bedtime stories to your child the way you would.</span>
+        </p>
+        <div class="get">
+          <a class="badge" href="https://apps.apple.com/app/id6823644391" aria-label="App Store'dan indir" data-aria-en="Download on the App Store">
+            <img src="/fairywhisper/assets/appstore-en.svg" width="168" height="56" alt="">
+          </a>
+          <p class="note"><span lang="tr">iPhone için ücretsiz. App Store'da çok yakında.</span><span lang="en">Free on iPhone. Coming soon to the App Store.</span></p>
+        </div>
+        <figure class="inline-shot hero-shot" aria-hidden="true">
+          <div class="phone"><div class="phone-screen"><img class="is-on" data-shot-img="story" src="/fairywhisper/assets/story-tr-720.webp" width="720" height="1564" alt=""></div></div>
+        </figure>
+      </div>
+
+      <div class="hero-facts">
+        <span lang="tr">Türkçe ve İngilizce 119 masal</span><span lang="en">119 stories in English and Turkish</span>
+        <span lang="tr">Reklam yok, takip yok</span><span lang="en">No ads, no tracking</span>
+        <span lang="tr">iOS 17 ve üzeri</span><span lang="en">iOS 17 or later</span>
+      </div>
     </section>
 
-    <section lang="en">
-      <h2>How it works</h2>
-      <div class="grid">
-        <div class="card"><h3>📚 Pick a story</h3><p>Choose from a library of classic fairy tales.</p></div>
-        <div class="card"><h3>🎙️ Record your voice</h3><p>Optional: create a voice model from a short recording. Record only your own voice.</p></div>
-        <div class="card"><h3>🌙 Listen together</h3><p>Stories are narrated in your voice — even when you can't be there.</p></div>
+    <!-- The live thing: the page reads along, like the app's free device voice -->
+    <section class="chapter listen" id="listen" data-shot="readalong" aria-labelledby="listen-title" data-reveal>
+      <h2 id="listen-title"><span lang="tr">Bir masalın başını dinle</span><span lang="en">Hear how a story begins</span></h2>
+      <p class="statement">
+        <span lang="tr">Bu sayfa da uygulamadaki ücretsiz cihaz sesi gibi okur. Oynat'a bas; okunan cümle ekranda vurgulansın.</span>
+        <span lang="en">This page reads the way the app's free device voice does. Press play and watch the sentence being read light up.</span>
+      </p>
+      <div class="tales" role="group" aria-label="Masal seç" data-aria-en="Choose a story">
+        <button class="tale" type="button" lang="tr" data-tale="0" aria-pressed="true">Keloğlan ile Yün Bulutları</button>
+        <button class="tale" type="button" lang="tr" data-tale="1" aria-pressed="false">Bulut Yastık</button>
+        <button class="tale" type="button" lang="tr" data-tale="2" aria-pressed="false">Nasreddin Hoca ile Kuyudaki Ay</button>
+        <button class="tale" type="button" lang="en" data-tale="0" aria-pressed="true">The Tale of Peter Rabbit</button>
+        <button class="tale" type="button" lang="en" data-tale="1" aria-pressed="false">How the Camel Got His Hump</button>
+        <button class="tale" type="button" lang="en" data-tale="2" aria-pressed="false">Little Red-Cap</button>
       </div>
-      <p class="note" style="margin-top:24px">No ads, no tracking, no analytics. The app is for parents; children do not create accounts.</p>
+      <div class="read-sheet" data-ui>
+        <p class="title" id="read-title">Keloğlan ile Yün Bulutları</p>
+        <p class="read-text" id="read-text">Evvel zaman içinde, kalbur saman içinde, yüksek dağların eteğinde küçük bir köy varmış. Köyün evleri taştan, damları topraktanmış. Her evin önünde bir dut ağacı, her bahçede bir sıra fasulye varmış. Köyün tam ortasında da koca bir çınar dururmuş.</p>
+        <div class="controls">
+          <button class="play" type="button" id="play">
+            <svg viewBox="0 0 14 14" aria-hidden="true"><path d="M2 1.2v11.6L12.4 7z"/></svg>
+            <span data-play-label><span lang="tr">Oynat</span><span lang="en">Play</span></span>
+          </button>
+          <p class="note"><span lang="tr">Tarayıcının kendi sesiyle okunur. Uygulamada aynı masalı senin sesin okur.</span><span lang="en">Read by your browser's own voice. In the app, the same story is read in yours.</span></p>
+        </div>
+      </div>
+      <figure class="inline-shot" aria-hidden="true">
+        <div class="phone"><div class="phone-screen"><img class="is-on" data-shot-img="readalong" src="/fairywhisper/assets/readalong-tr-720.webp" width="720" height="1564" alt="" loading="lazy"></div></div>
+      </figure>
     </section>
 
-    <h2>İletişim · Contact</h2>
-    <p><a href="mailto:supportfairywhisper@gmail.com">supportfairywhisper@gmail.com</a></p>
+    <!-- How it works: a real sequence, so an ordered list -->
+    <section class="chapter" id="how" data-shot="record" aria-labelledby="how-title" data-reveal>
+      <h2 id="how-title"><span lang="tr">Bir dakikalık kayıt</span><span lang="en">One minute of reading</span></h2>
+      <p class="statement" style="margin-top:20px">
+        <span lang="tr">Sesini oluşturmak için kısa bir masal okuman yeter. Gerisini uygulama halleder.</span>
+        <span lang="en">To create your voice, you read one short story aloud. The app does the rest.</span>
+      </p>
+      <ol class="steps" data-rows>
+        <li>
+          <strong><span lang="tr">Ekrandaki metni sesli oku.</span><span lang="en">Read the text on screen aloud.</span></strong>
+          <p><span lang="tr">Yaklaşık bir dakika sürer. Okuduğun yer satır satır vurgulanır; sessiz bir oda ve telefonla aranda bir karış mesafe yeterli.</span><span lang="en">It takes about a minute. The line you're on is highlighted as you go; a quiet room and the phone a hand's width away is all you need.</span></p>
+        </li>
+        <li>
+          <strong><span lang="tr">Sesin bir dakika içinde hazır.</span><span lang="en">Your voice is ready in a minute.</span></strong>
+          <p><span lang="tr">Ses ortağımız ElevenLabs sana özel sesi oluşturur, hazır olunca bildirimle haber veririz. Kaydın hemen ardından sunucularımızdan silinir.</span><span lang="en">Our voice partner ElevenLabs creates your personal voice and we notify you when it's ready. Your recording is deleted from our servers right after.</span></p>
+        </li>
+        <li>
+          <strong><span lang="tr">Masalı seç, oynat'a bas.</span><span lang="en">Pick a story and press play.</span></strong>
+          <p><span lang="tr">FairyWhisper masalı senin sesinle okur. Bir kez hazırlanan masalı tekrar dinlemek her zaman ücretsizdir.</span><span lang="en">FairyWhisper reads it in your voice. Once a story is made, every replay is free.</span></p>
+        </li>
+      </ol>
+      <figure class="inline-shot" aria-hidden="true">
+        <div class="phone"><div class="phone-screen"><img class="is-on" data-shot-img="record" src="/fairywhisper/assets/record-tr-720.webp" width="720" height="1564" alt="" loading="lazy"></div></div>
+      </figure>
+    </section>
+
+    <!-- Library: one giant word, then the shelves -->
+    <section class="chapter library" id="library" data-shot="library" aria-labelledby="library-title" data-reveal>
+      <h2 class="giant" id="library-title"><span lang="tr">Masallar</span><span lang="en">Stories</span></h2>
+      <p class="statement">
+        <span lang="tr">56 Türkçe ve 63 İngilizce masal: kısa olanlar, yaklaşık on dakikalıklar ve yarım saate varan uzun uyku masalları.</span>
+        <span lang="en">63 English and 56 Turkish stories: short ones, about ten minutes, and long sleep stories up to half an hour.</span>
+      </p>
+      <div class="shelves" lang="tr">
+        <details open>
+          <summary>Keloğlan masalları <span class="count">6 masal</span><span class="plus" aria-hidden="true"></span></summary>
+          <ul><li><span>Keloğlan ile Yün Bulutları</span><span>11 dk</span></li><li><span>Keloğlan ile Kırk Odalı Saray</span><span>20 dk</span></li><li><span>Keloğlan ile Uykucu Dev</span><span>10 dk</span></li><li><span>Keloğlan Pazarda</span><span>11 dk</span></li><li><span>Keloğlan ile Ay Işığı Çeşmesi</span><span>3 dk</span></li></ul>
+        </details>
+        <details>
+          <summary>Nasreddin Hoca ve Anadolu masalları <span class="count">6 masal</span><span class="plus" aria-hidden="true"></span></summary>
+          <ul><li><span>Nasreddin Hoca ile Kuyudaki Ay</span><span>10 dk</span></li><li><span>Nasreddin Hoca'nın Yıldız Sayan Eşeği</span><span>10 dk</span></li><li><span>Nasreddin Hoca'nın Uzun Yolculuğu</span><span>18 dk</span></li><li><span>Bilge Kız ile Padişahın Üç Sorusu</span><span>18 dk</span></li><li><span>Çoban Ali ile Kayıp Kuzu</span><span>10 dk</span></li></ul>
+        </details>
+        <details>
+          <summary>Uyku masalları <span class="count">17 masal</span><span class="plus" aria-hidden="true"></span></summary>
+          <ul><li><span>Bulut Yastık</span><span>3 dk</span></li><li><span>Boncuk Ayı Kış Uykusuna Hazırlanıyor</span><span>11 dk</span></li><li><span>Deniz Feneri Bekçisinin Kedisi</span><span>11 dk</span></li><li><span>Mina ile Uyku Treni</span><span>21 dk</span></li><li><span>Ormanın Gece Bekçisi Bilge Baykuş</span><span>20 dk</span></li><li><span>Uyku Perisi ile Bir Hafta</span><span>32 dk</span></li></ul>
+        </details>
+        <details>
+          <summary>Dünya klasikleri <span class="count">20 masal</span><span class="plus" aria-hidden="true"></span></summary>
+          <ul><li><span>Rapunzel</span><span>10 dk</span></li><li><span>Kar Kraliçesi</span><span>18 dk</span></li><li><span>Alis Harikalar Diyarında</span><span>19 dk</span></li><li><span>Pinokyo'nun Yolculuğu</span><span>19 dk</span></li><li><span>Heidi Dağlarda</span><span>18 dk</span></li><li><span>Alaaddin ile Sihirli Lamba</span><span>31 dk</span></li></ul>
+        </details>
+        <details>
+          <summary>Çocuk hikâyeleri <span class="count">8 masal</span><span class="plus" aria-hidden="true"></span></summary>
+          <ul><li><span>Kaplumbağa ile Tavşan</span><span>3 dk</span></li><li><span>Aslan ile Minik Fare</span><span>10 dk</span></li><li><span>Tilki ile Leylek</span><span>10 dk</span></li><li><span>Ağustos Böceği ile Karınca</span><span>10 dk</span></li><li><span>Üç Küçük Domuz</span><span>3 dk</span></li></ul>
+        </details>
+      </div>
+      <div class="shelves" lang="en">
+        <details open>
+          <summary>Brothers Grimm <span class="count">14 stories</span><span class="plus" aria-hidden="true"></span></summary>
+          <ul><li><span>Little Red-Cap</span><span>9 min</span></li><li><span>Rapunzel</span><span>9 min</span></li><li><span>The Bremen Town-Musicians</span><span>8 min</span></li><li><span>Mother Holle</span><span>7 min</span></li><li><span>The Fisherman and His Wife</span><span>18 min</span></li><li><span>The Star-Money</span><span>2 min</span></li></ul>
+        </details>
+        <details>
+          <summary>Beatrix Potter <span class="count">5 stories</span><span class="plus" aria-hidden="true"></span></summary>
+          <ul><li><span>The Tale of Peter Rabbit</span><span>6 min</span></li><li><span>The Tale of Benjamin Bunny</span><span>7 min</span></li><li><span>The Tale of Squirrel Nutkin</span><span>8 min</span></li><li><span>The Tale of Jemima Puddle-Duck</span><span>8 min</span></li><li><span>The Tale of Tom Kitten</span><span>5 min</span></li></ul>
+        </details>
+        <details>
+          <summary>Kipling's Just So Stories <span class="count">8 stories</span><span class="plus" aria-hidden="true"></span></summary>
+          <ul><li><span>How the Camel Got His Hump</span><span>7 min</span></li><li><span>How the Whale Got His Throat</span><span>7 min</span></li><li><span>The Elephant's Child</span><span>17 min</span></li><li><span>How the Rhinoceros Got His Skin</span><span>6 min</span></li></ul>
+        </details>
+        <details>
+          <summary>English fairy tales <span class="count">13 stories</span><span class="plus" aria-hidden="true"></span></summary>
+          <ul><li><span>Jack and the Beanstalk</span><span>14 min</span></li><li><span>The Story of the Three Bears</span><span>8 min</span></li><li><span>The Story of the Three Little Pigs</span><span>6 min</span></li><li><span>Tom Tit Tot</span><span>10 min</span></li><li><span>Henny-Penny</span><span>6 min</span></li></ul>
+        </details>
+        <details>
+          <summary>Andersen and Perrault <span class="count">9 stories</span><span class="plus" aria-hidden="true"></span></summary>
+          <ul><li><span>Tommelise (Thumbelina)</span><span>26 min</span></li><li><span>The Constant Tin Soldier</span><span>10 min</span></li><li><span>Cinderella, or The Little Glass Slipper</span><span>30 min</span></li><li><span>The Sleeping Beauty</span><span>32 min</span></li><li><span>The Master Cat; or, Puss in Boots</span><span>11 min</span></li></ul>
+        </details>
+        <details>
+          <summary>Aesop, Oz and more <span class="count">14 stories</span><span class="plus" aria-hidden="true"></span></summary>
+          <ul><li><span>The Hare and the Tortoise</span><span>1 min</span></li><li><span>The Lion and the Mouse</span><span>1 min</span></li><li><span>Little Dorothy and Toto</span><span>11 min</span></li><li><span>The Scarecrow and the Tin Woodman</span><span>13 min</span></li><li><span>The Velveteen Rabbit</span><span>23 min</span></li></ul>
+        </details>
+      </div>
+      <p class="library-note"><span lang="tr">Her masal ya telifsiz bir klasik ya da FairyWhisper için yazılmış özgün bir hikâye.</span><span lang="en">Every story is either a public-domain classic or an original written for FairyWhisper.</span></p>
+      <figure class="inline-shot" aria-hidden="true">
+        <div class="phone"><div class="phone-screen"><img class="is-on" data-shot-img="library" src="/fairywhisper/assets/library-tr-720.webp" width="720" height="1564" alt="" loading="lazy"></div></div>
+      </figure>
+    </section>
+
+    <!-- Sleep -->
+    <section class="chapter" id="sleep" data-shot="player" aria-labelledby="sleep-title" data-reveal>
+      <h2 id="sleep-title"><span lang="tr">Uyku gelene kadar</span><span lang="en">Until sleep comes</span></h2>
+      <ul class="sleep-list" data-rows>
+        <li><strong><span lang="tr">Uyku Köprüsü</span><span lang="en">The Sleep Bridge</span></strong>
+          <p><span lang="tr">Masal bitince yaklaşık yedi dakikalık sakin bir kapanış gelir: yavaş nefesler, sessiz imgeler. Ardından yumuşak uyku sesleri başlar ve yarım saatte kısılarak kapanır.</span><span lang="en">When the story ends, a calm wind-down of about seven minutes follows, with slow breathing and quiet images. Then soft sleep sounds start and fade out over half an hour.</span></p></li>
+        <li><strong><span lang="tr">Uyku zamanlayıcısı</span><span lang="en">The sleep timer</span></strong>
+          <p><span lang="tr">Masal ya da ses, çocuğun uyurken yavaşça kısılır. Ekran kilitliyken ve yatağın yanındaki Bluetooth hoparlörden çalmaya devam eder.</span><span lang="en">The story or sound fades out while your child drifts off. It keeps playing with the screen locked and through a Bluetooth speaker by the bed.</span></p></li>
+        <li><strong><span lang="tr">Tekrar ve çalma listesi</span><span lang="en">Repeat and playlists</span></strong>
+          <p><span lang="tr">Sevdiği masalı baştan çaldır ya da masalları art arda dizen bir liste kur. Okuma hızını da sen ayarlarsın.</span><span lang="en">Play a favourite again or line stories up in a playlist. You set the reading speed too.</span></p></li>
+      </ul>
+      <div class="lullabies" data-shot-sub="sounds" role="group" aria-label="Ninniler" data-aria-en="Lullabies">
+        <ul class="lullaby-names" data-rows>
+          <li>Dandini Dandini</li>
+          <li><span lang="tr">Brahms Ninnisi</span><span lang="en">Brahms' Lullaby</span></li>
+          <li><span lang="tr">Parla Parla Küçük Yıldız</span><span lang="en">Twinkle Twinkle</span></li>
+          <li>Rock-a-bye Baby</li>
+        </ul>
+        <p class="sounds"><span lang="tr">Müzik kutusu ninnileri ve uyku sesleri internetsiz çalar. Ninnilerin yanında yağmur, okyanus dalgaları, dere, rüzgâr, şömine, saat tıkırtısı ve beyaz, pembe, kahverengi gürültü.</span><span lang="en">The music box lullabies and sleep sounds play offline. Next to the lullabies: rain, ocean waves, a stream, wind, a fireplace, a ticking clock, and white, pink and brown noise.</span></p>
+      </div>
+      <figure class="inline-shot" aria-hidden="true">
+        <div class="phone"><div class="phone-screen"><img class="is-on" data-shot-img="player" src="/fairywhisper/assets/player-tr-720.webp" width="720" height="1564" alt="" loading="lazy"></div></div>
+      </figure>
+    </section>
+
+    <!-- Your voice: a short letter -->
+    <section class="chapter" id="voice" data-shot="voices" aria-labelledby="voice-title" data-reveal>
+      <h2 id="voice-title"><span lang="tr">Sesin sana ait</span><span lang="en">Your voice stays yours</span></h2>
+      <div class="letter">
+        <p class="lead"><span lang="tr">Ses kişisel bir şey. Bu yüzden FairyWhisper'da sesine ne olduğunu açıkça yazıyorum.</span><span lang="en">A voice is personal, so here is plainly what happens to yours in FairyWhisper.</span></p>
+        <p><span lang="tr">Kayda başlamadan önce sesin sana ait olduğunu onaylar ve açık rızanı verirsin. Kaydın, sesini oluşturmak için ses ortağımız ElevenLabs'e güvenle gönderilir ve hemen ardından sunucularımızdan silinir. <mark>Bir kopyası yalnızca senin telefonunda kalır.</mark></span><span lang="en">Before you record, you confirm it's your own voice and give your consent. Your recording goes securely to our voice partner ElevenLabs to create your voice, and it is deleted from our servers right after. <mark>A copy stays only on your phone.</mark></span></p>
+        <p><span lang="tr">Sesini yalnızca senin hesabın kullanabilir. Sesini, masallarını ya da hesabının tamamını istediğin an uygulamadan silebilirsin.</span><span lang="en">Only your account can use your voice. You can delete your voice, your stories or your whole account from the app at any time.</span></p>
+        <p><span lang="tr">Hiç masalda kullanılmayan bir ses 30 gün sonra, diğerleri 90 gün kullanılmazsa arşivlenir. Bir hafta önce hatırlatırım; hazır masallar çalmaya devam eder, sesi telefonundaki kayıttan ücretsiz geri yükleyebilirsin.</span><span lang="en">A voice never used for a story is archived after 30 days, others after 90 days without use. You get a reminder a week before; finished stories keep playing, and you can restore the voice for free from the recording on your phone.</span></p>
+        <p><span lang="tr">Uygulamada reklam ve takip yok. Satın almalar ve dış bağlantılar ebeveyn kapısının arkasında.</span><span lang="en">There are no ads and no tracking in the app. Purchases and outside links sit behind a parental gate.</span></p>
+        <p class="sign"><em>Berke Dilekoğlu</em><span lang="tr">FairyWhisper'ı geliştiren, BerkeML</span><span lang="en">Maker of FairyWhisper, BerkeML</span></p>
+      </div>
+      <figure class="inline-shot" aria-hidden="true">
+        <div class="phone"><div class="phone-screen"><img class="is-on" data-shot-img="voices" src="/fairywhisper/assets/voices-tr-720.webp" width="720" height="1564" alt="" loading="lazy"></div></div>
+      </figure>
+    </section>
   </main>
 
-  <footer>
-    <div class="inner">© FairyWhisper · a <a href="/">BerkeML</a> product · <a href="/fairywhisper/privacy">Gizlilik / Privacy</a> · <a href="/fairywhisper/terms">Koşullar / Terms</a></div>
-  </footer>
+  <!-- The stage: the phone stays while the column reads -->
+  <aside class="stage" aria-label="Uygulamadan ekranlar" data-aria-en="Screens from the app">
+    <div class="stage-field">
+      <img class="stage-sky" src="/fairywhisper/assets/night-sky.webp" width="1600" height="2000" alt="" aria-hidden="true">
+      <div class="phone">
+        <div class="phone-screen">
+          <img class="is-on" data-stage="story" src="/fairywhisper/assets/story-tr-1080.webp" width="1080" height="2347" alt="Bu gece masalı kim okusun ekranında Annem sesi seçili" data-alt-en="The 'Who reads tonight?' screen with the Mom voice selected">
+          <img data-stage="readalong" src="/fairywhisper/assets/readalong-tr-1080.webp" width="1080" height="2347" alt="Okunan cümlenin vurgulandığı metin ekranı" data-alt-en="The read-along screen with the current sentence highlighted" loading="lazy">
+          <img data-stage="record" src="/fairywhisper/assets/record-tr-1080.webp" width="1080" height="2347" alt="Rehberli ses kaydı ekranı" data-alt-en="The guided voice recording screen" loading="lazy">
+          <img data-stage="library" src="/fairywhisper/assets/library-tr-1080.webp" width="1080" height="2347" alt="Masal kütüphanesi" data-alt-en="The story library" loading="lazy">
+          <img data-stage="player" src="/fairywhisper/assets/player-tr-1080.webp" width="1080" height="2347" alt="Gece temalı oynatıcı" data-alt-en="The night-themed player" loading="lazy">
+          <img data-stage="sounds" src="/fairywhisper/assets/sounds-tr-1080.webp" width="1080" height="2347" alt="Ninniler ve uyku sesleri" data-alt-en="Lullabies and sleep sounds" loading="lazy">
+          <img data-stage="voices" src="/fairywhisper/assets/voices-tr-1080.webp" width="1080" height="2347" alt="Seslerim ekranı" data-alt-en="The My Voices screen" loading="lazy">
+        </div>
+      </div>
+    </div>
+    <div class="stage-bar">
+      <span lang="tr">iPhone için ücretsiz</span><span lang="en">Free on iPhone</span>
+      <span lang="tr">Türkçe ve İngilizce</span><span lang="en">English and Turkish</span>
+    </div>
+  </aside>
+</div>
+
+<!-- Full width: credits set like a menu -->
+<section class="wide" id="prices" aria-labelledby="prices-title">
+  <div class="prices" data-reveal>
+    <div class="prices-head">
+      <h2 id="prices-title"><span lang="tr">Krediler</span><span lang="en">Credits</span></h2>
+      <p><span lang="tr">Tek seferlik satın alınır, süresi dolmaz, abonelik yoktur. Cihaz sesiyle her masal her zaman ücretsiz.</span><span lang="en">A one-time purchase that never expires, with no subscription. Every story is always free with the device voice.</span></p>
+      <div class="app-icon"><img src="/fairywhisper/assets/icon-256.webp" width="256" height="256" alt="" loading="lazy"></div>
+    </div>
+    <div class="menu">
+      <div class="menu-group">
+        <h3><span lang="tr">Paketler</span><span lang="en">Packs</span></h3>
+        <div class="menu-item"><div class="row"><span><span lang="tr">150 kredi</span><span lang="en">150 credits</span></span><span lang="en">$3.99</span></div><p><span lang="tr">Sesin ve yaklaşık 10 dakikalık bir masal</span><span lang="en">Your voice and about a 10-minute story</span></p></div>
+        <div class="menu-item"><div class="row"><span><span lang="tr">400 kredi</span><span lang="en">400 credits</span></span><span lang="en">$8.99</span></div><p><span lang="tr">Sesin ve yaklaşık 35 dakika masal</span><span lang="en">Your voice and about 35 minutes of stories</span></p></div>
+        <div class="menu-item"><div class="row"><span><span lang="tr">1.000 kredi</span><span lang="en">1,000 credits</span></span><span lang="en">$19.99</span></div><p><span lang="tr">Sesin ve yaklaşık 1,5 saat masal</span><span lang="en">Your voice and about 1.5 hours of stories</span></p></div>
+        <div class="menu-item"><div class="row"><span><span lang="tr">2.500 kredi</span><span lang="en">2,500 credits</span></span><span lang="en">$39.99</span></div><p><span lang="tr">Sesin ve yaklaşık 4 saat masal</span><span lang="en">Your voice and about 4 hours of stories</span></p></div>
+      </div>
+      <div class="menu-group">
+        <h3><span lang="tr">Kredilerle</span><span lang="en">What credits buy</span></h3>
+        <div class="menu-item"><div class="row"><span><span lang="tr">İlk iki ses</span><span lang="en">Your first two voices</span></span><span><span lang="tr">50 kredi</span><span lang="en">50 each</span></span></div><p><span lang="tr">Her biri için; bir kez oluşturulur, her masalda kullanılır</span><span lang="en">Created once, used for every story</span></p></div>
+        <div class="menu-item"><div class="row"><span><span lang="tr">Sonraki sesler</span><span lang="en">Later voices</span></span><span><span lang="tr">150 kredi</span><span lang="en">150 each</span></span></div><p><span lang="tr">Bir hesapta en fazla 5 ses</span><span lang="en">Up to 5 voices per account</span></p></div>
+        <div class="menu-item"><div class="row"><span><span lang="tr">10 dakikalık masal</span><span lang="en">A 10-minute story</span></span><span><span lang="tr">yaklaşık 90 kredi</span><span lang="en">about 90</span></span></div><p><span lang="tr">Yaklaşık 100 karakter başına 1 kredi</span><span lang="en">About 1 credit per 100 characters</span></p></div>
+        <div class="menu-item"><div class="row"><span><span lang="tr">Tekrar dinlemek</span><span lang="en">Replaying a story</span></span><span><span lang="tr">ücretsiz</span><span lang="en">free</span></span></div><p><span lang="tr">Hazırladığın masal her zaman senin</span><span lang="en">A story you made stays yours</span></p></div>
+      </div>
+    </div>
+    <p class="menu-foot"><span lang="tr">Paket fiyatlarını App Store'da kendi para biriminle görürsün.</span><span lang="en">Prices are the US App Store prices; other countries see their local price in the App Store.</span></p>
+  </div>
+</section>
+
+<!-- FAQ as reading text -->
+<section class="faq" id="faq" aria-labelledby="faq-title" data-reveal>
+  <h2 id="faq-title"><span lang="tr">Sık sorulanlar</span><span lang="en">Questions</span></h2>
+  <div class="faq-text" lang="tr">
+    <p><b>Ücretsiz mi?</b> Evet. Tüm masallar, ninniler, uyku sesleri ve uyku zamanlayıcısı cihaz sesiyle ücretsizdir. Krediler yalnızca kendi sesini oluşturmak ve masalları senin sesine dönüştürmek için gerekir.</p>
+    <p><b>Hangi dillerde?</b> Uygulama ve masallar Türkçe ve İngilizce. Sesin iki dilde de okuyabilir; en iyi sonuç için en çok okuduğun dilde kaydet.</p>
+    <p><b>Kayıt ne kadar sürer?</b> En az bir, en fazla üç dakika. Uygulama okuman için kısa bir masal gösterir ve satır satır eşlik eder. Elindeki bir ses kaydını da yükleyebilirsin.</p>
+    <p><b>Kaydım nerede saklanır?</b> Ses oluşturulduktan hemen sonra sunucularımızdan silinir. Bir kopyası yalnızca senin telefonunda kalır; istersen Dosyalar'a kaydedebilirsin.</p>
+    <p><b>Kaç ses oluşturabilirim?</b> Bir hesapta en fazla beş aktif ses olabilir; arşivlenen sesler sayılmaz. Ses ortağımızın kapasitesi sınırlı olduğu için ayda en fazla beş yeni ses ya da geri yükleme yapılabilir.</p>
+    <p><b>Çocuğum kendi başına kullanabilir mi?</b> Hesabı ebeveyn oluşturur. Satın almalar ve dış bağlantılar ebeveyn kapısının arkasında; çocuk yalnızca masal seçip dinler.</p>
+    <p><b>Hangi cihazlarda çalışır?</b> iOS 17 ve üzerindeki iPhone'larda. iPad ve Mac sürümü şimdilik yok.</p>
+    <p><b>Bir sorun olursa?</b> <a href="mailto:supportfairywhisper@gmail.com">supportfairywhisper@gmail.com</a> adresine yaz. Ayrıntılar <a href="/fairywhisper/privacy">gizlilik politikasında</a> ve <a href="/fairywhisper/terms">kullanım koşullarında</a>.</p>
+  </div>
+  <div class="faq-text" lang="en">
+    <p><b>Is it free?</b> Yes. Every story, lullaby, sleep sound and the sleep timer are free with the device voice. Credits are only needed to create your own voice and turn stories into your voice.</p>
+    <p><b>Which languages?</b> The app and the stories are in English and Turkish. Your voice can read both; for the best result, record in the language you read most.</p>
+    <p><b>How long is the recording?</b> At least one minute and up to three. The app shows a short story to read and follows along line by line. You can also upload a recording you already have.</p>
+    <p><b>Where is my recording kept?</b> It is deleted from our servers right after your voice is created. A copy stays only on your phone, and you can save it to Files if you like.</p>
+    <p><b>How many voices can I make?</b> Up to five active voices per account; archived voices don't count. Because our voice partner's capacity is limited, you can create or restore up to five voices a month.</p>
+    <p><b>Can my child use it alone?</b> A parent creates the account. Purchases and outside links sit behind a parental gate; your child only picks a story and listens.</p>
+    <p><b>Which devices?</b> iPhone with iOS 17 or later. There is no iPad or Mac version yet.</p>
+    <p><b>Something not working?</b> Write to <a href="mailto:supportfairywhisper@gmail.com">supportfairywhisper@gmail.com</a>. The details are in the <a href="/fairywhisper/privacy">privacy policy</a> and the <a href="/fairywhisper/terms">terms of use</a>.</p>
+  </div>
+</section>
+
+<!-- Footer: photograph half, menu half -->
+<footer class="foot">
+  <div class="foot-inner">
+    <div class="foot-photo">
+      <img src="/fairywhisper/assets/night-sky.webp" width="1600" height="2000" alt="Karla kaplı bir dağın üstünde yıldızlı gece gökyüzü" data-alt-en="A starry night sky above a snow-covered mountain" loading="lazy">
+      <div class="big-icon"><img src="/fairywhisper/assets/icon-1024.webp" width="1024" height="1024" alt="" loading="lazy"></div>
+      <p class="credit"><span lang="tr">Fotoğraf:</span><span lang="en">Photo:</span> <a href="https://unsplash.com/photos/6hxvm0NzYP8">Caleb Ralston, Unsplash</a></p>
+    </div>
+    <div class="foot-menu">
+      <a class="wordmark" href="/fairywhisper/"><img src="/fairywhisper/assets/icon-256.webp" width="32" height="32" alt="" loading="lazy">FairyWhisper</a>
+      <ul class="foot-links">
+        <li><a href="#listen"><span lang="tr">Dinle</span><span lang="en">Listen</span></a></li>
+        <li><a href="#how"><span lang="tr">Nasıl çalışır</span><span lang="en">How it works</span></a></li>
+        <li><a href="#library"><span lang="tr">Masallar</span><span lang="en">Stories</span></a></li>
+        <li><a href="#voice"><span lang="tr">Sesin sana ait</span><span lang="en">Your voice</span></a></li>
+        <li><a href="#prices"><span lang="tr">Krediler</span><span lang="en">Credits</span></a></li>
+        <li><a href="https://apps.apple.com/app/id6823644391">App Store</a></li>
+      </ul>
+      <div>
+        <div class="foot-meta">
+          <div><p><span lang="tr">Destek</span><span lang="en">Support</span></p><p><a href="mailto:supportfairywhisper@gmail.com">supportfairywhisper@gmail.com</a></p></div>
+          <div><p><span lang="tr">Yapan</span><span lang="en">Made by</span></p><p><a href="https://berkeml.com/">BerkeML</a></p></div>
+        </div>
+        <p class="legal">
+          <span>© 2026 Berke Dilekoğlu</span>
+          <a href="/fairywhisper/privacy"><span lang="tr">Gizlilik Politikası</span><span lang="en">Privacy Policy</span></a>
+          <a href="/fairywhisper/terms"><span lang="tr">Kullanım Koşulları</span><span lang="en">Terms of Use</span></a>
+          <span lang="tr">Apple, App Store ve iPhone, Apple Inc.'in ticari markalarıdır.</span><span lang="en">Apple, App Store and iPhone are trademarks of Apple Inc.</span>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var root = document.documentElement;
+  var lang = function () { return root.dataset.lang; };
+
+  // Real openings from the app's library.
+  var TALES = {
+    tr: [
+      { t: 'Keloğlan ile Yün Bulutları', s: ['Evvel zaman içinde, kalbur saman içinde, yüksek dağların eteğinde küçük bir köy varmış.', 'Köyün evleri taştan, damları topraktanmış.', 'Her evin önünde bir dut ağacı, her bahçede bir sıra fasulye varmış.', 'Köyün tam ortasında da koca bir çınar dururmuş.'] },
+      { t: 'Bulut Yastık', s: ['Uzak bir dağın tepesinde, gökyüzüne en yakın yerde, Pamuk adında küçük bir bulut yaşarmış.', 'Pamuk, diğer bulutlar gibi yağmur yağdırmayı ya da gök gürültüsüyle gürlemeyi sevmezmiş.', 'Onun en sevdiği şey, akşamları aşağıdaki köye bakıp pencerelerdeki ışıkların teker teker sönmesini izlemekmiş.'] },
+      { t: 'Nasreddin Hoca ile Kuyudaki Ay', s: ["Evvel zaman içinde, Akşehir'de Nasreddin Hoca adında hem bilge hem şakacı bir adam yaşarmış.", 'Başında kocaman bir kavuk, sırtında bol bir cüppe olurmuş.', 'Bir eşeği, küçük bir bahçesi, bir de bahçenin köşesinde taş bilezikli, eski bir kuyusu varmış.'] }
+    ],
+    en: [
+      { t: 'The Tale of Peter Rabbit', s: ['Once upon a time there were four little Rabbits, and their names were Flopsy, Mopsy, Cotton-tail, and Peter.', 'They lived with their Mother in a sand-bank, underneath the root of a very big fir-tree.'] },
+      { t: 'How the Camel Got His Hump', s: ['Now this is the next tale, and it tells how the Camel got his big hump.', 'In the beginning of years, when the world was so new and all, and the Animals were just beginning to work for Man, there was a Camel, and he lived in the middle of a Howling Desert because he did not want to work.'] },
+      { t: 'Little Red-Cap', s: ['Once upon a time there was a dear little girl who was loved by every one who looked at her, but most of all by her grandmother.', 'Once she gave her a little cap of red velvet, which suited her so well that she would never wear anything else; so she was always called Little Red-Cap.'] }
+    ]
+  };
+  var current = 0, speaking = false, queueId = 0;
+  var titleEl = document.getElementById('read-title');
+  var textEl = document.getElementById('read-text');
+  var playBtn = document.getElementById('play');
+  var synth = window.speechSynthesis;
+  var canSpeak = !!synth && typeof SpeechSynthesisUtterance !== 'undefined';
+  if (!canSpeak) root.classList.add('no-speech');
+
+  function renderTale() {
+    var tale = TALES[lang()][current];
+    titleEl.textContent = tale.t;
+    textEl.textContent = '';
+    tale.s.forEach(function (sentence, i) {
+      var span = document.createElement('span');
+      span.textContent = sentence;
+      textEl.appendChild(span);
+      if (i < tale.s.length - 1) textEl.appendChild(document.createTextNode(' '));
+    });
+  }
+  function setPlaying(on) {
+    speaking = on;
+    playBtn.querySelector('[data-play-label]').innerHTML = on
+      ? '<span lang="tr">Durdur</span><span lang="en">Stop</span>'
+      : '<span lang="tr">Oynat</span><span lang="en">Play</span>';
+    playBtn.querySelector('svg').innerHTML = on ? '<path d="M2 2h10v10H2z"/>' : '<path d="M2 1.2v11.6L12.4 7z"/>';
+  }
+  function stop() {
+    queueId++;
+    if (canSpeak) synth.cancel();
+    setPlaying(false);
+    textEl.querySelectorAll('span').forEach(function (s) { s.classList.remove('is-now', 'is-read'); });
+  }
+  function pickVoice(code) {
+    var voices = synth.getVoices();
+    return voices.find(function (v) { return v.lang && v.lang.toLowerCase().indexOf(code) === 0 && /yelda|samantha|karen|serena|moira|female/i.test(v.name); })
+      || voices.find(function (v) { return v.lang && v.lang.toLowerCase().indexOf(code) === 0; });
+  }
+  function play() {
+    stop();
+    var id = queueId;
+    var spans = Array.prototype.slice.call(textEl.querySelectorAll('span'));
+    var code = lang() === 'tr' ? 'tr' : 'en';
+    var voice = pickVoice(code);
+    setPlaying(true);
+    spans.forEach(function (span, i) {
+      var u = new SpeechSynthesisUtterance(span.textContent);
+      u.lang = code === 'tr' ? 'tr-TR' : 'en-US';
+      if (voice) u.voice = voice;
+      u.rate = 0.9;
+      u.onstart = function () {
+        if (id !== queueId) return;
+        spans.forEach(function (s, j) { s.classList.toggle('is-now', j === i); s.classList.toggle('is-read', j < i); });
+      };
+      u.onend = function () {
+        if (id !== queueId || i < spans.length - 1) return;
+        span.classList.remove('is-now'); span.classList.add('is-read');
+        setPlaying(false);
+      };
+      synth.speak(u);
+    });
+  }
+  playBtn.addEventListener('click', function () { speaking ? stop() : play(); });
+  document.querySelectorAll('.tale').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      current = Number(btn.dataset.tale);
+      document.querySelectorAll('.tale').forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.tale === btn.dataset.tale)); });
+      stop(); renderTale();
+    });
+  });
+
+  // Language: text, screenshots, alt text, title.
+  function applyLang(l) {
+    root.lang = l; root.dataset.lang = l;
+    try { localStorage.setItem('fw-lang', l); } catch (e) {}
+    document.title = l === 'tr' ? 'FairyWhisper: Masallar senin sesinle' : 'FairyWhisper: Bedtime, in your voice';
+    document.querySelectorAll('img[data-stage], img[data-shot-img]').forEach(function (img) {
+      img.src = img.getAttribute('src').replace(/-(tr|en)-(\d+)\.webp$/, '-' + l + '-$2.webp');
+    });
+    document.querySelectorAll('[data-alt-en]').forEach(function (el) {
+      if (!el.dataset.altTr) el.dataset.altTr = el.getAttribute('alt');
+      el.setAttribute('alt', l === 'en' ? el.dataset.altEn : el.dataset.altTr);
+    });
+    document.querySelectorAll('[data-aria-en]').forEach(function (el) {
+      if (!el.dataset.ariaTr) el.dataset.ariaTr = el.getAttribute('aria-label');
+      el.setAttribute('aria-label', l === 'en' ? el.dataset.ariaEn : el.dataset.ariaTr);
+    });
+    stop(); renderTale();
+  }
+  document.querySelectorAll('[data-switch-lang]').forEach(function (b) {
+    b.addEventListener('click', function () { applyLang(lang() === 'tr' ? 'en' : 'tr'); });
+  });
+  applyLang(lang());
+
+  // The stage: the phone shows the screen of the section being read.
+  var stageImgs = {};
+  document.querySelectorAll('img[data-stage]').forEach(function (img) { stageImgs[img.dataset.stage] = img; });
+  function showShot(name) {
+    if (!stageImgs[name]) return;
+    Object.keys(stageImgs).forEach(function (k) { stageImgs[k].classList.toggle('is-on', k === name); });
+  }
+  var revealTargets = document.querySelectorAll('[data-reveal], [data-rows]');
+  if ('IntersectionObserver' in window) {
+    var shotIO = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { if (e.isIntersecting) showShot(e.target.dataset.shotSub || e.target.dataset.shot); });
+    }, { rootMargin: '-45% 0px -45% 0px' });
+    document.querySelectorAll('[data-shot], [data-shot-sub]').forEach(function (el) { shotIO.observe(el); });
+
+    // Section entrances, once.
+    var revealIO = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('is-in'); revealIO.unobserve(e.target); } });
+    }, { rootMargin: '0px 0px -12% 0px', threshold: 0.08 });
+    revealTargets.forEach(function (el) { revealIO.observe(el); });
+    window.addEventListener('load', function () {
+      setTimeout(function () {
+        revealTargets.forEach(function (el) {
+          var r = el.getBoundingClientRect();
+          if (r.top < innerHeight && r.bottom > 0) el.classList.add('is-in');
+        });
+      }, 2500);
+    });
+  } else {
+    revealTargets.forEach(function (el) { el.classList.add('is-in'); });
+  }
+  document.addEventListener('visibilitychange', function () { if (document.hidden) stop(); });
+})();
+</script>
 </body>
 </html>
