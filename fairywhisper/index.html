@@ -196,6 +196,10 @@
     .voices { display: inline-flex; gap: 4px; padding: 4px; margin: 0 0 16px; background: var(--surface); border-radius: 999px; }
     /* Normal / Premium for the same voice: on its own line, under the voices. */
     .voices.quality { display: flex; width: max-content; margin-top: -8px; }
+    /* The real recording the "real mother" voice was cloned from. */
+    .reference-row { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px; margin: -4px 0 16px; }
+    .reference { font: inherit; font-size: var(--s-small); font-weight: 560; color: var(--accent-ink); background: none; border: 0; padding: 6px 0; cursor: pointer; }
+    .reference:hover { text-decoration: underline; }
     .voices[hidden] { display: none; }
     .voice { font: inherit; font-size: var(--s-small); color: var(--ink); background: transparent; border: 0; border-radius: 999px; padding: 6px 14px; cursor: pointer; transition: background var(--t-hover) ease, color var(--t-hover) ease, transform var(--t-press) var(--ease-out); }
     .voice:hover { background: var(--surface-2); }
@@ -449,6 +453,10 @@
         <div class="voices" id="voice-switch" role="group" aria-label="Ses" data-aria-en="Voice" hidden></div>
         <div class="voices quality" id="quality-switch" role="group" aria-label="Kalite" data-aria-en="Quality" hidden>
         </div>
+        <p class="reference-row" id="reference-row" hidden>
+          <button class="reference" type="button" id="reference"></button>
+          <span class="note" id="reference-note"></span>
+        </p>
         <p class="read-text" id="read-text">Evvel zaman içinde, kalbur saman içinde, sık bir ormanın ortasında, gökyüzüne doğru uzanan taştan bir kule varmış. Kulenin ne kapısı, ne merdiveni varmış. Yalnızca en tepesinde, küçük bir penceresi varmış. O pencereden her sabah güneş, her akşam da ay içeri bakarmış. Ve o kulede Rapunzel adında bir kız yaşarmış.</p>
         <div class="controls">
           <button class="play" type="button" id="play">
@@ -716,6 +724,7 @@
         s: ['Evvel zaman içinde, kalbur saman içinde, sık bir ormanın ortasında, gökyüzüne doğru uzanan taştan bir kule varmış.', 'Kulenin ne kapısı, ne merdiveni varmış.', 'Yalnızca en tepesinde, küçük bir penceresi varmış.', 'O pencereden her sabah güneş, her akşam da ay içeri bakarmış.', 'Ve o kulede Rapunzel adında bir kız yaşarmış.'],
         voices: [
           { label: 'Gerçek bir anne', audio: '/fairywhisper/assets/audio/rapunzel-tr-3.mp3?v=3', at: [0, 9.14, 12.74, 17.31, 22.92],
+            reference: '/fairywhisper/assets/audio/rapunzel-tr-3-reference.m4a',
             premium: { audio: '/fairywhisper/assets/audio/rapunzel-tr-3-premium.mp3', at: [0, 10.2, 13.72, 18.44, 23.96] } },
           { label: 'Kadın sesi', audio: '/fairywhisper/assets/audio/rapunzel-tr-1.mp3', at: [0, 10.12, 13.62, 18.42, 24.29] },
           { label: 'Erkek sesi', audio: '/fairywhisper/assets/audio/rapunzel-tr-2.mp3', at: [0, 9.41, 12.55, 16.4, 21.35] }
@@ -741,6 +750,27 @@
   var audio = null, rafId = 0, voiceIndex = 0;
   var voiceSwitch = document.getElementById('voice-switch');
   var qualitySwitch = document.getElementById('quality-switch');
+  var referenceRow = document.getElementById('reference-row');
+  var referenceBtn = document.getElementById('reference');
+  var referenceNote = document.getElementById('reference-note');
+  var referencePlaying = false;
+  function referenceLabels() {
+    var tr = lang() === 'tr';
+    referenceBtn.textContent = referencePlaying ? (tr ? '■ Kaydı durdur' : '■ Stop the recording') : (tr ? '🎙 Gerçek kaydı dinle' : '🎙 Listen to the real recording');
+    referenceNote.textContent = tr ? 'Bu sesin oluşturulduğu kayıttan bir bölüm (farklı bir metin).' : 'A part of the recording this voice was made from (a different text).';
+  }
+  referenceBtn.addEventListener('click', function () {
+    if (referencePlaying) { stop(); return; }
+    var voice = TALES[lang()][current].voices[voiceIndex];
+    if (!voice.reference) return;
+    stop();
+    if (!audio) { audio = new Audio(); audio.preload = 'auto'; }
+    audio.src = voice.reference;
+    audio.onplay = null;
+    audio.onended = function () { referencePlaying = false; referenceLabels(); };
+    referencePlaying = true; referenceLabels();
+    audio.play().catch(function () { referencePlaying = false; referenceLabels(); });
+  });
   // Voices made in both qualities open in Premium, the app's most natural option.
   var quality = 'premium';
   qualitySwitch.addEventListener('click', function (e) {
@@ -771,6 +801,8 @@
       voiceSwitch.appendChild(b);
     });
     var voice = tale.voices[voiceIndex];
+    referenceRow.hidden = !voice.reference;
+    referenceLabels();
     qualitySwitch.hidden = !voice.premium;
     qualitySwitch.textContent = '';
     if (voice.premium) {
@@ -800,6 +832,7 @@
   function stop() {
     queueId++;
     if (audio) { audio.pause(); audio.currentTime = 0; }
+    if (referencePlaying) { referencePlaying = false; referenceLabels(); }
     cancelAnimationFrame(rafId);
     setPlaying(false);
     textEl.querySelectorAll('span').forEach(function (s) { s.classList.remove('is-now', 'is-read'); });
