@@ -188,17 +188,8 @@
     /* ---------- live read-along ---------- */
     .listen h2 { max-width: 15ch; }
     .listen .statement { margin-top: 20px; }
-    .tales { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 36px; }
-    .tale {
-      font: inherit; font-size: var(--s-small); color: var(--ink); cursor: pointer;
-      background: var(--surface); border: 0; border-radius: 999px; padding: 10px 16px;
-      transition: background var(--t-hover) ease, color var(--t-hover) ease, transform var(--t-press) var(--ease-out);
-    }
-    .tale:hover { background: var(--surface-2); }
-    .tale:active { transform: scale(.96); }
-    .tale[aria-pressed="true"] { background: var(--night); color: var(--on-night); }
     .read-sheet {
-      margin-top: 20px; background: #FFFDF8; border-radius: var(--radius);
+      margin-top: 36px; background: #FFFDF8; border-radius: var(--radius);
       padding: 28px 28px 24px; max-width: 46ch;
     }
     .read-sheet .title { font-size: var(--s-small); color: var(--soft); margin-bottom: 12px; }
@@ -440,21 +431,13 @@
       </div>
     </section>
 
-    <!-- The live thing: the page reads along, like the app's free device voice -->
+    <!-- The live thing: a real FairyWhisper narration with the sentence highlighted as it is read -->
     <section class="chapter listen" id="listen" data-shot="readalong" aria-labelledby="listen-title" data-reveal>
       <h2 id="listen-title"><span lang="tr">Bir masalın başını dinle</span><span lang="en">Hear how a story begins</span></h2>
       <p class="statement">
-        <span lang="tr">Bu sayfa da uygulamadaki ücretsiz cihaz sesi gibi okur. Oynat'a bas; okunan cümle ekranda vurgulansın.</span>
-        <span lang="en">This page reads the way the app's free device voice does. Press play and watch the sentence being read light up.</span>
+        <span lang="tr">FairyWhisper ile seslendirilmiş bir masal. Oynat'a bas; okunan cümle ekranda vurgulansın.</span>
+        <span lang="en">A story narrated with FairyWhisper. Press play and watch the sentence being read light up.</span>
       </p>
-      <div class="tales" role="group" aria-label="Masal seç" data-aria-en="Choose a story">
-        <button class="tale" type="button" lang="tr" data-tale="0" aria-pressed="true">Rapunzel</button>
-        <button class="tale" type="button" lang="tr" data-tale="1" aria-pressed="false">Bulut Yastık</button>
-        <button class="tale" type="button" lang="tr" data-tale="2" aria-pressed="false">Keloğlan ile Yün Bulutları</button>
-        <button class="tale" type="button" lang="en" data-tale="0" aria-pressed="true">The Tale of Peter Rabbit</button>
-        <button class="tale" type="button" lang="en" data-tale="1" aria-pressed="false">How the Camel Got His Hump</button>
-        <button class="tale" type="button" lang="en" data-tale="2" aria-pressed="false">Little Red-Cap</button>
-      </div>
       <div class="read-sheet" data-ui>
         <p class="title" id="read-title">Rapunzel</p>
         <div class="voices" id="voice-switch" role="group" aria-label="Voice" hidden>
@@ -467,7 +450,7 @@
             <svg viewBox="0 0 14 14" aria-hidden="true"><path d="M2 1.2v11.6L12.4 7z"/></svg>
             <span data-play-label><span lang="tr">Oynat</span><span lang="en">Play</span></span>
           </button>
-          <p class="note" id="read-note"><span lang="tr">Tarayıcının kendi sesiyle okunur. Uygulamada aynı masalı senin sesin okur.</span><span lang="en">Read by your browser's own voice. In the app, the same story is read in yours.</span></p>
+          <p class="note" id="read-note"></p>
         </div>
       </div>
       <figure class="inline-shot" aria-hidden="true">
@@ -730,32 +713,23 @@
           { audio: '/fairywhisper/assets/audio/rapunzel-tr-1.mp3', at: [0, 10.12, 13.62, 18.42, 24.29] },
           { audio: '/fairywhisper/assets/audio/rapunzel-tr-2.mp3', at: [0, 9.41, 12.55, 16.4, 21.35] }
         ],
-        note: 'FairyWhisper ile örnek bir kadın ve erkek sesiyle seslendirildi. Uygulamada aynı masalı senin sesin okur.' },
-      { t: 'Bulut Yastık', s: ['Uzak bir dağın tepesinde, gökyüzüne en yakın yerde, Pamuk adında küçük bir bulut yaşarmış.', 'Pamuk, diğer bulutlar gibi yağmur yağdırmayı ya da gök gürültüsüyle gürlemeyi sevmezmiş.', 'Onun en sevdiği şey, akşamları aşağıdaki köye bakıp pencerelerdeki ışıkların teker teker sönmesini izlemekmiş.'] },
-      { t: 'Keloğlan ile Yün Bulutları', s: ['Evvel zaman içinde, kalbur saman içinde, yüksek dağların eteğinde küçük bir köy varmış.', 'Köyün evleri taştan, damları topraktanmış.', 'Her evin önünde bir dut ağacı, her bahçede bir sıra fasulye varmış.', 'Köyün tam ortasında da koca bir çınar dururmuş.'] }
+        note: 'FairyWhisper ile örnek bir kadın ve erkek sesiyle seslendirildi. Uygulamada aynı masalı senin sesin okur.' }
     ],
     en: [
       { t: 'The Tale of Peter Rabbit',
         s: ['Once upon a time there were four little Rabbits, and their names were Flopsy, Mopsy, Cotton-tail, and Peter.', 'They lived with their Mother in a sand-bank, underneath the root of a very big fir-tree.', "'Now run along, and don't get into mischief.", "I am going out.'", "Then old Mrs. Rabbit took a basket and her umbrella, and went through the wood to the baker's.", 'She bought a loaf of brown bread and five currant buns.'],
         voices: [
-          { audio: '/fairywhisper/assets/audio/peter-rabbit-en-1.mp3', at: [0, 8.38, 14.74, 19.4, 20.37, 26.04] },
+          { audio: '/fairywhisper/assets/audio/peter-rabbit-en-1.mp3?v=2', at: [0, 11.16, 17.96, 24.46, 25.86, 31.52] },
           { audio: '/fairywhisper/assets/audio/peter-rabbit-en-2.mp3', at: [0, 10.99, 18.16, 21.5, 23.77, 31.77] }
         ],
-        note: 'FairyWhisper narrations in a sample female and male voice. In the app, the same story is read in your voice.' },
-      { t: 'How the Camel Got His Hump', s: ['Now this is the next tale, and it tells how the Camel got his big hump.', 'In the beginning of years, when the world was so new and all, and the Animals were just beginning to work for Man, there was a Camel, and he lived in the middle of a Howling Desert because he did not want to work.'] },
-      { t: 'Little Red-Cap', s: ['Once upon a time there was a dear little girl who was loved by every one who looked at her, but most of all by her grandmother.', 'Once she gave her a little cap of red velvet, which suited her so well that she would never wear anything else; so she was always called Little Red-Cap.'] }
+        note: 'FairyWhisper narrations in a sample female and male voice. In the app, the same story is read in your voice.' }
     ]
   };
   var current = 0, speaking = false, queueId = 0;
   var titleEl = document.getElementById('read-title');
   var textEl = document.getElementById('read-text');
   var playBtn = document.getElementById('play');
-  var synth = window.speechSynthesis;
-  var canSpeak = !!synth && typeof SpeechSynthesisUtterance !== 'undefined';
-  if (!canSpeak) root.classList.add('no-speech');
-
   var noteEl = document.getElementById('read-note');
-  var defaultNote = noteEl.innerHTML;
   var audio = null, rafId = 0, voiceIndex = 0;
   var voiceSwitch = document.getElementById('voice-switch');
   voiceSwitch.querySelectorAll('.voice').forEach(function (b) {
@@ -767,11 +741,9 @@
   function renderTale() {
     var tale = TALES[lang()][current];
     titleEl.textContent = tale.t;
-    if (tale.note) noteEl.textContent = tale.note; else noteEl.innerHTML = defaultNote;
-    var hasVoices = !!(tale.voices && tale.voices.length);
-    playBtn.style.display = (hasVoices || canSpeak) ? '' : 'none';
-    voiceSwitch.hidden = !(hasVoices && tale.voices.length > 1);
-    if (!hasVoices || voiceIndex >= tale.voices.length) voiceIndex = 0;
+    noteEl.textContent = tale.note;
+    voiceSwitch.hidden = tale.voices.length < 2;
+    if (voiceIndex >= tale.voices.length) voiceIndex = 0;
     voiceSwitch.querySelectorAll('.voice').forEach(function (b) { b.setAttribute('aria-pressed', String(Number(b.dataset.voice) === voiceIndex)); });
     textEl.textContent = '';
     tale.s.forEach(function (sentence, i) {
@@ -790,16 +762,10 @@
   }
   function stop() {
     queueId++;
-    if (canSpeak) synth.cancel();
     if (audio) { audio.pause(); audio.currentTime = 0; }
     cancelAnimationFrame(rafId);
     setPlaying(false);
     textEl.querySelectorAll('span').forEach(function (s) { s.classList.remove('is-now', 'is-read'); });
-  }
-  function pickVoice(code) {
-    var voices = synth.getVoices();
-    return voices.find(function (v) { return v.lang && v.lang.toLowerCase().indexOf(code) === 0 && /yelda|samantha|karen|serena|moira|female/i.test(v.name); })
-      || voices.find(function (v) { return v.lang && v.lang.toLowerCase().indexOf(code) === 0; });
   }
   function playAudio(narration, spans) {
     if (!audio) { audio = new Audio(); audio.preload = 'auto'; }
@@ -823,40 +789,10 @@
   }
   function play() {
     stop();
-    var id = queueId;
     var spans = Array.prototype.slice.call(textEl.querySelectorAll('span'));
-    var tale = TALES[lang()][current];
-    if (tale.voices && tale.voices.length) { playAudio(tale.voices[voiceIndex], spans); return; }
-    if (!canSpeak) return;
-    var code = lang() === 'tr' ? 'tr' : 'en';
-    var voice = pickVoice(code);
-    setPlaying(true);
-    spans.forEach(function (span, i) {
-      var u = new SpeechSynthesisUtterance(span.textContent);
-      u.lang = code === 'tr' ? 'tr-TR' : 'en-US';
-      if (voice) u.voice = voice;
-      u.rate = 0.9;
-      u.onstart = function () {
-        if (id !== queueId) return;
-        spans.forEach(function (s, j) { s.classList.toggle('is-now', j === i); s.classList.toggle('is-read', j < i); });
-      };
-      u.onend = function () {
-        if (id !== queueId || i < spans.length - 1) return;
-        span.classList.remove('is-now'); span.classList.add('is-read');
-        setPlaying(false);
-      };
-      synth.speak(u);
-    });
+    playAudio(TALES[lang()][current].voices[voiceIndex], spans);
   }
   playBtn.addEventListener('click', function () { speaking ? stop() : play(); });
-  document.querySelectorAll('.tale').forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      current = Number(btn.dataset.tale);
-      voiceIndex = 0;
-      document.querySelectorAll('.tale').forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.tale === btn.dataset.tale)); });
-      stop(); renderTale();
-    });
-  });
 
   // Language: text, screenshots, alt text, title.
   function applyLang(l) {
