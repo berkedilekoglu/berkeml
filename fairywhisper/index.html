@@ -194,6 +194,8 @@
     }
     .read-sheet .title { font-size: var(--s-small); color: var(--soft); margin-bottom: 12px; }
     .voices { display: inline-flex; gap: 4px; padding: 4px; margin: 0 0 16px; background: var(--surface); border-radius: 999px; }
+    /* Normal / Premium for the same voice: on its own line, under the voices. */
+    .voices.quality { display: flex; width: max-content; margin-top: -8px; }
     .voices[hidden] { display: none; }
     .voice { font: inherit; font-size: var(--s-small); color: var(--ink); background: transparent; border: 0; border-radius: 999px; padding: 6px 14px; cursor: pointer; transition: background var(--t-hover) ease, color var(--t-hover) ease, transform var(--t-press) var(--ease-out); }
     .voice:hover { background: var(--surface-2); }
@@ -376,6 +378,8 @@
     @media (max-width: 420px) {
       .read-sheet { padding: 22px 18px 18px; }
       .voices { display: flex; width: 100%; }
+      .voices.quality { width: max-content; }
+      .voices.quality .voice { padding: 6px 14px; }
       .voice { flex: 1 1 auto; padding: 6px 4px; white-space: nowrap; }
       .read-text { font-size: 22px; }
       .badge img { height: 52px; }
@@ -442,7 +446,8 @@
       </p>
       <div class="read-sheet" data-ui>
         <p class="title" id="read-title">Rapunzel</p>
-        <div class="voices" id="voice-switch" role="group" aria-label="Ses" data-aria-en="Voice" hidden>
+        <div class="voices" id="voice-switch" role="group" aria-label="Ses" data-aria-en="Voice" hidden></div>
+        <div class="voices quality" id="quality-switch" role="group" aria-label="Kalite" data-aria-en="Quality" hidden>
         </div>
         <p class="read-text" id="read-text">Evvel zaman içinde, kalbur saman içinde, sık bir ormanın ortasında, gökyüzüne doğru uzanan taştan bir kule varmış. Kulenin ne kapısı, ne merdiveni varmış. Yalnızca en tepesinde, küçük bir penceresi varmış. O pencereden her sabah güneş, her akşam da ay içeri bakarmış. Ve o kulede Rapunzel adında bir kız yaşarmış.</p>
         <div class="controls">
@@ -710,20 +715,22 @@
       { t: 'Rapunzel',
         s: ['Evvel zaman içinde, kalbur saman içinde, sık bir ormanın ortasında, gökyüzüne doğru uzanan taştan bir kule varmış.', 'Kulenin ne kapısı, ne merdiveni varmış.', 'Yalnızca en tepesinde, küçük bir penceresi varmış.', 'O pencereden her sabah güneş, her akşam da ay içeri bakarmış.', 'Ve o kulede Rapunzel adında bir kız yaşarmış.'],
         voices: [
-          { label: 'Gerçek bir anne', audio: '/fairywhisper/assets/audio/rapunzel-tr-3.mp3?v=3', at: [0, 9.14, 12.74, 17.31, 22.92] },
+          { label: 'Gerçek bir anne', audio: '/fairywhisper/assets/audio/rapunzel-tr-3.mp3?v=3', at: [0, 9.14, 12.74, 17.31, 22.92],
+            premium: { audio: '/fairywhisper/assets/audio/rapunzel-tr-3-premium.mp3', at: [0, 10.2, 13.72, 18.44, 23.96] } },
           { label: 'Kadın sesi', audio: '/fairywhisper/assets/audio/rapunzel-tr-1.mp3', at: [0, 10.12, 13.62, 18.42, 24.29] },
           { label: 'Erkek sesi', audio: '/fairywhisper/assets/audio/rapunzel-tr-2.mp3', at: [0, 9.41, 12.55, 16.4, 21.35] }
         ],
-        note: 'FairyWhisper ile seslendirildi. “Gerçek bir anne” sesi, bir annenin 3 dakikalık kaydından oluşturuldu. Uygulamada aynı masalı senin sesin okur.' }
+        note: 'FairyWhisper ile seslendirildi. “Gerçek bir anne” sesi, bir annenin 3 dakikalık kaydından oluşturuldu; Premium, uygulamadaki en doğal seslendirme seçeneği. Uygulamada aynı masalı senin sesin okur.' }
     ],
     en: [
       { t: 'The Tale of Peter Rabbit',
         s: ['Once upon a time there were four little Rabbits, and their names were Flopsy, Mopsy, Cotton-tail, and Peter.', 'They lived with their Mother in a sand-bank, underneath the root of a very big fir-tree.', "'Now run along, and don't get into mischief.", "I am going out.'", "Then old Mrs. Rabbit took a basket and her umbrella, and went through the wood to the baker's.", 'She bought a loaf of brown bread and five currant buns.'],
         voices: [
-          { label: 'Female voice', audio: '/fairywhisper/assets/audio/peter-rabbit-en-1.mp3?v=2', at: [0, 11.16, 17.96, 24.46, 25.86, 31.52] },
+          { label: 'Female voice', audio: '/fairywhisper/assets/audio/peter-rabbit-en-1.mp3?v=2', at: [0, 11.16, 17.96, 24.46, 25.86, 31.52],
+            premium: { audio: '/fairywhisper/assets/audio/peter-rabbit-en-1-premium.mp3', at: [0, 9.36, 15.73, 18.8, 20.88, 27.52] } },
           { label: 'Male voice', audio: '/fairywhisper/assets/audio/peter-rabbit-en-2.mp3', at: [0, 10.99, 18.16, 21.5, 23.77, 31.77] }
         ],
-        note: 'FairyWhisper narrations in a sample female and male voice. In the app, the same story is read in your voice.' }
+        note: 'FairyWhisper narrations in a sample female and male voice; Premium is the app’s most natural narration option. In the app, the same story is read in your voice.' }
     ]
   };
   var current = 0, speaking = false, queueId = 0;
@@ -733,6 +740,15 @@
   var noteEl = document.getElementById('read-note');
   var audio = null, rafId = 0, voiceIndex = 0;
   var voiceSwitch = document.getElementById('voice-switch');
+  var qualitySwitch = document.getElementById('quality-switch');
+  // Voices made in both qualities open in Premium, the app's most natural option.
+  var quality = 'premium';
+  qualitySwitch.addEventListener('click', function (e) {
+    var b = e.target.closest('.voice');
+    if (!b) return;
+    quality = b.dataset.quality;
+    stop(); renderTale();
+  });
   // One button per voice of the current tale, in the tale's order (the first plays by default).
   voiceSwitch.addEventListener('click', function (e) {
     var b = e.target.closest('.voice');
@@ -754,6 +770,18 @@
       b.setAttribute('aria-pressed', String(i === voiceIndex));
       voiceSwitch.appendChild(b);
     });
+    var voice = tale.voices[voiceIndex];
+    qualitySwitch.hidden = !voice.premium;
+    qualitySwitch.textContent = '';
+    if (voice.premium) {
+      [['standard', lang() === 'tr' ? 'Normal' : 'Standard'], ['premium', '✨ Premium']].forEach(function (q) {
+        var b = document.createElement('button');
+        b.type = 'button'; b.className = 'voice'; b.dataset.quality = q[0];
+        b.textContent = q[1];
+        b.setAttribute('aria-pressed', String(q[0] === quality));
+        qualitySwitch.appendChild(b);
+      });
+    }
     textEl.textContent = '';
     tale.s.forEach(function (sentence, i) {
       var span = document.createElement('span');
@@ -799,7 +827,8 @@
   function play() {
     stop();
     var spans = Array.prototype.slice.call(textEl.querySelectorAll('span'));
-    playAudio(TALES[lang()][current].voices[voiceIndex], spans);
+    var voice = TALES[lang()][current].voices[voiceIndex];
+    playAudio(voice.premium && quality === 'premium' ? voice.premium : voice, spans);
   }
   playBtn.addEventListener('click', function () { speaking ? stop() : play(); });
 
