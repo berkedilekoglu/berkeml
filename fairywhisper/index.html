@@ -375,6 +375,8 @@
     }
     @media (max-width: 420px) {
       .read-sheet { padding: 22px 18px 18px; }
+      .voices { display: flex; width: 100%; }
+      .voice { flex: 1 1 0; padding: 6px 8px; white-space: nowrap; }
       .read-text { font-size: 22px; }
       .badge img { height: 52px; }
       .controls { flex-direction: column; align-items: flex-start; }
@@ -440,9 +442,7 @@
       </p>
       <div class="read-sheet" data-ui>
         <p class="title" id="read-title">Rapunzel</p>
-        <div class="voices" id="voice-switch" role="group" aria-label="Voice" hidden>
-          <button class="voice" type="button" data-voice="0" aria-pressed="true"><span lang="tr">Kadın sesi</span><span lang="en">Female voice</span></button>
-          <button class="voice" type="button" data-voice="1" aria-pressed="false"><span lang="tr">Erkek sesi</span><span lang="en">Male voice</span></button>
+        <div class="voices" id="voice-switch" role="group" aria-label="Ses" data-aria-en="Voice" hidden>
         </div>
         <p class="read-text" id="read-text">Evvel zaman içinde, kalbur saman içinde, sık bir ormanın ortasında, gökyüzüne doğru uzanan taştan bir kule varmış. Kulenin ne kapısı, ne merdiveni varmış. Yalnızca en tepesinde, küçük bir penceresi varmış. O pencereden her sabah güneş, her akşam da ay içeri bakarmış. Ve o kulede Rapunzel adında bir kız yaşarmış.</p>
         <div class="controls">
@@ -710,17 +710,18 @@
       { t: 'Rapunzel',
         s: ['Evvel zaman içinde, kalbur saman içinde, sık bir ormanın ortasında, gökyüzüne doğru uzanan taştan bir kule varmış.', 'Kulenin ne kapısı, ne merdiveni varmış.', 'Yalnızca en tepesinde, küçük bir penceresi varmış.', 'O pencereden her sabah güneş, her akşam da ay içeri bakarmış.', 'Ve o kulede Rapunzel adında bir kız yaşarmış.'],
         voices: [
-          { audio: '/fairywhisper/assets/audio/rapunzel-tr-1.mp3', at: [0, 10.12, 13.62, 18.42, 24.29] },
-          { audio: '/fairywhisper/assets/audio/rapunzel-tr-2.mp3', at: [0, 9.41, 12.55, 16.4, 21.35] }
+          { label: 'Arkadaşımız', audio: '/fairywhisper/assets/audio/rapunzel-tr-3.mp3', at: [0, 7.73, 10.68, 14.88, 19.62] },
+          { label: 'Kadın sesi', audio: '/fairywhisper/assets/audio/rapunzel-tr-1.mp3', at: [0, 10.12, 13.62, 18.42, 24.29] },
+          { label: 'Erkek sesi', audio: '/fairywhisper/assets/audio/rapunzel-tr-2.mp3', at: [0, 9.41, 12.55, 16.4, 21.35] }
         ],
-        note: 'FairyWhisper ile örnek bir kadın ve erkek sesiyle seslendirildi. Uygulamada aynı masalı senin sesin okur.' }
+        note: 'FairyWhisper ile seslendirildi. “Arkadaşımız” sesi, bir arkadaşımızın 3 dakikalık kaydından oluşturuldu. Uygulamada aynı masalı senin sesin okur.' }
     ],
     en: [
       { t: 'The Tale of Peter Rabbit',
         s: ['Once upon a time there were four little Rabbits, and their names were Flopsy, Mopsy, Cotton-tail, and Peter.', 'They lived with their Mother in a sand-bank, underneath the root of a very big fir-tree.', "'Now run along, and don't get into mischief.", "I am going out.'", "Then old Mrs. Rabbit took a basket and her umbrella, and went through the wood to the baker's.", 'She bought a loaf of brown bread and five currant buns.'],
         voices: [
-          { audio: '/fairywhisper/assets/audio/peter-rabbit-en-1.mp3?v=2', at: [0, 11.16, 17.96, 24.46, 25.86, 31.52] },
-          { audio: '/fairywhisper/assets/audio/peter-rabbit-en-2.mp3', at: [0, 10.99, 18.16, 21.5, 23.77, 31.77] }
+          { label: 'Female voice', audio: '/fairywhisper/assets/audio/peter-rabbit-en-1.mp3?v=2', at: [0, 11.16, 17.96, 24.46, 25.86, 31.52] },
+          { label: 'Male voice', audio: '/fairywhisper/assets/audio/peter-rabbit-en-2.mp3', at: [0, 10.99, 18.16, 21.5, 23.77, 31.77] }
         ],
         note: 'FairyWhisper narrations in a sample female and male voice. In the app, the same story is read in your voice.' }
     ]
@@ -732,11 +733,12 @@
   var noteEl = document.getElementById('read-note');
   var audio = null, rafId = 0, voiceIndex = 0;
   var voiceSwitch = document.getElementById('voice-switch');
-  voiceSwitch.querySelectorAll('.voice').forEach(function (b) {
-    b.addEventListener('click', function () {
-      voiceIndex = Number(b.dataset.voice);
-      stop(); renderTale();
-    });
+  // One button per voice of the current tale, in the tale's order (the first plays by default).
+  voiceSwitch.addEventListener('click', function (e) {
+    var b = e.target.closest('.voice');
+    if (!b) return;
+    voiceIndex = Number(b.dataset.voice);
+    stop(); renderTale();
   });
   function renderTale() {
     var tale = TALES[lang()][current];
@@ -744,7 +746,14 @@
     noteEl.textContent = tale.note;
     voiceSwitch.hidden = tale.voices.length < 2;
     if (voiceIndex >= tale.voices.length) voiceIndex = 0;
-    voiceSwitch.querySelectorAll('.voice').forEach(function (b) { b.setAttribute('aria-pressed', String(Number(b.dataset.voice) === voiceIndex)); });
+    voiceSwitch.textContent = '';
+    tale.voices.forEach(function (v, i) {
+      var b = document.createElement('button');
+      b.type = 'button'; b.className = 'voice'; b.dataset.voice = String(i);
+      b.textContent = v.label;
+      b.setAttribute('aria-pressed', String(i === voiceIndex));
+      voiceSwitch.appendChild(b);
+    });
     textEl.textContent = '';
     tale.s.forEach(function (sentence, i) {
       var span = document.createElement('span');
