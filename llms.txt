@@ -4,7 +4,8 @@
 
 - Website: https://berkeml.com
 - Contact: berke@berkeml.com
-- Founder: Berke Dilekoğlu, Founder & ML Engineer (MSc Computer Science, Sabancı University)
+- Founder: Berke Dilekoğlu (also Berke Dilekoglu, @berkedilekoglu), Founder & ML Engineer (MSc Computer Science, Sabancı University)
+- Founder profile: https://berkeml.com/berke-dilekoglu/
 
 ## Services
 
