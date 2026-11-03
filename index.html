@@ -3,23 +3,19 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>BerkeML — Applied AI Studio by Berke Dilekoğlu</title>
-<meta name="description" content="BerkeML is the applied AI studio of Berke Dilekoğlu. We build production machine learning systems for companies worldwide, including document AI and agentic workflows for mortgage automation — and ship our own AI-native consumer products.">
+<title>Berke Dilekoğlu — Document AI &amp; LLM Agents</title>
+<meta name="description" content="Berke Dilekoğlu (berkedilekoglu) builds document AI and LLM agents that run in production. ML engineer in Istanbul, founder of BerkeML and Senior NLP Engineer at Areal.ai.">
 <meta name="author" content="Berke Dilekoğlu">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://berkeml.com/">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://berkeml.com/">
-<meta property="og:title" content="BerkeML — Applied AI Studio by Berke Dilekoğlu">
-<meta property="og:description" content="Production ML systems for client teams, and AI-native products of our own.">
+<meta property="og:title" content="Berke Dilekoğlu — Document AI &amp; LLM Agents">
+<meta property="og:description" content="ML engineer in Istanbul. I build document AI and LLM agents that run in production. Founder of BerkeML.">
 <meta name="twitter:card" content="summary">
-<meta name="theme-color" content="#F3F0E8">
+<meta name="theme-color" content="#12110E">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22><rect width=%2264%22 height=%2264%22 rx=%2214%22 fill=%22%2315140F%22/><circle cx=%2246%22 cy=%2218%22 r=%227%22 fill=%22%23FF5A1F%22/><text x=%2210%22 y=%2250%22 font-family=%22Georgia,serif%22 font-size=%2238%22 font-style=%22italic%22 fill=%22%23F3F0E8%22>B</text></svg>">
 <link rel="alternate" type="text/plain" href="/llms.txt" title="LLM-readable summary">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300..700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -51,8 +47,8 @@
       "@id": "https://berkeml.com/#founder",
       "name": "Berke Dilekoğlu",
       "alternateName": ["Berke Dilekoglu", "berkedilekoglu"],
-      "url": "https://berkeml.com/berke-dilekoglu/",
-      "jobTitle": "Founder & ML Engineer",
+      "url": "https://berkeml.com/",
+      "jobTitle": ["Founder & ML Engineer", "Senior NLP Engineer"],
       "worksFor": { "@id": "https://berkeml.com/#org" },
       "alumniOf": { "@type": "CollegeOrUniversity", "name": "Sabancı University" },
       "sameAs": ["https://github.com/berkedilekoglu", "https://www.linkedin.com/in/berke-dilekoglu-53177a11a/", "https://scholar.google.com/citations?user=9O8ciUEAAAAJ", "https://berkedilekoglu.medium.com/", "https://berkedilekoglu.github.io/"]
@@ -85,358 +81,331 @@
   ]
 }
 </script>
-
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300..700&family=JetBrains+Mono:wght@400;500&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
 <style>
 :root {
-  --paper: #F3F0E8;
-  --paper-2: #EAE6DA;
-  --ink: #15140F;
-  --ink-2: #4A473E;
-  --ink-3: #6E6A5E;
-  --line: #D6D1C2;
-  --accent: #FF5A1F;
-  --accent-ink: #15140F;
-  --dusk: #2B2A55;
-  --dusk-soft: #DCD9F2;
-  --card: #FBFAF6;
-  --grid: rgba(21,20,15,.045);
-  --serif: "Instrument Serif", Georgia, "Times New Roman", serif;
+  --bg: #F3F0E8; --bg-2: #EAE6DA; --card: #FBFAF6; --ink: #15140F; --ink-2: #4A473E; --ink-3: #6E6A5E; --line: #D6D1C2;
+  --accent: #FF5A1F; --grid: rgba(21,20,15,.045);
+  --wall: #dfdace; --g1: #aceebb; --g2: #4ac26b; --g3: #2da44e; --g4: #116329; --levels: 2;
+  --edge: #8f8a7d; --edge-dim: .22;
+  --serif: "Instrument Serif", Georgia, serif;
   --sans: "Geist", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
   --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --hand: "Caveat", "Bradley Hand", cursive;
+  --margin: clamp(16px, 2.4vw, 32px);
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --paper: #12110E; --paper-2: #1B1A16; --ink: #F1EDE2; --ink-2: #C3BEB0; --ink-3: #8F8A7D;
-    --line: #2E2C26; --card: #191814; --dusk: #C9C5FF; --dusk-soft: #23224A; --grid: rgba(241,237,226,.04);
+    --bg: #12110E; --bg-2: #1B1A16; --card: #191814; --ink: #F1EDE2; --ink-2: #C3BEB0; --ink-3: #8F8A7D; --line: #2E2C26; --grid: rgba(241,237,226,.035);
+    --wall: #2d2c26; --g1: #0e4429; --g2: #006d32; --g3: #26a641; --g4: #39d353; --levels: 3;
+    --edge: var(--ink-3); --edge-dim: .1;
   }
 }
 :root[data-theme="dark"] {
-  --paper: #12110E; --paper-2: #1B1A16; --ink: #F1EDE2; --ink-2: #C3BEB0; --ink-3: #8F8A7D;
-  --line: #2E2C26; --card: #191814; --dusk: #C9C5FF; --dusk-soft: #23224A; --grid: rgba(241,237,226,.04);
+  --bg: #12110E; --bg-2: #1B1A16; --card: #191814; --ink: #F1EDE2; --ink-2: #C3BEB0; --ink-3: #8F8A7D; --line: #2E2C26; --grid: rgba(241,237,226,.035);
+  --wall: #2d2c26; --g1: #0e4429; --g2: #006d32; --g3: #26a641; --g4: #39d353; --levels: 3;
+  --edge: var(--ink-3); --edge-dim: .1;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
 body {
-  background: var(--paper);
-  color: var(--ink);
-  font-family: var(--sans);
-  font-size: 17px;
-  line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
-  background-image:
-    linear-gradient(var(--grid) 1px, transparent 1px),
-    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background: var(--bg); color: var(--ink); font-family: var(--sans); font-size: 17px; line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden;
+  background-image: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px);
   background-size: 48px 48px;
-  overflow-x: hidden;
 }
 a { color: inherit; }
-img, svg { display: block; max-width: 100%; }
 ::selection { background: var(--accent); color: #15140F; }
-
-.wrap { width: 100%; max-width: 1180px; margin: 0 auto; padding: 0 28px; }
-@media (max-width: 640px) { .wrap { padding: 0 16px; } }
-
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.wrap { max-width: 1240px; margin: 0 auto; padding: 0 var(--margin); }
 .mono { font-family: var(--mono); font-size: 12px; letter-spacing: .06em; text-transform: uppercase; }
-.label { font-family: var(--mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-3); display: inline-flex; align-items: center; gap: 10px; }
-.label::before { content: ""; width: 8px; height: 8px; background: var(--accent); border-radius: 50%; }
-.serif { font-family: var(--serif); font-weight: 400; }
-em, .it { font-family: var(--serif); font-style: italic; font-weight: 400; }
+em { font-family: var(--serif); font-style: italic; font-weight: 400; }
 
-/* ---------- nav ---------- */
-header.nav {
-  position: sticky; top: 0; z-index: 20;
-  background: color-mix(in srgb, var(--paper) 86%, transparent);
-  backdrop-filter: saturate(1.4) blur(10px);
-  -webkit-backdrop-filter: saturate(1.4) blur(10px);
-  border-bottom: 1px solid var(--line);
+/* ---------- header with the contribution maze ---------- */
+header.bar { position: sticky; top: 0; z-index: 30; background: color-mix(in srgb, var(--bg) 92%, transparent); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+.bar .wrap { display: flex; align-items: center; justify-content: space-between; gap: 20px; height: 76px; position: relative; }
+
+.graph { display: flex; align-items: center; gap: 14px; min-width: 0; flex: 0 1 auto; text-decoration: none; }
+#maze { display: block; height: 56px; width: 472px; max-width: 100%; }
+.graph-box { display: block; min-width: 0; flex: 0 1 auto; }
+#desk { display: block; width: 58px; height: 62px; flex: none; margin-right: -4px; }
+.graph .count { font-family: var(--mono); font-size: 11.5px; color: var(--ink-3); line-height: 1.4; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.graph .count b { color: var(--ink); font-weight: 500; }
+.bar nav { display: flex; align-items: center; gap: 24px; }
+.bar nav ul { list-style: none; display: flex; gap: 24px; font-size: 15px; }
+.bar nav ul a { text-decoration: none; color: var(--ink-2); }
+.bar nav ul a:hover { color: var(--ink); }
+.theme-btn { background: none; border: 1px solid var(--line); color: var(--ink-2); border-radius: 999px; width: 36px; height: 36px; cursor: pointer; display: grid; place-items: center; font-size: 15px; }
+.theme-btn:hover { border-color: var(--ink); color: var(--ink); }
+@media (max-width: 1180px) { .bar nav ul, .graph .count { display: none; } }
+@media (max-width: 640px) {
+  .bar .wrap { height: 60px; gap: 10px; }
+  #maze { height: 42px; width: 100%; }
+  .graph-box { flex: 1 1 auto; }
+  #desk { width: 44px; height: 48px; }
+  .graph { flex: 1 1 auto; }
+  .bar nav .theme-btn { display: none; }
+  .bar nav .btn { padding: 9px 14px; font-size: 14px; }
 }
-.nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 64px; gap: 16px; }
-.brand { display: flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 600; font-size: 18px; letter-spacing: -.01em; }
-.brand b { font-weight: 600; }
-.brand span.ml { font-family: var(--mono); font-weight: 500; font-size: 14px; padding: 1px 6px; border: 1px solid var(--ink); border-radius: 5px; margin-left: 2px; }
-.nav ul { list-style: none; display: flex; gap: 28px; font-size: 15px; }
-.nav ul a { text-decoration: none; color: var(--ink-2); }
-.nav ul a:hover { color: var(--ink); }
-.btn {
-  display: inline-flex; align-items: center; gap: 10px;
-  font-family: var(--sans); font-size: 15px; font-weight: 500;
-  text-decoration: none; border-radius: 999px; padding: 11px 20px;
-  background: var(--ink); color: var(--paper); border: 1px solid var(--ink);
-  transition: transform .15s ease, background .15s ease;
-}
+
+.btn { display: inline-flex; align-items: center; gap: 10px; font-family: var(--sans); font-size: 15px; font-weight: 500; text-decoration: none; border-radius: 999px; padding: 11px 20px; background: var(--ink); color: var(--bg); border: 1px solid var(--ink); cursor: pointer; transition: transform .15s ease; white-space: nowrap; }
 .btn:hover { transform: translateY(-1px); }
+.btn:active { transform: translateY(1px); }
 .btn .arr { transition: transform .15s ease; }
 .btn:hover .arr { transform: translateX(3px); }
-.btn.ghost { background: transparent; color: var(--ink); }
 .btn.accent { background: var(--accent); border-color: var(--accent); color: #15140F; }
-@media (max-width: 860px) { .nav ul { display: none; } }
+.btn.ghost { background: transparent; color: var(--ink); }
 
-/* ---------- hero ---------- */
-.hero { padding: 88px 0 64px; position: relative; }
-.hero-grid { display: grid; grid-template-columns: 1.35fr .9fr; gap: 56px; align-items: end; }
-.hero h1 {
-  font-family: var(--serif); font-weight: 400;
-  font-size: clamp(48px, 7.4vw, 104px);
-  line-height: .95; letter-spacing: -.025em;
-  margin: 22px 0 28px;
+/* ---------- hero: the form that reads itself ---------- */
+.hero { padding: 56px 0 96px; }
+.hero .wrap { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); gap: clamp(32px, 5vw, 72px); align-items: start; }
+.readout { position: sticky; top: 108px; display: flex; flex-direction: column; gap: 22px; }
+.readout .who { font-size: 15px; color: var(--ink-2); display: flex; flex-wrap: wrap; gap: 6px 14px; align-items: center; }
+.readout .who b { color: var(--ink); font-weight: 600; }
+.readout .who .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--g4); box-shadow: 0 0 0 4px color-mix(in srgb, var(--g4) 25%, transparent); }
+.readout h1 { font-family: var(--serif); font-weight: 400; font-size: clamp(52px, 6.6vw, 100px); line-height: .95; letter-spacing: -.025em; }
+.readout h1 em { color: var(--accent); }
+.readout .lede { font-size: 19px; color: var(--ink-2); max-width: 44ch; line-height: 1.5; }
+.readout .actions { display: flex; flex-wrap: wrap; gap: 12px; }
+.json { background: #15140F; color: #EDE9DD; border-radius: 16px; padding: 18px 20px; font-family: var(--mono); font-size: 12.5px; line-height: 1.7; min-height: 248px; white-space: pre-wrap; word-break: break-word; position: relative; }
+:root[data-theme="dark"] .json { background: #1F1E19; border: 1px solid var(--line); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .json { background: #1F1E19; border: 1px solid var(--line); } }
+.json .bar-top { display: flex; gap: 6px; align-items: center; margin-bottom: 10px; }
+.json .bar-top i { width: 9px; height: 9px; border-radius: 50%; background: #3A3830; display: block; }
+.json .bar-top i:first-child { background: var(--accent); }
+.json .bar-top span { margin-left: auto; color: #8C877A; font-size: 10.5px; letter-spacing: .08em; text-transform: uppercase; }
+.json .k { color: #9BE58A; }
+.json .s { color: #FFD9B8; }
+.json .n { color: #FFB37F; }
+.json .hot { background: rgba(255, 90, 31, .18); }
+.json .muted { color: #8C877A; }
+
+/* the scanned sheet */
+.sheet-wrap { position: relative; padding: 18px 8px 26px 4px; }
+.sheet {
+  position: relative; background-color: #F2EFE6; color: #26241f; padding: 34px 36px 40px; transform: rotate(-1.2deg);
+  box-shadow: 0 1px 0 rgba(0,0,0,.05), 0 24px 50px -28px rgba(0,0,0,.55);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.2  0 0 0 0 0.18  0 0 0 0 0.15  0 0 0 .09 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  font-size: 13.5px;
 }
-.hero h1 .it { color: var(--accent); }
-.hero h1 .ul { background: linear-gradient(transparent 72%, color-mix(in srgb, var(--accent) 35%, transparent) 72%); }
-.hero p.lede { font-size: 20px; color: var(--ink-2); max-width: 36ch; line-height: 1.5; }
-.hero-cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 34px; }
+.sheet::before { content: ""; position: absolute; top: -2px; left: 40px; width: 42px; height: 10px; border-radius: 2px; background: #b9b6ad; transform: rotate(-8deg); }
+.fax { font-family: var(--mono); font-size: 10.5px; letter-spacing: .04em; color: #6b675c; margin: -18px 0 18px; white-space: nowrap; overflow: hidden; opacity: .85; }
+.sheet-head { display: flex; justify-content: space-between; gap: 20px; align-items: start; padding-bottom: 14px; border-bottom: 2px solid #26241f; }
+.form-name { font-family: Georgia, "Times New Roman", serif; font-weight: 700; font-size: clamp(17px, 1.6vw, 22px); letter-spacing: .04em; line-height: 1.15; }
+.form-sub { font-size: 11.5px; color: #5d594f; margin-top: 4px; }
+.code { text-align: right; }
+.photo { width: 76px; flex: none; background: #fff; padding: 4px 4px 3px; border: 1px solid #8d897e; transform: rotate(2.5deg); text-align: center; position: relative; margin-top: -4px; }
+.photo::before { content: ""; position: absolute; top: -9px; left: 50%; width: 14px; height: 22px; margin-left: -7px; border: 2px solid #9a978f; border-radius: 7px; border-bottom-color: transparent; }
+.photo img { display: block; width: 100%; height: auto; background: #e9e5db; image-rendering: pixelated; }
+.photo figcaption { font-size: 9.5px; color: #5d594f; margin-top: 2px; line-height: 1.2; }
+.code svg { width: 132px; height: 34px; display: block; margin-left: auto; }
+.code p { font-family: var(--mono); font-size: 10.5px; margin-top: 3px; color: #3d3a33; }
+.sec-t { font-family: Georgia, serif; font-weight: 700; font-size: 12px; letter-spacing: .06em; text-transform: uppercase; background: #26241f; color: #F2EFE6; padding: 3px 8px; margin: 18px 0 0; display: inline-block; }
+.fields { display: grid; grid-template-columns: repeat(6, 1fr); border-left: 1px solid #8d897e; border-top: 1px solid #8d897e; margin-top: 8px; }
+.f { border-right: 1px solid #8d897e; border-bottom: 1px solid #8d897e; padding: 4px 8px 6px; min-height: 58px; display: flex; flex-direction: column; justify-content: space-between; position: relative; }
+.f.s2 { grid-column: span 2; } .f.s3 { grid-column: span 3; } .f.s4 { grid-column: span 4; } .f.s6 { grid-column: span 6; }
+.f .q { font-size: 10.5px; color: #5d594f; line-height: 1.25; }
+.typed { font-family: var(--mono); font-size: 13px; letter-spacing: .02em; color: #2b2925; }
+.hw { font-family: var(--hand); font-weight: 700; color: #1d3a8f; font-size: 26px; line-height: 1; }
+.hw.lg { font-size: 34px; }
+.struck { position: relative; color: #6b675c; }
+.struck::after { content: ""; position: absolute; left: -2px; right: -2px; top: 52%; height: 2px; background: #1d3a8f; transform: rotate(-3deg); }
+.corr { display: block; margin-top: -6px; transform: rotate(-2deg); transform-origin: left; }
+table.emp { width: 100%; border-collapse: collapse; margin-top: 8px; font-size: 12.5px; }
+table.emp th { text-align: left; font-size: 10.5px; font-weight: 600; color: #5d594f; border: 1px solid #8d897e; padding: 3px 6px; background: rgba(38,36,31,.05); }
+table.emp td { border: 1px solid #8d897e; padding: 4px 6px; font-family: var(--mono); font-size: 12px; color: #2b2925; }
+table.emp tr.added td { font-family: var(--hand); font-weight: 700; color: #1d3a8f; font-size: 21px; line-height: 1; padding-top: 2px; padding-bottom: 2px; }
+.table-scroll { overflow-x: auto; }
+.decl { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 18px; margin-top: 10px; font-size: 12.5px; }
+.chk { display: flex; align-items: center; gap: 8px; }
+.chk i { width: 15px; height: 15px; border: 1.5px solid #3d3a33; display: inline-grid; place-items: center; flex: none; font-style: normal; font-family: var(--hand); font-weight: 700; color: #1d3a8f; font-size: 22px; line-height: 0; }
+.signrow { display: grid; grid-template-columns: 1.6fr 1fr; gap: 18px; margin-top: 18px; align-items: end; }
+.signrow .line { border-bottom: 1px solid #3d3a33; padding: 0 4px 2px; min-height: 42px; display: flex; align-items: end; }
+.signrow .lbl { font-size: 10.5px; color: #5d594f; margin-top: 3px; }
+.sig { font-family: var(--hand); font-weight: 700; color: #1d3a8f; font-size: 42px; line-height: .8; transform: rotate(-5deg); transform-origin: left bottom; }
+.stamp { position: absolute; right: 30px; top: 132px; border: 3px solid #c2362b; color: #c2362b; font-family: var(--mono); font-weight: 500; font-size: 12px; letter-spacing: .12em; padding: 6px 10px 5px; transform: rotate(9deg); opacity: .78; mix-blend-mode: multiply; text-align: center; line-height: 1.3; border-radius: 4px; pointer-events: none; }
+.stamp b { display: block; font-size: 17px; letter-spacing: .18em; }
+.note { position: absolute; right: -6px; bottom: 120px; font-family: var(--hand); font-weight: 700; font-size: 22px; color: #c2362b; transform: rotate(-7deg); line-height: 1; pointer-events: none; }
+.ring { position: absolute; right: 64px; bottom: 18px; width: 120px; height: 120px; pointer-events: none; mix-blend-mode: multiply; }
+.initials { position: absolute; left: -2px; bottom: 62px; font-family: var(--hand); color: #1d3a8f; font-size: 20px; font-weight: 700; transform: rotate(-90deg); transform-origin: left bottom; opacity: .8; pointer-events: none; }
 
-.console {
-  background: var(--ink); color: #EDE9DD; border-radius: 18px; padding: 22px 22px 18px;
-  font-family: var(--mono); font-size: 13px; line-height: 1.75;
-  box-shadow: 0 30px 60px -30px rgba(0,0,0,.45);
-  position: relative; overflow: hidden;
+/* extraction overlay: a real interface, so it keeps its boxes */
+.box { position: absolute; border: 2px solid var(--accent); background: rgba(255, 90, 31, .08); border-radius: 3px; pointer-events: none; opacity: 0; transform: scale(1.03); transition: opacity .22s ease, transform .22s ease, border-color .2s; z-index: 3; }
+.box.on { opacity: 1; transform: none; }
+.box span { position: absolute; right: -2px; bottom: calc(100% + 1px); background: var(--accent); color: #15140F; font-family: var(--mono); font-size: 10.5px; padding: 1px 6px; white-space: nowrap; border-radius: 3px 3px 0 3px; }
+.box.done { border-color: #26a641; background: rgba(38, 166, 65, .07); }
+.box.done span { background: #26a641; color: #fff; }
+
+@media (max-width: 980px) {
+  .ring { display: none; }
+  .hero .wrap { grid-template-columns: minmax(0, 1fr); }
+  .hero .wrap > * { min-width: 0; }
+  .readout { display: contents; }
+  .readout > * { order: -1; }
+  .readout > .json { order: 1; }
 }
-:root[data-theme="dark"] .console { background: #1F1E19; border: 1px solid var(--line); }
-@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .console { background: #1F1E19; border: 1px solid var(--line); } }
-.console .bar { display: flex; gap: 6px; margin-bottom: 16px; align-items: center; }
-.console .bar i { width: 10px; height: 10px; border-radius: 50%; background: #3A3830; display: block; }
-.console .bar i:first-child { background: var(--accent); }
-.console .bar span { margin-left: auto; color: #8C877A; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; }
-.console .k { color: #8C877A; }
-.console .v { color: #EDE9DD; }
-.console .ok { color: #9BE58A; }
-.console .wip { color: #FFB37F; }
-.console .row { display: grid; grid-template-columns: 112px 1fr; gap: 10px; }
-.console hr { border: 0; border-top: 1px dashed #3A3830; margin: 12px 0; }
-.cursor { display: inline-block; width: 8px; height: 15px; background: var(--accent); vertical-align: -2px; animation: blink 1.1s steps(1) infinite; }
-@keyframes blink { 50% { opacity: 0; } }
-@media (prefers-reduced-motion: reduce) { .cursor { animation: none; } html { scroll-behavior: auto; } }
-
-@media (max-width: 960px) { .hero-grid { grid-template-columns: 1fr; gap: 40px; } .hero { padding-top: 56px; } }
-@media (max-width: 480px) { .console .row { grid-template-columns: 92px 1fr; } .hero p.lede { font-size: 18px; } }
-
-/* ---------- ticker facts ---------- */
-.facts { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: var(--paper); }
-.facts .wrap { display: grid; grid-template-columns: repeat(4, 1fr); }
-.fact { padding: 22px 20px; border-left: 1px solid var(--line); }
-.fact:first-child { border-left: 0; padding-left: 0; }
-.fact .mono { color: var(--ink-3); display: block; margin-bottom: 4px; }
-.fact strong { font-weight: 500; font-size: 16px; }
-@media (max-width: 860px) {
-  .facts .wrap { grid-template-columns: 1fr 1fr; }
-  .fact { padding: 18px 16px; }
-  .fact:nth-child(odd) { border-left: 0; padding-left: 0; }
-  .fact:nth-child(n+3) { border-top: 1px solid var(--line); }
+@media (max-width: 560px) {
+  .sheet { padding: 26px 16px 30px; transform: rotate(-.6deg); }
+  .fields { grid-template-columns: repeat(2, 1fr); }
+  .f.s2, .f.s3, .f.s4 { grid-column: span 1; } .f.s6, .f.wide { grid-column: span 2; }
+  .decl { grid-template-columns: 1fr; }
+  .stamp { top: 96px; right: 10px; transform: rotate(9deg) scale(.8); }
+  .initials { display: none; }
+  .note { display: none; }
+  .code svg { width: 96px; }
+  .photo { width: 58px; }
+  .code { display: none; }
 }
 
 /* ---------- sections ---------- */
-section.block { padding: 112px 0; }
-@media (max-width: 640px) { section.block { padding: 76px 0; } }
-.sec-head { display: grid; grid-template-columns: 280px 1fr; gap: 40px; margin-bottom: 56px; align-items: start; }
-.sec-head h2 { font-family: var(--serif); font-weight: 400; font-size: clamp(36px, 4.8vw, 62px); line-height: 1.02; letter-spacing: -.02em; max-width: 18ch; }
-.sec-head p { color: var(--ink-2); max-width: 60ch; margin-top: 18px; font-size: 18px; }
-@media (max-width: 860px) { .sec-head { grid-template-columns: 1fr; gap: 16px; margin-bottom: 40px; } }
+section.block { padding: clamp(80px, 11vw, 140px) 0; }
+.sec-head { display: grid; grid-template-columns: 300px 1fr; gap: 40px; margin-bottom: 52px; align-items: start; }
+.sec-head h2 { font-family: var(--serif); font-weight: 400; font-size: clamp(38px, 4.8vw, 64px); line-height: 1; letter-spacing: -.02em; max-width: 16ch; }
+.sec-head h2 em { color: var(--accent); }
+.sec-head p { color: var(--ink-2); max-width: 58ch; font-size: 18px; margin-top: 14px; }
+.kicker { font-family: var(--mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-3); padding-top: 14px; }
+@media (max-width: 860px) { .sec-head { grid-template-columns: 1fr; gap: 8px; margin-bottom: 36px; } }
 
 /* services */
-.services { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--ink); }
-.svc { padding: 28px 28px 32px 0; border-right: 1px solid var(--line); }
-.svc + .svc { padding-left: 28px; }
-.svc:last-child { border-right: 0; }
-.svc .num { font-family: var(--mono); font-size: 12px; color: var(--accent); }
-.svc h3 { font-size: 23px; font-weight: 500; letter-spacing: -.01em; margin: 14px 0 10px; }
-.svc p { color: var(--ink-2); font-size: 16px; }
-.svc ul { list-style: none; margin-top: 18px; display: flex; flex-wrap: wrap; gap: 6px; }
+.services { border-top: 1px solid var(--ink); }
+.svc { display: grid; grid-template-columns: 300px 1fr 1fr; gap: 40px; padding: 30px 0 34px; border-bottom: 1px solid var(--line); align-items: start; }
+.svc h3 { font-family: var(--serif); font-weight: 400; font-size: clamp(28px, 2.6vw, 36px); line-height: 1.05; letter-spacing: -.01em; }
+.svc p { color: var(--ink-2); }
+.svc ul { list-style: none; display: flex; flex-wrap: wrap; gap: 6px; align-content: start; }
 .svc li { font-family: var(--mono); font-size: 11.5px; padding: 4px 9px; border: 1px solid var(--line); border-radius: 999px; color: var(--ink-2); }
-@media (max-width: 860px) {
-  .services { grid-template-columns: 1fr; }
-  .svc, .svc + .svc { padding: 26px 0; border-right: 0; border-bottom: 1px solid var(--line); }
-}
+@media (max-width: 860px) { .svc { grid-template-columns: 1fr; gap: 12px; } }
 
-/* client case */
-.case {
-  display: grid; grid-template-columns: 1fr 1fr; border-radius: 22px; overflow: hidden;
-  border: 1px solid var(--line); background: var(--card);
-}
-.case-l { padding: 44px; }
-.case-r { padding: 44px; background: var(--paper-2); border-left: 1px solid var(--line); }
-.case h3 { font-family: var(--serif); font-weight: 400; font-size: clamp(32px, 3.6vw, 46px); line-height: 1.05; letter-spacing: -.015em; margin: 16px 0 16px; }
-.case p { color: var(--ink-2); }
-.case .client { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; margin-top: 26px; padding-top: 22px; border-top: 1px solid var(--line); }
-.case .client a { font-weight: 600; text-decoration: none; border-bottom: 1px solid var(--accent); }
-.flow { list-style: none; counter-reset: s; }
-.flow li { counter-increment: s; display: grid; grid-template-columns: 44px 1fr; gap: 6px; padding: 14px 0; border-bottom: 1px dashed var(--line); }
-.flow li:last-child { border-bottom: 0; }
-.flow li::before { content: counter(s, decimal-leading-zero); font-family: var(--mono); font-size: 12px; color: var(--ink-3); padding-top: 3px; }
-.flow b { font-weight: 500; display: block; }
-.flow span { color: var(--ink-2); font-size: 15px; }
-@media (max-width: 860px) {
-  .case { grid-template-columns: 1fr; }
-  .case-l, .case-r { padding: 28px 22px; }
-  .case-r { border-left: 0; border-top: 1px solid var(--line); }
-}
+/* now: the status console */
+.now { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 5vw, 72px); align-items: center; }
+.now .text h2 { font-family: var(--serif); font-weight: 400; font-size: clamp(38px, 4.8vw, 64px); line-height: 1; letter-spacing: -.02em; }
+.now .text p { color: var(--ink-2); margin-top: 18px; max-width: 54ch; }
+.now .text .client { margin-top: 26px; padding-top: 20px; border-top: 1px solid var(--line); display: flex; gap: 12px; flex-wrap: wrap; align-items: baseline; }
+.now .text .client a { font-weight: 600; text-decoration: none; border-bottom: 1px solid var(--accent); }
+.console { background: #15140F; color: #EDE9DD; border-radius: 18px; padding: 22px 24px 20px; font-family: var(--mono); font-size: 13.5px; line-height: 1.85; box-shadow: 0 30px 60px -30px rgba(0,0,0,.45); }
+:root[data-theme="dark"] .console { background: #1F1E19; border: 1px solid var(--line); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .console { background: #1F1E19; border: 1px solid var(--line); } }
+.console .top { display: flex; gap: 6px; margin-bottom: 16px; align-items: center; }
+.console .top i { width: 10px; height: 10px; border-radius: 50%; background: #3A3830; display: block; }
+.console .top i:first-child { background: var(--accent); }
+.console .top span { margin-left: auto; color: #8C877A; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; }
+.console .row { display: grid; grid-template-columns: 116px 1fr; gap: 10px; }
+.console .k { color: #8C877A; }
+.console .ok { color: #9BE58A; }
+.console .wip { color: #FFB37F; }
+.console a { text-decoration: none; }
+.console a:hover { text-decoration: underline; }
+.console hr { border: 0; border-top: 1px dashed #3A3830; margin: 12px 0; }
+.cursor { display: inline-block; width: 8px; height: 15px; background: var(--accent); vertical-align: -2px; animation: blink 1.1s steps(1) infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+@media (max-width: 860px) { .now { grid-template-columns: 1fr; } }
+@media (max-width: 480px) { .console .row { grid-template-columns: 92px 1fr; } .console { font-size: 12.5px; padding: 18px; } }
 
-/* products */
-.flagship {
-  position: relative; border-radius: 26px; overflow: hidden; padding: 56px;
-  background: var(--dusk); color: #F1EEFF;
-  display: grid; grid-template-columns: 1.1fr .9fr; gap: 48px; align-items: center;
-}
-:root[data-theme="dark"] .flagship { background: #23224A; }
-@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .flagship { background: #23224A; } }
-.flagship::before {
-  content: ""; position: absolute; inset: 0; pointer-events: none;
-  background:
-    radial-gradient(circle at 85% 12%, rgba(255,214,170,.35) 0 2px, transparent 3px),
-    radial-gradient(circle at 70% 30%, rgba(255,255,255,.5) 0 1px, transparent 2px),
-    radial-gradient(circle at 92% 55%, rgba(255,255,255,.4) 0 1px, transparent 2px),
-    radial-gradient(circle at 60% 8%, rgba(255,255,255,.35) 0 1px, transparent 2px),
-    radial-gradient(circle at 40% 92%, rgba(255,255,255,.3) 0 1px, transparent 2px),
-    radial-gradient(600px 300px at 100% 0%, rgba(255,140,90,.22), transparent 70%);
-}
-.flagship > * { position: relative; }
-.flagship .tag { display: inline-flex; gap: 8px; align-items: center; font-family: var(--mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; padding: 6px 12px; border-radius: 999px; background: rgba(255,255,255,.1); color: #FFD9C2; }
-.flagship .tag::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: #FFB37F; box-shadow: 0 0 0 4px rgba(255,179,127,.2); }
-.flagship h3 { font-family: var(--serif); font-weight: 400; font-size: clamp(36px, 4.6vw, 60px); line-height: 1; letter-spacing: -.02em; margin: 22px 0 18px; color: #fff; }
-.flagship h3 em { color: #FFB37F; }
-.flagship p { color: #CFCBEA; font-size: 17px; max-width: 52ch; }
-.flagship .stack { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 26px; }
-.flagship .stack span { font-family: var(--mono); font-size: 12px; padding: 6px 11px; border-radius: 8px; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.14); color: #E9E6FF; }
+/* projects */
+.cards { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.card { display: flex; flex-direction: column; gap: 14px; padding: 30px; border-radius: 22px; border: 1px solid var(--line); background: var(--card); text-decoration: none; transition: transform .2s ease, border-color .2s ease; }
+.card:hover { transform: translateY(-3px); border-color: var(--ink); }
+.card .top { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.card .status { font-family: var(--mono); font-size: 11.5px; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-2); display: inline-flex; gap: 8px; align-items: center; }
+.card .status::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: #2DBE60; }
+.card .status.soon::before { background: var(--accent); }
+.card .cat { font-family: var(--mono); font-size: 11.5px; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-3); }
+.card h3 { font-size: 28px; font-weight: 500; letter-spacing: -.015em; line-height: 1.15; }
+.card p { color: var(--ink-2); font-size: 16px; }
+.card .url { font-family: var(--mono); font-size: 13px; margin-top: auto; color: var(--ink); display: flex; justify-content: space-between; padding-top: 14px; border-top: 1px solid var(--line); }
+@media (max-width: 760px) { .cards { grid-template-columns: 1fr; } .card { padding: 24px 20px; } }
 
-.phone {
-  width: 100%; max-width: 300px; margin-left: auto; aspect-ratio: 9/18.5; border-radius: 40px;
-  background: #F7F2EA; color: #2B2A55; padding: 14px; border: 8px solid #15140F;
-  box-shadow: 0 40px 80px -30px rgba(0,0,0,.55); display: flex; flex-direction: column;
-}
-.phone .notch { width: 84px; height: 22px; background: #15140F; border-radius: 0 0 14px 14px; margin: -14px auto 14px; }
-.phone .moon { width: 100%; aspect-ratio: 1.25; border-radius: 22px; background: linear-gradient(160deg, #3A3870, #2B2A55); position: relative; overflow: hidden; }
-.phone .moon::before { content: ""; position: absolute; width: 60px; height: 60px; border-radius: 50%; right: 22px; top: 20px; background: #FFE7C7; box-shadow: -14px 6px 0 0 #3A3870 inset; }
-.phone .moon::after { content: "Tonight's story"; position: absolute; left: 16px; bottom: 14px; font-family: var(--mono); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: #CFCBEA; }
-.phone .title { font-family: var(--serif); font-size: 24px; line-height: 1.1; margin: 16px 4px 4px; }
-.phone .by { font-size: 12px; color: #6B6890; margin: 0 4px; }
-.phone .wave { display: flex; align-items: center; gap: 3px; height: 44px; margin: 18px 4px 8px; }
-.phone .wave i { flex: 1; background: #2B2A55; border-radius: 2px; opacity: .85; }
-.phone .wave i.on { background: #FF5A1F; opacity: 1; }
-.phone .ctrl { margin-top: auto; display: flex; justify-content: center; align-items: center; gap: 26px; padding-bottom: 8px; }
-.phone .play { width: 54px; height: 54px; border-radius: 50%; background: #2B2A55; display: grid; place-items: center; }
-.phone .play::before { content: ""; width: 14px; height: 18px; border-left: 5px solid #fff; border-right: 5px solid #fff; box-sizing: border-box; }
-.phone .skip { width: 10px; height: 10px; border-top: 2px solid #6B6890; border-right: 2px solid #6B6890; transform: rotate(45deg); }
-.phone .skip.b { transform: rotate(-135deg); }
-@media (max-width: 960px) {
-  .flagship { grid-template-columns: 1fr; padding: 36px 22px; gap: 40px; }
-  .phone { margin: 0 auto; max-width: 260px; }
-}
+/* experience: a network */
+.net { display: grid; grid-template-columns: minmax(0, 1fr) 340px; gap: 32px; align-items: start; }
+.net-canvas { position: relative; border: 1px solid var(--line); border-radius: 22px; background: var(--card); padding: 12px 12px 40px; }
+.net svg { width: 100%; height: auto; display: block; overflow: visible; }
+.net .edge { stroke: var(--edge); stroke-width: 1.2; fill: none; transition: stroke .25s, stroke-opacity .25s, stroke-width .25s; }
+.net .edge.lit { stroke: var(--accent); stroke-opacity: 1 !important; stroke-width: 2.2; }
+.net .edge.dim { stroke-opacity: var(--edge-dim) !important; }
+.net .edge.flow { stroke: var(--accent); stroke-dasharray: 6 8; animation: flow .9s linear 1; }
+.net .pulse { fill: none; stroke: #ffd7c2; stroke-width: 3.2; stroke-linecap: round; stroke-dasharray: 3 22; opacity: 0; transition: opacity .25s; pointer-events: none; }
+.net .pulse.on { opacity: 1; animation: current 1.15s linear infinite; }
+@keyframes current { from { stroke-dashoffset: 0; } to { stroke-dashoffset: -25; } }
+.net .node.on .ring2 { stroke: var(--accent); animation: beat 1.4s ease-out infinite; transform-origin: center; transform-box: fill-box; }
+@keyframes beat { 0% { stroke-opacity: .7; transform: scale(.85); } 100% { stroke-opacity: 0; transform: scale(1.55); } }
+@keyframes flow { from { stroke-dashoffset: 60; } to { stroke-dashoffset: 0; } }
+.net .node { cursor: pointer; outline: none; }
+.net .node circle { fill: var(--card); stroke: var(--ink-2); stroke-width: 2; transition: fill .25s, stroke .25s, r .25s; }
+.net .node:hover circle, .net .node:focus-visible circle { stroke: var(--accent); }
+.net .node.fire circle { fill: var(--accent); stroke: var(--accent); }
+.net .node.on circle { fill: var(--accent); stroke: var(--accent); r: 12; }
+.net .node.dim text { opacity: .4; }
+.net .node:focus-visible .ring2 { stroke: var(--accent); }
+.net .ring2 { fill: none; stroke: transparent; stroke-width: 2; }
+.net text { fill: var(--ink); font-family: var(--sans); font-size: 14px; font-weight: 500; }
+.net text.sub { fill: var(--ink-3); font-family: var(--mono); font-size: 11px; font-weight: 400; letter-spacing: .03em; }
+.net text.layer { fill: var(--ink-3); font-family: var(--mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; }
+.panel { border-radius: 22px; background: #15140F; color: #EDE9DD; padding: 26px; min-height: 280px; position: sticky; top: 108px; }
+:root[data-theme="dark"] .panel { background: #1F1E19; border: 1px solid var(--line); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .panel { background: #1F1E19; border: 1px solid var(--line); } }
+.panel .when { font-family: var(--mono); font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: #FFB37F; }
+.panel h3 { font-family: var(--serif); font-weight: 400; font-size: 34px; line-height: 1.05; margin: 10px 0 12px; color: #F3F0E8; }
+.panel p { color: #C9C4B6; font-size: 16px; }
+.net-hint { position: absolute; left: 0; right: 0; bottom: 14px; text-align: center; font-family: var(--mono); font-size: 11.5px; letter-spacing: .04em; color: var(--ink-3); pointer-events: none; }
+@media (max-width: 980px) { .net { grid-template-columns: 1fr; } .panel { position: static; min-height: 0; } }
 
-.live { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px; }
-.app {
-  display: flex; flex-direction: column; gap: 14px; padding: 30px; border-radius: 22px;
-  border: 1px solid var(--line); background: var(--card); text-decoration: none;
-  transition: transform .2s ease, border-color .2s ease;
-}
-.app:hover { transform: translateY(-3px); border-color: var(--ink); }
-.app .top { display: flex; justify-content: space-between; align-items: center; }
-.app .status { font-family: var(--mono); font-size: 11.5px; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-2); display: inline-flex; gap: 8px; align-items: center; }
-.app .status::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: #2DBE60; }
-.app h4 { font-size: 26px; font-weight: 500; letter-spacing: -.015em; }
-.app p { color: var(--ink-2); font-size: 16px; }
-.app .url { font-family: var(--mono); font-size: 13px; margin-top: auto; color: var(--ink); display: flex; justify-content: space-between; padding-top: 14px; border-top: 1px solid var(--line); }
-@media (max-width: 760px) { .live { grid-template-columns: 1fr; } .app { padding: 24px 20px; } }
-
-/* claude-native */
-.native { background: var(--ink); color: var(--paper); }
-:root[data-theme="dark"] .native { background: #0A0A08; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
-@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .native { background: #0A0A08; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); } }
-.native .sec-head p { color: #B9B4A6; }
-.native .label { color: #9A9586; }
-.native .sec-head h2 { color: #F3F0E8; }
-.native .sec-head h2 em { color: var(--accent); }
-.pipeline { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border: 1px solid #34322B; border-radius: 18px; overflow: hidden; }
-.step { padding: 28px 24px 30px; border-right: 1px solid #34322B; position: relative; }
-.step:last-child { border-right: 0; }
-.step .mono { color: var(--accent); }
-.step h4 { font-size: 19px; font-weight: 500; margin: 12px 0 8px; color: #F3F0E8; }
-.step p { font-size: 15px; color: #B9B4A6; }
-@media (max-width: 900px) {
-  .pipeline { grid-template-columns: 1fr 1fr; }
-  .step:nth-child(2) { border-right: 0; }
-  .step:nth-child(n+3) { border-top: 1px solid #34322B; }
-}
-@media (max-width: 560px) {
-  .pipeline { grid-template-columns: 1fr; }
-  .step { border-right: 0; }
-  .step + .step { border-top: 1px solid #34322B; }
-}
-.why { margin-top: 56px; display: grid; grid-template-columns: 280px 1fr; gap: 40px; }
-.why blockquote { font-family: var(--serif); font-size: clamp(24px, 2.8vw, 34px); line-height: 1.25; color: #F3F0E8; max-width: 34ch; }
-.why blockquote em { color: var(--accent); }
-@media (max-width: 860px) { .why { grid-template-columns: 1fr; gap: 14px; } }
-
-/* founder */
-.founder { display: grid; grid-template-columns: 280px 1fr; gap: 40px; }
-.founder-card { position: sticky; top: 96px; align-self: start; }
-.avatar { width: 112px; height: 112px; border-radius: 28px; background: var(--accent); color: #15140F; display: grid; place-items: center; font-family: var(--serif); font-size: 56px; font-style: italic; }
-.founder-card h3 { font-size: 24px; font-weight: 500; margin-top: 18px; letter-spacing: -.01em; }
-.founder-card p { color: var(--ink-2); font-size: 15px; }
-.founder-card .links { display: flex; flex-wrap: wrap; gap: 8px 16px; margin-top: 16px; font-family: var(--mono); font-size: 12.5px; }
-.founder-card .links a { text-decoration: none; border-bottom: 1px solid var(--line); }
-.founder-card .links a:hover { border-color: var(--accent); }
-.founder-body h2 { font-family: var(--serif); font-weight: 400; font-size: clamp(32px, 3.8vw, 48px); line-height: 1.08; letter-spacing: -.015em; max-width: 24ch; }
-.founder-body > p { color: var(--ink-2); font-size: 18px; margin-top: 20px; max-width: 64ch; }
-.timeline { list-style: none; margin-top: 40px; border-top: 1px solid var(--ink); }
-.timeline li { display: grid; grid-template-columns: 150px 1fr; gap: 24px; padding: 20px 0; border-bottom: 1px solid var(--line); }
-.timeline .when { font-family: var(--mono); font-size: 12.5px; color: var(--ink-3); padding-top: 3px; }
-.timeline b { font-weight: 500; }
-.timeline span { display: block; color: var(--ink-2); font-size: 15.5px; }
-.pubs { margin-top: 40px; display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-.pub { display: block; text-decoration: none; padding: 20px 44px 20px 20px; border: 1px solid var(--line); border-radius: 14px; background: var(--card); position: relative; transition: transform .2s ease, border-color .2s ease; }
-.pub::after { content: "↗"; position: absolute; top: 18px; right: 20px; color: var(--ink-3); transition: color .2s ease, transform .2s ease; }
+/* papers */
+.pubs { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.pub { display: block; text-decoration: none; padding: 22px 48px 22px 22px; border: 1px solid var(--line); border-radius: 14px; background: var(--card); position: relative; transition: transform .2s ease, border-color .2s ease; }
+.pub::after { content: "↗"; position: absolute; top: 20px; right: 22px; color: var(--ink-3); transition: color .2s, transform .2s; }
 .pub:hover { transform: translateY(-2px); border-color: var(--ink); }
-.pub:hover::after { color: var(--accent); transform: translate(2px,-2px); }
+.pub:hover::after { color: var(--accent); transform: translate(2px, -2px); }
 .pub .mono { color: var(--ink-3); font-size: 11px; }
-.pub p { font-size: 15px; margin-top: 6px; line-height: 1.45; }
-@media (max-width: 860px) {
-  .founder { grid-template-columns: 1fr; }
-  .founder-card { position: static; }
-  .timeline li { grid-template-columns: 1fr; gap: 4px; }
-  .pubs { grid-template-columns: 1fr; }
-}
+.pub p { font-size: 16px; margin-top: 6px; line-height: 1.45; }
+.pub .authors { display: block; margin-top: 10px; font-size: 14px; color: var(--ink-3); line-height: 1.5; }
+.pub .authors b { color: var(--ink); font-weight: 500; }
+@media (max-width: 760px) { .pubs { grid-template-columns: 1fr; } }
 
 /* contact */
-.contact { padding: 120px 0 100px; text-align: left; }
-.contact h2 { font-family: var(--serif); font-weight: 400; font-size: clamp(48px, 9vw, 132px); line-height: .92; letter-spacing: -.03em; }
+.contact { padding: clamp(100px, 13vw, 160px) 0 clamp(80px, 10vw, 120px); }
+.contact h2 { font-family: var(--serif); font-weight: 400; font-size: clamp(52px, 9vw, 132px); line-height: .92; letter-spacing: -.03em; }
 .contact h2 em { color: var(--accent); }
-.mail { display: inline-flex; align-items: center; gap: 16px; margin-top: 40px; font-size: clamp(22px, 3.4vw, 40px); font-weight: 500; letter-spacing: -.015em; text-decoration: none; border-bottom: 2px solid var(--ink); padding-bottom: 6px; word-break: break-all; }
-.mail:hover { color: var(--accent); border-color: var(--accent); }
+.contact .mail { display: inline-flex; align-items: center; gap: 16px; margin-top: 40px; font-size: clamp(22px, 3.4vw, 40px); font-weight: 500; letter-spacing: -.015em; text-decoration: none; border-bottom: 2px solid var(--ink); padding-bottom: 6px; word-break: break-all; }
+.contact .mail:hover { color: var(--accent); border-color: var(--accent); }
 .contact p { color: var(--ink-2); margin-top: 22px; max-width: 54ch; font-size: 18px; }
-
+.contact .links { display: flex; flex-wrap: wrap; gap: 10px 22px; margin-top: 28px; font-family: var(--mono); font-size: 13px; }
+.contact .links a { text-decoration: none; border-bottom: 1px solid var(--line); }
+.contact .links a:hover { border-color: var(--accent); }
 footer { border-top: 1px solid var(--line); padding: 28px 0 40px; }
 footer .wrap { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; font-family: var(--mono); font-size: 12px; color: var(--ink-3); }
 footer a { text-decoration: none; }
-footer a:hover { color: var(--ink); }
 
-.theme-btn { background: none; border: 1px solid var(--line); color: var(--ink-2); border-radius: 999px; width: 36px; height: 36px; cursor: pointer; display: grid; place-items: center; font-size: 15px; }
-.theme-btn:hover { border-color: var(--ink); color: var(--ink); }
-.nav-r { display: flex; align-items: center; gap: 10px; }
-@media (max-width: 420px) { .nav-r .btn { padding: 9px 14px; font-size: 14px; } }
-
-.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.rise { opacity: 0; transform: translateY(20px); transition: opacity .7s cubic-bezier(.2,.7,.2,1), transform .7s cubic-bezier(.2,.7,.2,1); }
+.rise.in, .no-js .rise { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .rise { opacity: 1; transform: none; transition: none; }
+  .cursor, .net .edge.flow, .net .pulse.on, .net .node.on .ring2 { animation: none; }
+  .net .pulse { display: none; }
+  .btn, .card, .pub, .box { transition: none; }
+}
 </style>
 </head>
-<body>
+<body class="no-js">
 
-<header class="nav">
+<header class="bar">
   <div class="wrap">
-    <a class="brand" href="#top" aria-label="BerkeML home">
-      <span><b>Berke</b><span class="ml">ML</span></span>
+    <a class="graph" href="#top" aria-label="Berke Dilekoğlu, back to top">
+      <canvas id="desk" aria-hidden="true"></canvas>
+      <span class="graph-box"><canvas id="maze" role="img" aria-label="A maze drawn as a GitHub contribution graph. Its solution fills in green as you scroll."></canvas></span>
+      <span class="count" aria-hidden="true"><b id="contrib">0</b> contributions<br><span id="contrib-note">keep scrolling</span></span>
     </a>
     <nav aria-label="Primary">
       <ul>
         <li><a href="#services">Services</a></li>
-        <li><a href="#clients">Client work</a></li>
-        <li><a href="#products">Products</a></li>
-        <li><a href="#approach">How we build</a></li>
-        <li><a href="#founder">Founder</a></li>
+        <li><a href="#work">Work</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#research">Research</a></li>
       </ul>
+      <button class="theme-btn" id="theme" type="button" aria-label="Toggle colour theme">◐</button>
+      <a class="btn" href="#contact">Hire me</a>
     </nav>
-    <div class="nav-r">
-      <button class="theme-btn" id="theme" type="button" aria-label="Toggle color theme">◐</button>
-      <a class="btn" href="mailto:berke@berkeml.com">Contact</a>
-    </div>
   </div>
 </header>
 
@@ -444,201 +413,209 @@ footer a:hover { color: var(--ink); }
 
   <!-- HERO -->
   <section class="hero">
-    <div class="wrap hero-grid">
-      <div>
-        <span class="label">Applied AI studio</span>
-        <h1>We turn <span class="it">language models</span> into <span class="ul">software people rely&nbsp;on.</span></h1>
-        <p class="lede">BerkeML builds production ML systems for client teams anywhere in the world, and ships its own AI-native products, end to end.</p>
-        <div class="hero-cta">
-          <a class="btn accent" href="mailto:berke@berkeml.com">Start a project <span class="arr" aria-hidden="true">→</span></a>
-          <a class="btn ghost" href="#products">See our products</a>
-        </div>
+    <div class="wrap">
+      <div class="sheet-wrap">
+        <article class="sheet" id="sheet" aria-label="A scanned, hand-filled application form about Berke">
+          <p class="fax" aria-hidden="true">NOV-03-2026 14:42 &nbsp;FROM: BERKEML STUDIO &nbsp;&nbsp;TO: WHOEVER IS HIRING &nbsp;&nbsp;#0042 P.01/01</p>
+          <div class="sheet-head">
+            <div>
+              <p class="form-name">UNIFORM ENGINEER<br>APPLICATION</p>
+              <p class="form-sub">Form 1003-B · Rev. 11/26 · To be completed by the applicant in ink</p>
+            </div>
+            <figure class="photo" data-key="photo_attached" data-value="true" data-type="bool"><img src="avatar/head.png" width="140" height="190" alt="Pixel-art portrait of Berke"><figcaption>Applicant photo</figcaption></figure>
+            <div class="code"><svg id="barcode" viewBox="0 0 132 34" aria-hidden="true"></svg><p>APP NO. BD-2017-0042</p></div>
+          </div>
+
+          <p class="sec-t">Section 1 · Applicant</p>
+          <div class="fields">
+            <div class="f s4 wide"><span class="q">1a. Name (first, last)</span><span class="hw lg" data-key="name" data-value="Berke Dilekoğlu">Berke Dilekoğlu</span></div>
+            <div class="f s2"><span class="q">1b. Lives in</span><span class="typed" data-key="location" data-value="Istanbul, Türkiye">ISTANBUL, TR</span></div>
+            <div class="f s3"><span class="q">1c. Current position</span><span data-key="position" data-value="Senior NLP Engineer"><span class="typed struck">ML ENGINEER</span><span class="hw corr">Senior NLP Engineer</span></span></div>
+            <div class="f s3"><span class="q">1d. Employer</span><span class="typed" data-key="employer" data-value="Areal.ai">AREAL.AI (MORTGAGE AI)</span></div>
+            <div class="f s3"><span class="q">1e. Business owned, if any</span><span class="hw" data-key="business" data-value="BerkeML (founder)">BerkeML — founder</span></div>
+            <div class="f s3"><span class="q">1f. Working in ML since</span><span class="hw" data-key="in_ml_since" data-value="2017" data-type="number">2017</span></div>
+            <div class="f s6"><span class="q">1g. Highest degree</span><span class="typed" data-key="degree" data-value="MSc Computer Science, Sabancı University">M.SC. COMPUTER SCIENCE &amp; ENG. — SABANCI UNIV.</span></div>
+          </div>
+
+          <p class="sec-t">Section 2 · Employment history</p>
+          <div class="table-scroll" data-key="employment" data-type="table">
+            <table class="emp">
+              <thead><tr><th>Employer</th><th>Position</th><th>From</th><th>To</th></tr></thead>
+              <tbody>
+                <tr class="added"><td>BerkeML</td><td>Founder</td><td></td><td>now</td></tr>
+                <tr><td>AREAL.AI</td><td>SR. NLP ENGINEER</td><td>2023</td><td>PRESENT</td></tr>
+                <tr><td>GINOA.IO</td><td>ML ENGINEER</td><td>2023</td><td>2023</td></tr>
+                <tr><td>HUAWEI</td><td>NLP RESEARCH ENG.</td><td>2021</td><td>2023</td></tr>
+                <tr><td>FORD TR / DURHAM U.</td><td>VISITING RESEARCHER</td><td>2017</td><td>2018</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p class="sec-t">Section 3 · Declarations</p>
+          <div class="decl">
+            <span class="chk" data-key="open_to_projects" data-value="true" data-type="bool"><i>x</i>Open to new projects</span>
+            <span class="chk"><i>x</i>Ships to production</span>
+            <span class="chk"><i></i>Needs hand-holding</span>
+            <span class="chk"><i>x</i>Writes the evals first</span>
+          </div>
+
+          <div class="signrow">
+            <div><div class="line"><span class="sig" data-key="signed" data-value="true" data-type="bool">Berke D.</span></div><p class="lbl">Signature of applicant</p></div>
+            <div><div class="line"><span class="hw" style="font-size: 24px">03 / 11 / 26</span></div><p class="lbl">Date</p></div>
+          </div>
+
+          <div class="stamp" aria-hidden="true"><b>RECEIVED</b>NOV 03 2026</div>
+          <p class="note" aria-hidden="true">agents too! →</p>
+          <p class="initials" aria-hidden="true">B.D.</p>
+          <svg class="ring" viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="48" fill="none" stroke="#8b5a2b" stroke-opacity=".16" stroke-width="7"/><path d="M18 70 A48 48 0 0 0 96 92" fill="none" stroke="#8b5a2b" stroke-opacity=".22" stroke-width="3"/></svg>
+        </article>
       </div>
 
-      <aside class="console" aria-label="Studio status">
-        <div class="bar"><i></i><i></i><i></i><span>berkeml / status</span></div>
-        <div class="row"><span class="k">studio</span><span class="v">BerkeML</span></div>
-        <div class="row"><span class="k">focus</span><span class="v">LLM systems · document AI · voice AI</span></div>
-        <div class="row"><span class="k">client</span><span class="v">Areal.ai — mortgage automation</span></div>
-        <hr>
-        <div class="row"><span class="k">live</span><span class="ok">● promiltracker.com</span></div>
-        <div class="row"><span class="k">live</span><span class="ok">● influencersbid.lol</span></div>
-        <hr>
-        <div class="row"><span class="k">toolchain</span><span class="v">Claude Code + Claude API</span></div>
-        <div><span class="k">$</span> ship --next <span class="cursor" aria-hidden="true"></span></div>
-      </aside>
+      <div class="readout">
+        <p class="who rise"><span class="dot" aria-hidden="true"></span><b>Berke Dilekoğlu</b> ML engineer · founder of BerkeML · Istanbul</p>
+        <h1 class="rise">Models that <em>read</em> forms.</h1>
+        <p class="lede rise">I build document AI and LLM agents that run in production, for companies and through my studio BerkeML. This page is a form. Press the button and it reads itself.</p>
+        <div class="actions rise">
+          <button class="btn accent" id="extract" type="button">Extract this page <span class="arr" aria-hidden="true">→</span></button>
+          <a class="btn ghost" href="#contact">Start a project</a>
+        </div>
+        <pre class="json rise" aria-live="polite"><span class="bar-top" aria-hidden="true"><i></i><i></i><i></i><span>extract / output.json</span></span><code id="json"><span class="muted">{
+  "name": "Berke Dilekoğlu",
+  "position": "Senior NLP Engineer",
+  "employer": "Areal.ai",
+  "business": "BerkeML (founder)",
+  ...
+}</span></code></pre>
+      </div>
     </div>
   </section>
-
-  <div class="facts">
-    <div class="wrap">
-      <div class="fact"><span class="mono">Company</span><strong>BerkeML · sole proprietorship</strong></div>
-      <div class="fact"><span class="mono">Based in</span><strong>Istanbul, Türkiye</strong></div>
-      <div class="fact"><span class="mono">Clients</span><strong>Worldwide · remote-first</strong></div>
-      <div class="fact"><span class="mono">Contact</span><strong><a href="mailto:berke@berkeml.com">berke@berkeml.com</a></strong></div>
-    </div>
-  </div>
 
   <!-- SERVICES -->
   <section class="block" id="services">
     <div class="wrap">
       <div class="sec-head">
-        <span class="label">01 — What we do</span>
+        <p class="kicker rise">What I build</p>
         <div>
-          <h2>Two halves of <em>one</em> studio.</h2>
-          <p>We sell engineering to teams who need AI in production, and we build products of our own. Each side makes the other better: client work keeps us honest about reliability, and our products keep us fast.</p>
+          <h2 class="rise">Models in production, <em>not</em> in a notebook.</h2>
+          <p class="rise">I take a problem from messy data to a system your team can run, measure and afford. Usually alone, sometimes with your engineers.</p>
         </div>
       </div>
       <div class="services">
-        <article class="svc">
-          <span class="num">/01</span>
-          <h3>Applied AI engineering</h3>
-          <p>LLM pipelines, agents and NLP systems built for real workloads, with evaluation, cost control and monitoring included from the start.</p>
-          <ul><li>LLM agents</li><li>RAG</li><li>Evaluation</li><li>NLP</li></ul>
-        </article>
-        <article class="svc">
-          <span class="num">/02</span>
+        <div class="svc rise">
           <h3>Document intelligence</h3>
-          <p>Extraction, classification and reconciliation for document-heavy industries. Messy scanned PDFs go in, and structured, verified data comes out.</p>
-          <ul><li>OCR</li><li>Table extraction</li><li>Classification</li><li>Mortgage</li></ul>
-        </article>
-        <article class="svc">
-          <span class="num">/03</span>
+          <p>Scanned PDFs, forms and tables turned into structured, checked data. Extraction, classification, and the label cleaning that makes the training data trustworthy.</p>
+          <ul><li>OCR</li><li>table extraction</li><li>field extraction</li><li>classification</li><li>label cleaning</li></ul>
+        </div>
+        <div class="svc rise">
+          <h3>LLM agents &amp; pipelines</h3>
+          <p>Agents and retrieval systems that do real work in a workflow, with evaluation, guardrails and cost control built in from the first week.</p>
+          <ul><li>agents</li><li>RAG</li><li>evaluation</li><li>cost control</li><li>Claude API</li></ul>
+        </div>
+        <div class="svc rise">
           <h3>AI-native products</h3>
-          <p>We design, build and launch our own web and mobile apps, from idea to production. Each one has a model at its core.</p>
-          <ul><li>Mobile</li><li>Web</li><li>Voice AI</li><li>Generative</li></ul>
-        </article>
+          <p>Web and mobile apps with a model at the core, designed, built and launched end to end. FairyWhisper, Promil Tracker and InfluencersBid are mine.</p>
+          <ul><li>iOS</li><li>web</li><li>voice AI</li><li>launch</li></ul>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- CLIENT WORK -->
-  <section class="block" id="clients" style="padding-top:0">
-    <div class="wrap">
-      <div class="sec-head">
-        <span class="label">02 — Client work</span>
-        <div>
-          <h2>AI for the <em>mortgage</em> industry.</h2>
-          <p>BerkeML is a contracted engineering partner to a company that automates mortgage and title workflows with AI.</p>
-        </div>
+  <!-- NOW -->
+  <section class="block" id="now" style="padding-top: 0">
+    <div class="wrap now">
+      <div class="text">
+        <p class="kicker rise">Right now</p>
+        <h2 class="rise">Reading mortgage files <em>at scale.</em></h2>
+        <p class="rise">As Senior NLP Engineer at Areal.ai I build the systems that turn scanned loan packages into verified data: table and field extraction, multi-class document classification, ensemble-based label cleaning, and LLM agent workflows for processing, closing and post-closing.</p>
+        <p class="rise">Through BerkeML I take on a small number of client builds alongside, and ship the studio's own products.</p>
+        <div class="client rise"><span class="mono" style="color: var(--ink-3)">Current client</span><a href="https://www.areal.ai/" rel="noopener">Areal.ai</a><span style="color: var(--ink-2)">AI for mortgage &amp; title</span></div>
       </div>
-
-      <article class="case">
-        <div class="case-l">
-          <span class="mono" style="color:var(--ink-3)">Ongoing engagement · Remote</span>
-          <h3>Turning mortgage paperwork into structured, verified data.</h3>
-          <p>Mortgage files are hundreds of pages of scans, tables and disclosures. We build the ML behind workflows that read those files, understand them and act on them, so the lender's team only handles the exceptions.</p>
-          <div class="client">
-            <span class="mono" style="color:var(--ink-3)">Client</span>
-            <a href="https://www.areal.ai/" rel="noopener">Areal.ai</a>
-            <span style="color:var(--ink-2);font-size:15px">AI automation for mortgage &amp; title</span>
-          </div>
-        </div>
-        <div class="case-r">
-          <ol class="flow">
-            <li><div><b>Table &amp; field extraction</b><span>Pull structured values out of tables in scanned PDF documents.</span></div></li>
-            <li><div><b>Document classification</b><span>Multi-class models that sort every page of a loan file.</span></div></li>
-            <li><div><b>Label quality</b><span>Ensemble-based label cleaning to make training data more trustworthy.</span></div></li>
-            <li><div><b>Agentic workflows</b><span>LLM agents that carry out processing, closing and post-closing steps.</span></div></li>
-          </ol>
-        </div>
-      </article>
+      <aside class="console rise" aria-label="Status">
+        <div class="top"><i></i><i></i><i></i><span>berke / status</span></div>
+        <div class="row"><span class="k">role</span><span>Senior NLP Engineer · Areal.ai</span></div>
+        <div class="row"><span class="k">studio</span><span>BerkeML (founder)</span></div>
+        <div class="row"><span class="k">focus</span><span>LLM agents · document AI · voice AI</span></div>
+        <div class="row"><span class="k">local time</span><span id="clock">Istanbul</span></div>
+        <hr>
+        <div class="row"><span class="k">live</span><a class="ok" href="https://promiltracker.com/">● promiltracker.com</a></div>
+        <div class="row"><span class="k">live</span><a class="ok" href="https://influencersbid.lol/">● influencersbid.lol</a></div>
+        <div class="row"><span class="k">building</span><a class="wip" href="https://berkeml.com/fairywhisper/">● FairyWhisper (iOS)</a></div>
+        <hr>
+        <div class="row"><span class="k">toolchain</span><span>Claude Code + Claude API</span></div>
+        <div><span class="k">$</span> ship --next <span class="cursor" aria-hidden="true"></span></div>
+      </aside>
     </div>
   </section>
 
-  <!-- PRODUCTS -->
-  <section class="block" id="products" style="padding-top:0">
+  <!-- WORK -->
+  <section class="block" id="work" style="padding-top: 0">
     <div class="wrap">
       <div class="sec-head">
-        <span class="label">03 — Products</span>
+        <p class="kicker rise">Shipped</p>
         <div>
-          <h2>Things we build <em>for ourselves.</em></h2>
-          <p>Our own products, designed, built and launched end to end.</p>
+          <h2 class="rise">Things I've built <em>myself.</em></h2>
+          <p class="rise">Products from the studio, designed, built and shipped end to end.</p>
         </div>
       </div>
-
-      <div class="live" style="margin-top:0">
-        <a class="app" href="/fairywhisper/">
-          <div class="top"><span class="status">Coming soon · iOS</span><span class="mono" style="color:var(--ink-3)">Family</span></div>
-          <h4>FairyWhisper</h4>
-          <p>Bedtime stories read in a parent's own voice. A parent records their voice once; classic fairy tales and calm stories written for FairyWhisper are then narrated in that voice with ElevenLabs, with a sleep timer, lullabies and a gentle wind-down for falling asleep.</p>
+      <div class="cards">
+        <a class="card rise" href="https://berkeml.com/fairywhisper/">
+          <span class="top"><span class="status soon">Coming soon · iOS</span><span class="cat">Family</span></span>
+          <h3>FairyWhisper</h3>
+          <p>Bedtime stories read in a parent's own voice. A parent records their voice once; classic fairy tales and calm stories written for FairyWhisper are then narrated in that voice with ElevenLabs, with a sleep timer, lullabies and a gentle wind-down.</p>
           <span class="url">berkeml.com/fairywhisper <span aria-hidden="true">→</span></span>
         </a>
-        <a class="app" href="https://promiltracker.com/" rel="noopener">
-          <div class="top"><span class="status">Live · Web</span><span class="mono" style="color:var(--ink-3)">Health</span></div>
-          <h4>Promil Tracker</h4>
-          <p>Track drinks and see an estimated blood alcohol level, calculated with the Widmark formula. No login is needed. Optional Google sign-in adds history and statistics across devices.</p>
+        <a class="card rise" href="https://promiltracker.com/">
+          <span class="top"><span class="status">Live · web</span><span class="cat">Health</span></span>
+          <h3>Promil Tracker</h3>
+          <p>Track drinks and see an estimated blood alcohol level, calculated with the Widmark formula. No login needed; optional Google sign-in adds history and statistics across devices.</p>
           <span class="url">promiltracker.com <span aria-hidden="true">↗</span></span>
         </a>
-        <a class="app" href="https://influencersbid.lol/" rel="noopener">
-          <div class="top"><span class="status">Live · Web</span><span class="mono" style="color:var(--ink-3)">Social</span></div>
-          <h4>InfluencersBid</h4>
-          <p>A competitive leaderboard where creators bid their way to the #1 spot. It's a playful experiment in attention, ranking and real-time bidding.</p>
+        <a class="card rise" href="https://influencersbid.lol/">
+          <span class="top"><span class="status">Live · web</span><span class="cat">Social</span></span>
+          <h3>InfluencersBid</h3>
+          <p>A competitive leaderboard where creators bid their way to the #1 spot. A playful experiment in attention, ranking and real-time bidding.</p>
           <span class="url">influencersbid.lol <span aria-hidden="true">↗</span></span>
         </a>
       </div>
     </div>
   </section>
 
-  <!-- HOW WE BUILD -->
-  <section class="block native" id="approach">
+  <!-- EXPERIENCE -->
+  <section class="block" id="experience" style="padding-top: 0">
     <div class="wrap">
       <div class="sec-head">
-        <span class="label">04 — How we build</span>
+        <p class="kicker rise">Experience</p>
         <div>
-          <h2>Your problem first. <em>Then</em> the model.</h2>
-          <p>We don't start from a favourite stack. We start by listening, then build the system that gives you the highest accuracy and the best return for your budget.</p>
+          <h2 class="rise">A forward pass through <em>my career.</em></h2>
+          <p class="rise">Read it left to right: what I studied, where I researched, where I shipped, and what it all feeds into now. Pick any node.</p>
         </div>
       </div>
-      <div class="pipeline">
-        <div class="step"><span class="mono">01 · Listen</span><h4>Understand the need</h4><p>We learn your workflow, your data and what a correct answer is worth to your business before we write any code.</p></div>
-        <div class="step"><span class="mono">02 · Right-size</span><h4>Fit the budget</h4><p>The simplest approach that works wins. We choose models and architecture by accuracy per dollar, not by hype.</p></div>
-        <div class="step"><span class="mono">03 · Measure</span><h4>Prove the accuracy</h4><p>Every system ships with an evaluation set and clear metrics, so you can see how well it performs, not just hear about it.</p></div>
-        <div class="step"><span class="mono">04 · Optimise</span><h4>Keep it profitable</h4><p>After launch we cut inference cost and latency, and keep improving accuracy as real data comes in.</p></div>
-      </div>
-      <div class="why">
-        <span class="label">Our promise</span>
-        <blockquote>The right system is <em>accurate enough</em> to trust, <em>cheap enough</em> to run, and pays for itself.</blockquote>
+      <div class="net rise">
+        <div class="net-canvas"><p class="net-hint">Hover, tap or tab through the nodes</p><svg id="net" role="group" aria-label="Career drawn as a neural network"></svg></div>
+        <aside class="panel" aria-live="polite">
+          <p class="when" id="p-when">2023 → now</p>
+          <h3 id="p-title">Areal.ai</h3>
+          <p id="p-text">Senior NLP Engineer. Table and field extraction from scanned PDFs, document classification, ensemble-based label cleaning, and LLM agent workflows for mortgage processing, closing and post-closing.</p>
+        </aside>
       </div>
     </div>
   </section>
 
-  <!-- FOUNDER -->
-  <section class="block" id="founder">
-    <div class="wrap founder">
-      <div class="founder-card">
-        <div class="avatar" aria-hidden="true">B</div>
-        <h3><a href="/berke-dilekoglu/" style="text-decoration:none">Berke Dilekoğlu</a></h3>
-        <p>Founder &amp; ML Engineer</p>
-        <div class="links">
-          <a href="https://github.com/berkedilekoglu" rel="noopener">GitHub</a>
-          <a href="https://www.linkedin.com/in/berke-dilekoglu-53177a11a/" rel="noopener">LinkedIn</a>
-          <a href="https://scholar.google.com/citations?user=9O8ciUEAAAAJ" rel="noopener">Scholar</a>
-          <a href="https://berkedilekoglu.medium.com/" rel="noopener">Medium</a>
-          <a href="/berke-dilekoglu/">Full profile →</a>
+  <!-- RESEARCH -->
+  <section class="block" id="research" style="padding-top: 0">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="kicker rise">Research</p>
+        <div>
+          <h2 class="rise">Before LLMs, <em>proteins.</em></h2>
+          <p class="rise">My MSc at Sabancı University was deep learning on biological sequences. The habits stuck: careful data, honest evaluation.</p>
         </div>
       </div>
-      <div class="founder-body">
-        <span class="label">05 — Founder</span>
-        <h2 style="margin-top:18px">An ML researcher who prefers <em>shipping</em>.</h2>
-        <p>Berke Dilekoğlu founded BerkeML after years of building NLP and LLM systems for companies around the world. His background runs from deep-learning research on biological sequences to production document AI, and from search ranking at Huawei to agentic mortgage workflows today.</p>
-
-        <ol class="timeline">
-          <li><span class="when">Now</span><div><b>BerkeML — Founder</b><span>Client AI engineering for companies worldwide, plus the studio's own AI-native products.</span></div></li>
-          <li><span class="when">2023 →</span><div><b>Areal.ai — Senior NLP Engineer</b><span>Document extraction, classification and LLM workflows for mortgage automation.</span></div></li>
-          <li><span class="when">2023</span><div><b>Ginoa.io — ML Engineer</b><span>Document-grounded chatbot pipeline with automated evaluation and cost/performance tuning.</span></div></li>
-          <li><span class="when">2021 – 2023</span><div><b>Huawei — NLP Research Engineer</b><span>App tagging, query expansion and keyword extraction for AppGallery search.</span></div></li>
-          <li><span class="when">2017 – 2018</span><div><b>Ford Motor Company Turkey &amp; Durham University — Visiting Researcher</b><span>Computer vision: 360° image stitching, object detection, thermal re-identification.</span></div></li>
-          <li><span class="when">Education</span><div><b>Sabancı University — MSc &amp; BSc Computer Science, BSc Mechatronics</b><span>High Honor Scholarship. Thesis: SUMOnet, deep sequential prediction of SUMOylation sites.</span></div></li>
-          <li><span class="when">Open source</span><div><b>LangChain contributor</b><span>Batched document updates for ChromaDB (8× faster), plus vector-store similarity docs.</span></div></li>
-        </ol>
-
-        <div class="pubs">
-          <a class="pub" href="https://academic.oup.com/bioinformatics/article/39/1/btac821/6960922" target="_blank" rel="noopener"><span class="mono">Bioinformatics · 2022</span><p>Discovering misannotated lncRNAs using deep learning training dynamics.</p></a>
-          <a class="pub" href="https://www.biorxiv.org/content/10.1101/2023.08.25.554749v1" target="_blank" rel="noopener"><span class="mono">bioRxiv · 2023</span><p>SUMOnet: Deep sequential prediction of SUMOylation sites.</p></a>
-          <a class="pub" href="https://ieeexplore.ieee.org/document/9599078" target="_blank" rel="noopener"><span class="mono">IEEE ASYU · 2021</span><p>The impact of ensemble learning in sentiment analysis under domain shift.</p></a>
-          <a class="pub" href="https://arxiv.org/abs/2110.11446" target="_blank" rel="noopener"><span class="mono">arXiv · 2021</span><p>ML with HE: Privacy-preserving machine learning inferences for genome studies.</p></a>
-        </div>
+      <div class="pubs">
+        <a class="pub rise" href="https://academic.oup.com/bioinformatics/article/39/1/btac821/6960922" target="_blank" rel="noopener"><span class="mono">Bioinformatics · 2022</span><p>Discovering misannotated lncRNAs using deep learning training dynamics.</p><span class="authors">Afshan Nabi, <b>Berke Dilekoğlu</b>, Ogun Adebali, Öznur Taştan</span></a>
+        <a class="pub rise" href="https://www.biorxiv.org/content/10.1101/2023.08.25.554749v1" target="_blank" rel="noopener"><span class="mono">bioRxiv · 2023</span><p>SUMOnet: Deep sequential prediction of SUMOylation sites.</p><span class="authors"><b>Berke Dilekoğlu</b>, Öznur Taştan</span></a>
+        <a class="pub rise" href="https://ieeexplore.ieee.org/document/9599078" target="_blank" rel="noopener"><span class="mono">IEEE ASYU · 2021</span><p>The impact of ensemble learning in sentiment analysis under domain shift.</p><span class="authors">Can Ozbey, <b>Berke Dilekoğlu</b>, Sevim Aciksoz</span></a>
+        <a class="pub rise" href="https://arxiv.org/abs/2110.11446" target="_blank" rel="noopener"><span class="mono">arXiv · 2021</span><p>ML with HE: Privacy-preserving machine learning inferences for genome studies.</p><span class="authors">Ş. S. Mağara, C. Yıldırım, F. Yaman, <b>Berke Dilekoğlu</b>, F. R. Tutaş, E. Öztürk, K. Kaya, Ö. Taştan, E. Savaş</span></a>
       </div>
     </div>
   </section>
@@ -646,33 +623,382 @@ footer a:hover { color: var(--ink); }
   <!-- CONTACT -->
   <section class="contact" id="contact">
     <div class="wrap">
-      <span class="label">06 — Contact</span>
-      <h2 style="margin-top:22px">Let's build<br>something <em>useful.</em></h2>
-      <a class="mail" href="mailto:berke@berkeml.com">berke@berkeml.com <span aria-hidden="true">→</span></a>
-      <p>Hiring for AI engineering, document automation or an AI-native product build? Send a short note about the problem. Replies usually go out within one business day.</p>
+      <p class="kicker rise">Contact</p>
+      <h2 class="rise" style="margin-top: 18px">Let's build<br>something <em>useful.</em></h2>
+      <a class="mail rise" href="mailto:berke@berkeml.com?subject=A%20project">berke@berkeml.com <span aria-hidden="true">→</span></a>
+      <p class="rise">Documents your team still reads by hand? An agent that almost works? Send a short note about the problem. Replies usually go out within one working day.</p>
+      <div class="links rise">
+        <a href="https://github.com/berkedilekoglu" rel="me noopener">GitHub</a>
+        <a href="https://www.linkedin.com/in/berke-dilekoglu-53177a11a/" rel="me noopener">LinkedIn</a>
+        <a href="https://scholar.google.com/citations?user=9O8ciUEAAAAJ" rel="me noopener">Scholar</a>
+        <a href="https://berkedilekoglu.medium.com/" rel="me noopener">Medium</a>
+      </div>
     </div>
   </section>
 </main>
 
 <footer>
   <div class="wrap">
-    <span>© <span id="y">2026</span> BerkeML · Sole proprietorship of <a href="/berke-dilekoglu/">Berke Dilekoğlu</a> · Istanbul, Türkiye</span>
+    <span>© <span id="y">2026</span> Berke Dilekoğlu · BerkeML · Istanbul, Türkiye</span>
     <span><a href="mailto:berke@berkeml.com">berke@berkeml.com</a></span>
   </div>
 </footer>
 
 <script>
 (function () {
-  var root = document.documentElement, btn = document.getElementById('theme');
-  try { var s = localStorage.getItem('theme'); if (s) root.setAttribute('data-theme', s); } catch (e) {}
-  btn.addEventListener('click', function () {
-    var cur = root.getAttribute('data-theme') ||
-      (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+  document.body.classList.remove('no-js');
+  var root = document.documentElement;
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function css(v) { return getComputedStyle(root).getPropertyValue(v).trim(); }
+
+  /* ---------- theme ---------- */
+  try { var saved = localStorage.getItem('theme'); if (saved) root.setAttribute('data-theme', saved); } catch (e) {}
+  document.getElementById('theme').addEventListener('click', function () {
+    var cur = root.getAttribute('data-theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
     var next = cur === 'dark' ? 'light' : 'dark';
     root.setAttribute('data-theme', next);
     try { localStorage.setItem('theme', next); } catch (e) {}
+    readColors(); netColorsChanged();
   });
   document.getElementById('y').textContent = new Date().getFullYear();
+
+  /* ---------- the contribution maze ---------- */
+  var TW = 59, TH = 7;
+  function rng(seed) { return function () { seed = seed + 0x6D2B79F5 | 0; var t = Math.imul(seed ^ seed >>> 15, 1 | seed); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+  // a maze that fits the 7 rows of a contribution graph; its solution is what fills in
+  function buildMaze(seed) {
+    var cw = (TW - 1) / 2, ch = (TH - 1) / 2, g = new Uint8Array(TW * TH).fill(1), r = rng(seed);
+    var seen = new Uint8Array(cw * ch), stack = [[0, 0]];
+    seen[0] = 1; g[TW + 1] = 0;
+    while (stack.length) {
+      var top = stack[stack.length - 1], x = top[0], y = top[1], nb = [];
+      [[1, 0], [-1, 0], [0, 1], [0, -1]].forEach(function (d) { var nx = x + d[0], ny = y + d[1]; if (nx >= 0 && ny >= 0 && nx < cw && ny < ch && !seen[ny * cw + nx]) nb.push([nx, ny, d[0], d[1]]); });
+      if (!nb.length) { stack.pop(); continue; }
+      var n = nb[Math.floor(r() * nb.length)];
+      seen[n[1] * cw + n[0]] = 1;
+      g[(2 * y + 1 + n[3]) * TW + (2 * x + 1 + n[2])] = 0;
+      g[(2 * n[1] + 1) * TW + (2 * n[0] + 1)] = 0;
+      stack.push([n[0], n[1]]);
+    }
+    var start = TW, end = (TH - 2) * TW + TW - 1;
+    g[start] = 0; g[end] = 0;
+    var prev = new Int32Array(TW * TH).fill(-1), q = [start], qi = 0; prev[start] = start;
+    while (qi < q.length) {
+      var cur = q[qi++], cx = cur % TW, cy = (cur - cx) / TW;
+      [[1, 0], [-1, 0], [0, 1], [0, -1]].forEach(function (d) { var nx = cx + d[0], ny = cy + d[1], k = ny * TW + nx; if (nx >= 0 && ny >= 0 && nx < TW && ny < TH && !g[k] && prev[k] < 0) { prev[k] = cur; q.push(k); } });
+    }
+    var path = [], k = end;
+    while (true) { path.push(k); if (prev[k] === k) break; k = prev[k]; }
+    return { wall: g, path: path.reverse() };
+  }
+  var MAZE = buildMaze(1003), ORDER = MAZE.path, TOTAL = ORDER.length, rank = new Int16Array(TW * TH).fill(-1);
+  ORDER.forEach(function (k, i) { rank[k] = i; });
+  var canvas = document.getElementById('maze'), ctx = canvas.getContext('2d');
+  var contribEl = document.getElementById('contrib'), noteEl = document.getElementById('contrib-note');
+  var colors, target = 0, shown = 0, step = 8, dirty = true;
+  function readColors() { colors = { wall: css('--wall'), g: [css('--g1'), css('--g2'), css('--g3'), css('--g4')], levels: parseInt(css('--levels'), 10) || 3, desk: css('--ink-3'), head: css('--accent') }; dirty = true; }
+  function level(k) { var h = Math.imul(k ^ 0x9e3779b9, 2654435761) >>> 0; return 1 + h % colors.levels; }
+  function size() {
+    var dpr = window.devicePixelRatio || 1, w = canvas.clientWidth, h = canvas.clientHeight;
+    step = Math.max(4, Math.min(Math.floor(w / TW), Math.floor(h / TH)));
+    canvas.width = Math.round(w * dpr); canvas.height = Math.round(h * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0); dirty = true;
+  }
+  function progress() {
+    var max = document.documentElement.scrollHeight - window.innerHeight;
+    var p = max > 0 ? Math.min(1, window.scrollY / (max - 4)) : 1;
+    target = Math.round(Math.max(0, p) * TOTAL); dirty = true;
+  }
+  function draw() {
+    var w = canvas.clientWidth, h = canvas.clientHeight, gap = Math.max(1, Math.round(step * 0.2)), s = step - gap;
+    var oy = Math.floor((h - step * TH) / 2), rad = Math.max(1, s * 0.2), lit = Math.round(shown);
+    ctx.clearRect(0, 0, w, h);
+    for (var y = 0; y < TH; y++) for (var x = 0; x < TW; x++) {
+      var k = y * TW + x, r = rank[k], fill = null;
+      if (MAZE.wall[k]) fill = colors.wall;
+      else if (r >= 0 && r < lit) fill = r === lit - 1 && lit < TOTAL ? colors.head : colors.g[r >= lit - 3 ? 3 : level(k)];
+      if (!fill) continue;
+      ctx.fillStyle = fill;
+      ctx.beginPath(); ctx.roundRect ? ctx.roundRect(x * step, oy + y * step, s, s, rad) : ctx.rect(x * step, oy + y * step, s, s); ctx.fill();
+    }
+    contribEl.textContent = lit;
+    noteEl.textContent = lit >= TOTAL ? 'maze solved' : 'keep scrolling';
+  }
+
+  /* ---------- Berke at the desk: types while you scroll ---------- */
+  var desk = document.getElementById('desk'), dctx = desk.getContext('2d'), person = new Image();
+  person.src = 'avatar/head.png';
+  var lastY = window.scrollY, lastScrollT = -1e9, scrollDir = 1, bob = 0, bobT = 0, glow = 0.3, sparks = [], lastSpark = 0;
+  window.addEventListener('scroll', function () {
+    var y = window.scrollY;
+    if (y !== lastY) { scrollDir = y > lastY ? 1 : -1; lastY = y; lastScrollT = performance.now(); }
+  }, { passive: true });
+  function sizeDesk() {
+    var dpr = window.devicePixelRatio || 1;
+    desk.width = Math.round(desk.clientWidth * dpr); desk.height = Math.round(desk.clientHeight * dpr);
+    dctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+  function drawDesk(now) {
+    var w = desk.clientWidth, h = desk.clientHeight;
+    var typing = !reduce && now - lastScrollT < 260;
+    glow += ((typing ? 1 : 0.32) - glow) * 0.14;
+    if (typing && now - bobT > 85) { bob = bob ? 0 : 1; bobT = now; }
+    if (!typing) bob = 0;
+    var deskY = h - 4, lidW = Math.round(w * 0.66), lidH = Math.round(h * 0.32), lidX = Math.round((w - lidW) / 2), lidY = deskY - 2 - lidH;
+    dctx.clearRect(0, 0, w, h);
+    if (person.complete && person.naturalWidth) {
+      var ph = Math.round(h * 0.8), pw = Math.round(ph * person.naturalWidth / person.naturalHeight);
+      dctx.drawImage(person, Math.round((w - pw) / 2), lidY + Math.round(lidH * 0.7) - ph + bob, pw, ph);
+      // the screen lights his face from below
+      dctx.globalCompositeOperation = 'source-atop';
+      var lit = dctx.createLinearGradient(0, lidY, 0, lidY - ph * 0.8);
+      lit.addColorStop(0, 'rgba(150, 220, 255,' + (0.5 * glow).toFixed(3) + ')');
+      lit.addColorStop(1, 'rgba(150, 220, 255, 0)');
+      dctx.fillStyle = lit; dctx.fillRect(0, 0, w, lidY);
+      dctx.globalCompositeOperation = 'source-over';
+    }
+    // light spilling over the top of the lid
+    var spill = dctx.createRadialGradient(w / 2, lidY, 1, w / 2, lidY, lidW * 0.75);
+    spill.addColorStop(0, 'rgba(150, 220, 255,' + (0.32 * glow).toFixed(3) + ')');
+    spill.addColorStop(1, 'rgba(150, 220, 255, 0)');
+    dctx.fillStyle = spill; dctx.fillRect(0, lidY - lidW * 0.75, w, lidW * 0.75);
+    // the laptop, seen from behind
+    dctx.fillStyle = '#2e3138'; dctx.fillRect(lidX, lidY, lidW, lidH);
+    dctx.fillStyle = '#4a4f5a'; dctx.fillRect(lidX, lidY, lidW, 1); dctx.fillRect(lidX, lidY, 1, lidH); dctx.fillRect(lidX + lidW - 1, lidY, 1, lidH);
+    dctx.fillStyle = 'rgba(185, 235, 255,' + (0.95 * glow).toFixed(3) + ')'; dctx.fillRect(lidX + 1, lidY - 1, lidW - 2, 1);
+    dctx.globalAlpha = 0.55 + 0.45 * glow; dctx.fillStyle = colors.g[3];
+    dctx.fillRect(Math.round(w / 2 - 2), Math.round(lidY + lidH / 2 - 2), 4, 4);
+    dctx.globalAlpha = 1;
+    dctx.fillStyle = '#1b1d22'; dctx.fillRect(lidX - 4, deskY - 2, lidW + 8, 2);
+    dctx.fillStyle = colors.desk; dctx.globalAlpha = 0.55; dctx.fillRect(0, deskY, w, 2); dctx.globalAlpha = 1;
+    // keystrokes: green squares rise while the graph fills, grey ones while it empties
+    if (typing && now - lastSpark > 110) {
+      sparks.push({ x: lidX + 3 + Math.random() * (lidW - 8), t: now, c: scrollDir > 0 ? colors.g[3] : colors.desk });
+      lastSpark = now;
+    }
+    sparks = sparks.filter(function (p) { return now - p.t < 650; });
+    sparks.forEach(function (p) {
+      var k = (now - p.t) / 650;
+      dctx.globalAlpha = 1 - k; dctx.fillStyle = p.c;
+      dctx.fillRect(Math.round(p.x), Math.round(lidY - 3 - k * 14), 2, 2);
+    });
+    dctx.globalAlpha = 1;
+  }
+  sizeDesk();
+  window.addEventListener('resize', sizeDesk);
+
+  function tick(now) {
+    drawDesk(now || 0);
+    if (reduce) shown = target;
+    else { shown += (target - shown) * 0.2; if (Math.abs(target - shown) < 0.3) shown = target; }
+    if (dirty || shown !== target) { draw(); dirty = shown !== target; }
+    requestAnimationFrame(tick);
+  }
+  readColors(); size(); progress();
+  window.addEventListener('scroll', progress, { passive: true });
+  window.addEventListener('resize', function () { size(); progress(); layoutNet(); placeBoxes(); });
+  if (window.matchMedia) window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function () { readColors(); });
+  requestAnimationFrame(tick);
+
+  /* ---------- barcode ---------- */
+  (function () {
+    var svg = document.getElementById('barcode'), r = rng(42), x = 0, out = '';
+    while (x < 132) { var w = 1 + Math.floor(r() * 3); if (r() > 0.42) out += '<rect x="' + x + '" y="0" width="' + w + '" height="34" fill="#26241f"/>'; x += w + (r() > 0.5 ? 1 : 2); }
+    svg.innerHTML = out;
+  })();
+
+  /* ---------- extraction ---------- */
+  var sheet = document.getElementById('sheet'), out = document.getElementById('json'), btn = document.getElementById('extract');
+  var targets = [].slice.call(sheet.querySelectorAll('[data-key]')), boxes = [], running = false;
+  function offsetIn(el) { var x = 0, y = 0; while (el && el !== sheet) { x += el.offsetLeft; y += el.offsetTop; el = el.offsetParent; } return { x: x, y: y }; }
+  function placeBoxes() {
+    boxes.forEach(function (b, i) {
+      var el = targets[i], o = offsetIn(el);
+      b.style.left = (o.x - 5) + 'px'; b.style.top = (o.y - 4) + 'px';
+      b.style.width = (el.offsetWidth + 10) + 'px'; b.style.height = (el.offsetHeight + 8) + 'px';
+    });
+  }
+  function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;'); }
+  function val(v) { return typeof v === 'number' || typeof v === 'boolean' ? '<span class="n">' + v + '</span>' : '<span class="s">"' + esc(v) + '"</span>'; }
+  function tableRows(el) {
+    var cap = function (s) { s = s.trim(); return s.toLowerCase().replace(/(^|[\s\/.(])([a-zçğıöşü])/g, function (m, a, b) { return a + b.toUpperCase(); }); };
+    return [].map.call(el.querySelectorAll('tbody tr'), function (tr) {
+      var c = [].map.call(tr.children, function (td) { return td.textContent.trim(); });
+      var fix = { 'Areal.Ai': 'Areal.ai', 'Ginoa.Io': 'Ginoa.io', 'Sr. Nlp Engineer': 'Senior NLP Engineer', 'Nlp Research Eng.': 'NLP Research Engineer', 'Ford Tr / Durham U.': 'Ford Turkey / Durham University', 'Ml Engineer': 'ML Engineer' };
+      var emp = fix[cap(c[0])] || c[0], pos = fix[cap(c[1])] || cap(c[1]);
+      var to = /present|now/i.test(c[3]) ? 'now' : +c[3];
+      return '    { "employer": ' + val(emp) + ', "position": ' + val(pos) + (c[2] ? ', "from": ' + val(+c[2]) : '') + ', "to": ' + val(to) + ' }';
+    });
+  }
+  function lineFor(el, last) {
+    var key = '  <span class="k">"' + el.dataset.key + '"</span>: ', type = el.dataset.type;
+    if (type === 'table') return key + '[\n' + tableRows(el).join(',\n') + '\n  ]' + (last ? '' : ',');
+    var v = el.dataset.value; if (type === 'number') v = +v; if (type === 'bool') v = v === 'true';
+    return key + val(v) + (last ? '' : ',');
+  }
+  function makeBoxes() {
+    if (boxes.length) return;
+    targets.forEach(function (el, i) {
+      var b = document.createElement('div'); b.className = 'box';
+      var conf = el.dataset.type === 'table' ? 'table · 5 rows' : (0.91 + ((el.dataset.key.length * 13 + i) % 9) / 100).toFixed(2);
+      b.innerHTML = '<span>' + el.dataset.key + ' · ' + conf + '</span>';
+      sheet.appendChild(b); boxes.push(b);
+    });
+    placeBoxes();
+  }
+  btn.addEventListener('click', function () {
+    if (running) return;
+    running = true; makeBoxes(); btn.firstChild.textContent = 'Reading… ';
+    if (window.matchMedia('(max-width: 980px)').matches) sheet.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+    boxes.forEach(function (b) { b.classList.remove('on', 'done'); });
+    var lines = [], i = 0, wait = reduce ? 0 : 330;
+    (function next() {
+      if (i > 0) boxes[i - 1].classList.add('done');
+      if (i === targets.length) { out.innerHTML = '{\n' + lines.join('\n') + '\n}'; btn.firstChild.textContent = 'Extract again '; running = false; return; }
+      boxes[i].classList.add('on');
+      lines.push(lineFor(targets[i], i === targets.length - 1));
+      out.innerHTML = '{\n' + lines.slice(0, -1).join('\n') + (lines.length > 1 ? '\n' : '') + '<span class="hot">' + lines[lines.length - 1] + '</span>';
+      i++; setTimeout(next, wait);
+    })();
+  });
+
+  /* ---------- clock ---------- */
+  var clock = document.getElementById('clock');
+  function tickClock() {
+    try { clock.textContent = 'Istanbul · ' + new Intl.DateTimeFormat('en-GB', { timeZone: 'Europe/Istanbul', hour: '2-digit', minute: '2-digit' }).format(new Date()) + ' (UTC+3)'; } catch (e) {}
+  }
+  tickClock(); setInterval(tickClock, 30000);
+
+  /* ---------- career network ---------- */
+  var LAYERS = [
+    { name: 'Study', nodes: [
+      { id: 'mech', label: 'Mechatronics', sub: 'BSc · Sabancı', when: 'BSc', title: 'Mechatronics, Sabancı University', text: 'A second bachelor\'s degree alongside Computer Science: robots, control and sensors.' },
+      { id: 'cs', label: 'CS', sub: 'BSc · Sabancı', when: 'BSc', title: 'Computer Science, Sabancı University', text: 'Bachelor\'s in Computer Science on a High Honor Scholarship.' },
+      { id: 'durham', label: 'Durham', sub: '2017–18', when: '2017 – 2018', title: 'Durham University', text: 'Visiting researcher in computer vision: 360° image stitching, object detection and thermal re-identification.' },
+      { id: 'msc', label: 'CS & Eng.', sub: 'MSc · Sabancı', when: 'MSc · 2022', title: 'MSc Computer Science & Engineering', text: 'Sabancı University, 2022. Thesis: SUMOnet, deep sequential prediction of SUMOylation sites.' } ] },
+    { name: 'Research', nodes: [
+      { id: 'bio', label: 'Bioinformatics', sub: '3 papers', when: '2021 – 2023', title: 'Bioinformatics', text: 'Deep learning on biological sequences: SUMOnet (bioRxiv 2023), misannotated lncRNAs (Bioinformatics 2022), and privacy-preserving genome inference with homomorphic encryption (arXiv 2021).' },
+      { id: 'nlp', label: 'NLP', sub: '1 paper', when: '2021', title: 'Natural language processing', text: 'The impact of ensemble learning in sentiment analysis under domain shift (IEEE ASYU 2021).' } ] },
+    { name: 'Industry', nodes: [
+      { id: 'ford', label: 'Ford', sub: '2017–18', when: '2017 – 2018', title: 'Ford Motor Company Turkey', text: 'Visiting researcher in computer vision, in the same years as the Durham visit.' },
+      { id: 'huawei', label: 'Huawei', sub: '2021–23', when: '2021 – 2023', title: 'Huawei, NLP Research Engineer', text: 'App tagging, query expansion and keyword extraction for AppGallery search.' },
+      { id: 'ginoa', label: 'Ginoa.io', sub: '2023', when: '2023', title: 'Ginoa.io, ML Engineer', text: 'A document-grounded chatbot pipeline with automated evaluation and cost/performance tuning.' } ] },
+    { name: 'Now', nodes: [
+      { id: 'areal', label: 'Areal.ai', sub: '2023 →', when: '2023 → now', title: 'Areal.ai', text: 'Senior NLP Engineer. Table and field extraction from scanned PDFs, document classification, ensemble-based label cleaning, and LLM agent workflows for mortgage processing, closing and post-closing.' },
+      { id: 'berkeml', label: 'BerkeML', sub: 'founder', when: 'Now', title: 'BerkeML', text: 'Founder. An applied AI studio: client builds in document AI and LLM agents, plus its own products: FairyWhisper, Promil Tracker and InfluencersBid.' } ] }
+  ];
+  var svg = document.getElementById('net'), NS = 'http://www.w3.org/2000/svg', nodesById = {}, edges = [], selected = 'areal', fired = false;
+  function el(name, attrs) { var e = document.createElementNS(NS, name); for (var a in attrs) e.setAttribute(a, attrs[a]); return e; }
+  function weight(a, b) { var s = 0; (a + b).split('').forEach(function (c) { s = (s * 31 + c.charCodeAt(0)) >>> 0; }); return 0.18 + (s % 100) / 100 * 0.5; }
+  function layoutNet() {
+    var w = svg.parentNode.clientWidth - 24, vertical = w < 620;
+    var W = vertical ? 360 : 820, H = vertical ? 700 : 430;
+    svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
+    svg.innerHTML = ''; edges = [];
+    var defs = el('defs', {}), glow = el('filter', { id: 'glow', x: '-20%', y: '-20%', width: '140%', height: '140%' });
+    glow.innerHTML = '<feGaussianBlur stdDeviation="2.2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>';
+    defs.appendChild(glow); svg.appendChild(defs);
+    var gE = el('g', {}), gP = el('g', { filter: 'url(#glow)' }), gN = el('g', {});
+    svg.appendChild(gE); svg.appendChild(gP); svg.appendChild(gN);
+    var pos = {};
+    LAYERS.forEach(function (L, li) {
+      var n = L.nodes.length;
+      L.nodes.forEach(function (nd, ni) {
+        var x, y;
+        if (vertical) { y = 60 + li * (H - 120) / (LAYERS.length - 1); x = (ni + 0.5) * W / n; }
+        else { x = 70 + li * (W - 180) / (LAYERS.length - 1); y = 70 + (ni + 0.5) * (H - 110) / n; }
+        pos[nd.id] = { x: x, y: y, li: li };
+      });
+      var cap = vertical ? el('text', { x: 8, y: 60 + li * (H - 120) / (LAYERS.length - 1) - 30, class: 'layer' }) : el('text', { x: 70 + li * (W - 180) / (LAYERS.length - 1), y: 24, class: 'layer', 'text-anchor': 'middle' });
+      cap.textContent = L.name; svg.insertBefore(cap, gE);
+    });
+    for (var li = 0; li < LAYERS.length - 1; li++) LAYERS[li].nodes.forEach(function (a) {
+      LAYERS[li + 1].nodes.forEach(function (b) {
+        var pa = pos[a.id], pb = pos[b.id], d;
+        if (vertical) { var my = (pa.y + pb.y) / 2; d = 'M' + pa.x + ' ' + pa.y + ' C' + pa.x + ' ' + my + ' ' + pb.x + ' ' + my + ' ' + pb.x + ' ' + pb.y; }
+        else { var mx = (pa.x + pb.x) / 2; d = 'M' + pa.x + ' ' + pa.y + ' C' + mx + ' ' + pa.y + ' ' + mx + ' ' + pb.y + ' ' + pb.x + ' ' + pb.y; }
+        var p = el('path', { d: d, class: 'edge', 'stroke-opacity': weight(a.id, b.id).toFixed(2) });
+        p.dataset.a = a.id; p.dataset.b = b.id; p.dataset.li = li; gE.appendChild(p); edges.push(p);
+        p.pulse = el('path', { d: d, class: 'pulse', pathLength: 100 }); gP.appendChild(p.pulse);
+      });
+    });
+    LAYERS.forEach(function (L) {
+      L.nodes.forEach(function (nd) {
+        var p = pos[nd.id], g = el('g', { class: 'node', tabindex: 0, role: 'button', 'aria-label': nd.title + ', ' + nd.when, transform: 'translate(' + p.x + ' ' + p.y + ')' });
+        g.dataset.id = nd.id; g.dataset.li = p.li;
+        g.appendChild(el('circle', { r: 16, class: 'ring2' }));
+        g.appendChild(el('circle', { r: 9 }));
+        var t1 = el('text', { y: 32, 'text-anchor': 'middle', 'font-size': vertical ? 12.5 : 14 }); t1.textContent = nd.label;
+        var t2 = el('text', { y: 47, 'text-anchor': 'middle', class: 'sub', 'font-size': vertical ? 10 : 11 }); t2.textContent = nd.sub;
+        g.appendChild(t1); g.appendChild(t2);
+        ['mouseenter', 'focus', 'click'].forEach(function (ev) { g.addEventListener(ev, function () { select(nd.id); }); });
+        g.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); select(nd.id); } });
+        gN.appendChild(g); nodesById[nd.id] = { g: g, data: nd };
+      });
+    });
+    if (fired) select(selected, true);
+  }
+  function select(id, quiet) {
+    selected = id; var nd = nodesById[id].data;
+    // everything upstream that can reach the node, and everything downstream it reaches
+    function walk(from, dir) {
+      var seen = {}, queue = [from];
+      while (queue.length) {
+        var cur = queue.shift();
+        edges.forEach(function (p) {
+          var src = dir > 0 ? p.dataset.a : p.dataset.b, dst = dir > 0 ? p.dataset.b : p.dataset.a;
+          if (src === cur && !seen[dst]) { seen[dst] = true; queue.push(dst); }
+        });
+      }
+      return seen;
+    }
+    var up = walk(id, -1), down = walk(id, 1);
+    edges.forEach(function (p) {
+      var a = p.dataset.a, b = p.dataset.b;
+      var on = (up[a] && (up[b] || b === id)) || ((down[a] || a === id) && down[b]);
+      p.classList.toggle('lit', !!on); p.classList.toggle('dim', !on); p.classList.remove('flow');
+      p.pulse.classList.toggle('on', !!on);
+      p.pulse.style.animationDelay = (on ? +p.dataset.li * 0.38 : 0) + 's';
+    });
+    Object.keys(nodesById).forEach(function (k) {
+      var linked = k === id || up[k] || down[k];
+      nodesById[k].g.classList.toggle('on', k === id); nodesById[k].g.classList.toggle('dim', !linked); nodesById[k].g.classList.remove('fire');
+    });
+    document.getElementById('p-when').textContent = nd.when;
+    document.getElementById('p-title').textContent = nd.title;
+    document.getElementById('p-text').textContent = nd.text;
+  }
+  function netColorsChanged() {}
+  function forwardPass() {
+    if (fired) return; fired = true;
+    if (reduce) { select('areal'); return; }
+    LAYERS.forEach(function (L, li) {
+      setTimeout(function () {
+        L.nodes.forEach(function (nd) { nodesById[nd.id].g.classList.add('fire'); });
+        edges.forEach(function (p) { if (+p.dataset.li === li) p.classList.add('flow'); });
+      }, li * 450);
+    });
+    setTimeout(function () { select('areal'); }, LAYERS.length * 450 + 400);
+  }
+  layoutNet();
+
+  /* ---------- entrances ---------- */
+  var items = [].slice.call(document.querySelectorAll('.rise'));
+  var netObs = 'IntersectionObserver' in window ? new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { forwardPass(); netObs.disconnect(); } }); }, { threshold: 0.45 }) : null;
+  if (netObs) netObs.observe(svg); else forwardPass();
+  if (!('IntersectionObserver' in window) || reduce) { items.forEach(function (x) { x.classList.add('in'); }); }
+  else {
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        var sibs = [].slice.call(e.target.parentNode.children).filter(function (n) { return n.classList.contains('rise'); });
+        e.target.style.transitionDelay = (Math.max(0, sibs.indexOf(e.target)) * 70) + 'ms';
+        e.target.classList.add('in'); io.unobserve(e.target);
+      });
+    }, { rootMargin: '0px 0px -8% 0px' });
+    items.forEach(function (x) { io.observe(x); });
+  }
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { placeBoxes(); progress(); });
 })();
 </script>
 </body>
