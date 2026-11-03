@@ -54,15 +54,6 @@
       "sameAs": ["https://github.com/berkedilekoglu", "https://www.linkedin.com/in/berke-dilekoglu-53177a11a/", "https://scholar.google.com/citations?user=9O8ciUEAAAAJ", "https://berkedilekoglu.medium.com/", "https://berkedilekoglu.github.io/"]
     },
     {
-      "@type": "SoftwareApplication",
-      "name": "FairyWhisper",
-      "url": "https://berkeml.com/fairywhisper/",
-      "applicationCategory": "LifestyleApplication",
-      "operatingSystem": "iOS",
-      "description": "Bedtime stories read in a parent's own voice. A parent records their voice once; public-domain fairy tales and original stories written for FairyWhisper are narrated in that voice with ElevenLabs voice cloning and text-to-speech.",
-      "creator": { "@id": "https://berkeml.com/#org" }
-    },
-    {
       "@type": "WebApplication",
       "name": "Promil Tracker",
       "url": "https://promiltracker.com/",
@@ -347,6 +338,7 @@ section.block { padding: clamp(80px, 11vw, 140px) 0; }
 .panel .when { font-family: var(--mono); font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: #FFB37F; }
 .panel h3 { font-family: var(--serif); font-weight: 400; font-size: 34px; line-height: 1.05; margin: 10px 0 12px; color: #F3F0E8; }
 .panel p { color: #C9C4B6; font-size: 16px; }
+.panel p.role { font-family: var(--mono); font-size: 13.5px; letter-spacing: .01em; color: #F3F0E8; margin: -4px 0 14px; padding-left: 12px; border-left: 2px solid #FFB37F; line-height: 1.35; }
 .net-hint { position: absolute; left: 0; right: 0; bottom: 14px; text-align: center; font-family: var(--mono); font-size: 11.5px; letter-spacing: .04em; color: var(--ink-3); pointer-events: none; }
 @media (max-width: 980px) { .net { grid-template-columns: 1fr; } .panel { position: static; min-height: 0; } }
 
@@ -513,7 +505,7 @@ footer a { text-decoration: none; }
         </div>
         <div class="svc rise">
           <h3>AI-native products</h3>
-          <p>Web and mobile apps with a model at the core, designed, built and launched end to end. FairyWhisper, Promil Tracker and InfluencersBid are mine.</p>
+          <p>Web and mobile apps with a model at the core, designed, built and launched end to end. Promil Tracker and InfluencersBid are mine.</p>
           <ul><li>iOS</li><li>web</li><li>voice AI</li><li>launch</li></ul>
         </div>
       </div>
@@ -539,7 +531,6 @@ footer a { text-decoration: none; }
         <hr>
         <div class="row"><span class="k">live</span><a class="ok" href="https://promiltracker.com/">● promiltracker.com</a></div>
         <div class="row"><span class="k">live</span><a class="ok" href="https://influencersbid.lol/">● influencersbid.lol</a></div>
-        <div class="row"><span class="k">building</span><a class="wip" href="https://berkeml.com/fairywhisper/">● FairyWhisper (iOS)</a></div>
         <hr>
         <div class="row"><span class="k">toolchain</span><span>Claude Code + Claude API</span></div>
         <div><span class="k">$</span> ship --next <span class="cursor" aria-hidden="true"></span></div>
@@ -558,12 +549,6 @@ footer a { text-decoration: none; }
         </div>
       </div>
       <div class="cards">
-        <a class="card rise" href="https://berkeml.com/fairywhisper/">
-          <span class="top"><span class="status soon">Coming soon · iOS</span><span class="cat">Family</span></span>
-          <h3>FairyWhisper</h3>
-          <p>Bedtime stories read in a parent's own voice. A parent records their voice once; classic fairy tales and calm stories written for FairyWhisper are then narrated in that voice with ElevenLabs, with a sleep timer, lullabies and a gentle wind-down.</p>
-          <span class="url">berkeml.com/fairywhisper <span aria-hidden="true">→</span></span>
-        </a>
         <a class="card rise" href="https://promiltracker.com/">
           <span class="top"><span class="status">Live · web</span><span class="cat">Health</span></span>
           <h3>Promil Tracker</h3>
@@ -595,7 +580,8 @@ footer a { text-decoration: none; }
         <aside class="panel" aria-live="polite">
           <p class="when" id="p-when">2023 → now</p>
           <h3 id="p-title">Areal.ai</h3>
-          <p id="p-text">Senior NLP Engineer. Table and field extraction from scanned PDFs, document classification, ensemble-based label cleaning, and LLM agent workflows for mortgage processing, closing and post-closing.</p>
+          <p class="role" id="p-role">Senior NLP Engineer</p>
+          <p id="p-text">Table and field extraction from scanned PDFs, document classification, ensemble-based label cleaning, and LLM agent workflows for mortgage processing, closing and post-closing.</p>
         </aside>
       </div>
     </div>
@@ -872,20 +858,20 @@ footer a { text-decoration: none; }
   /* ---------- career network ---------- */
   var LAYERS = [
     { name: 'Study', nodes: [
-      { id: 'mech', label: 'Mechatronics', sub: 'BSc · Sabancı', when: 'BSc', title: 'Mechatronics, Sabancı University', text: 'A second bachelor\'s degree alongside Computer Science: robots, control and sensors.' },
-      { id: 'cs', label: 'CS', sub: 'BSc · Sabancı', when: 'BSc', title: 'Computer Science, Sabancı University', text: 'Bachelor\'s in Computer Science on a High Honor Scholarship.' },
-      { id: 'durham', label: 'Durham', sub: '2017–18', when: '2017 – 2018', title: 'Durham University', text: 'Visiting researcher in computer vision: 360° image stitching, object detection and thermal re-identification.' },
-      { id: 'msc', label: 'CS & Eng.', sub: 'MSc · Sabancı', when: 'MSc · 2022', title: 'MSc Computer Science & Engineering', text: 'Sabancı University, 2022. Thesis: SUMOnet, deep sequential prediction of SUMOylation sites.' } ] },
+      { id: 'mech', label: 'Mechatronics', sub: 'BSc · Sabancı', when: 'BSc', title: 'Sabancı University', role: 'BSc, Mechatronics Engineering', text: 'A second bachelor\'s degree alongside Computer Science: robots, control and sensors.' },
+      { id: 'cs', label: 'CS', sub: 'BSc · Sabancı', when: 'BSc', title: 'Sabancı University', role: 'BSc, Computer Science', text: 'Studied on a High Honor Scholarship.' },
+      { id: 'durham', label: 'Durham', sub: '2017–18', when: '2017 – 2018', title: 'Durham University', role: 'Visiting Researcher, Computer Vision', text: '360° image stitching, object detection and thermal re-identification.' },
+      { id: 'msc', label: 'CS & Eng.', sub: 'MSc · Sabancı', when: 'MSc · 2022', title: 'Sabancı University', role: 'MSc, Computer Science & Engineering', text: 'Thesis: SUMOnet, deep sequential prediction of SUMOylation sites.' } ] },
     { name: 'Research', nodes: [
-      { id: 'bio', label: 'Bioinformatics', sub: '3 papers', when: '2021 – 2023', title: 'Bioinformatics', text: 'Deep learning on biological sequences: SUMOnet (bioRxiv 2023), misannotated lncRNAs (Bioinformatics 2022), and privacy-preserving genome inference with homomorphic encryption (arXiv 2021).' },
-      { id: 'nlp', label: 'NLP', sub: '1 paper', when: '2021', title: 'Natural language processing', text: 'The impact of ensemble learning in sentiment analysis under domain shift (IEEE ASYU 2021).' } ] },
+      { id: 'bio', label: 'Bioinformatics', sub: '3 papers', when: '2021 – 2023', title: 'Bioinformatics', role: 'Researcher, 3 papers', text: 'Deep learning on biological sequences: SUMOnet (bioRxiv 2023), misannotated lncRNAs (Bioinformatics 2022), and privacy-preserving genome inference with homomorphic encryption (arXiv 2021).' },
+      { id: 'nlp', label: 'NLP', sub: '1 paper', when: '2021', title: 'Natural language processing', role: 'Researcher, 1 paper', text: 'The impact of ensemble learning in sentiment analysis under domain shift (IEEE ASYU 2021).' } ] },
     { name: 'Industry', nodes: [
-      { id: 'ford', label: 'Ford', sub: '2017–18', when: '2017 – 2018', title: 'Ford Motor Company Turkey', text: 'Visiting researcher in computer vision, in the same years as the Durham visit.' },
-      { id: 'huawei', label: 'Huawei', sub: '2021–23', when: '2021 – 2023', title: 'Huawei, NLP Research Engineer', text: 'App tagging, query expansion and keyword extraction for AppGallery search.' },
-      { id: 'ginoa', label: 'Ginoa.io', sub: '2023', when: '2023', title: 'Ginoa.io, ML Engineer', text: 'A document-grounded chatbot pipeline with automated evaluation and cost/performance tuning.' } ] },
+      { id: 'ford', label: 'Ford', sub: '2017–18', when: '2017 – 2018', title: 'Ford Motor Company Turkey', role: 'Visiting Researcher, Computer Vision', text: 'Industry-side computer vision work, in the same years as the Durham visit.' },
+      { id: 'huawei', label: 'Huawei', sub: '2021–23', when: '2021 – 2023', title: 'Huawei', role: 'NLP Research Engineer', text: 'App tagging, query expansion and keyword extraction for AppGallery search.' },
+      { id: 'ginoa', label: 'Ginoa.io', sub: '2023', when: '2023', title: 'Ginoa.io', role: 'ML Engineer', text: 'A document-grounded chatbot pipeline with automated evaluation and cost/performance tuning.' } ] },
     { name: 'Now', nodes: [
-      { id: 'areal', label: 'Areal.ai', sub: '2023 →', when: '2023 → now', title: 'Areal.ai', text: 'Senior NLP Engineer. Table and field extraction from scanned PDFs, document classification, ensemble-based label cleaning, and LLM agent workflows for mortgage processing, closing and post-closing.' },
-      { id: 'berkeml', label: 'BerkeML', sub: 'founder', when: 'Now', title: 'BerkeML', text: 'Founder. An applied AI studio: client builds in document AI and LLM agents, plus its own products: FairyWhisper, Promil Tracker and InfluencersBid.' } ] }
+      { id: 'areal', label: 'Areal.ai', sub: '2023 →', when: '2023 → now', title: 'Areal.ai', role: 'Senior NLP Engineer', text: 'Table and field extraction from scanned PDFs, document classification, ensemble-based label cleaning, and LLM agent workflows for mortgage processing, closing and post-closing.' },
+      { id: 'berkeml', label: 'BerkeML', sub: 'founder', when: 'Now', title: 'BerkeML', role: 'Founder', text: 'Accurate, fast, cost-effective agent solutions, designed end to end from product to production pipeline.' } ] }
   ];
   var svg = document.getElementById('net'), NS = 'http://www.w3.org/2000/svg', nodesById = {}, edges = [], selected = 'areal', fired = false;
   function el(name, attrs) { var e = document.createElementNS(NS, name); for (var a in attrs) e.setAttribute(a, attrs[a]); return e; }
@@ -924,7 +910,7 @@ footer a { text-decoration: none; }
     });
     LAYERS.forEach(function (L) {
       L.nodes.forEach(function (nd) {
-        var p = pos[nd.id], g = el('g', { class: 'node', tabindex: 0, role: 'button', 'aria-label': nd.title + ', ' + nd.when, transform: 'translate(' + p.x + ' ' + p.y + ')' });
+        var p = pos[nd.id], g = el('g', { class: 'node', tabindex: 0, role: 'button', 'aria-label': nd.title + ', ' + nd.role + ', ' + nd.when, transform: 'translate(' + p.x + ' ' + p.y + ')' });
         g.dataset.id = nd.id; g.dataset.li = p.li;
         g.appendChild(el('circle', { r: 16, class: 'ring2' }));
         g.appendChild(el('circle', { r: 9 }));
@@ -966,6 +952,7 @@ footer a { text-decoration: none; }
     });
     document.getElementById('p-when').textContent = nd.when;
     document.getElementById('p-title').textContent = nd.title;
+    document.getElementById('p-role').textContent = nd.role;
     document.getElementById('p-text').textContent = nd.text;
   }
   function netColorsChanged() {}
